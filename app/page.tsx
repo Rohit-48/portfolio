@@ -1,17 +1,14 @@
 import { BlogPosts } from "app/components/posts";
-import Image from "next/image";
 
 export default function Page() {
   return (
     <section>
       <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
         <div className="w-48 h-48 relative rounded-lg overflow-hidden">
-          <Image 
-            src="/images/profile.jpg" 
+          <img 
+            src="/images/ChatGPT Image Mar 30, 2025, 06_17_29 AM.png" 
             alt="Profile photo" 
-            fill
-            priority
-            className="object-cover"
+            className="object-cover w-full h-full"
           />
         </div>
         <div>
