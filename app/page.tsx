@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <section>
       <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
-        <div className="w-64 h-64 relative rounded-lg overflow-hidden">
+        <div className="w-80 h-64 relative rounded-lg overflow-hidden">
           <img 
             src="/images/ChatGPT Image Mar 30, 2025, 06_17_29 AM.png" 
             alt="Profile photo" 
