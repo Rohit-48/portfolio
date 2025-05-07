@@ -1,25 +1,30 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { Chakra_Petch } from "next/font/google";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
+import { cx } from "./utils";
+
+const font = Chakra_Petch({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Portfolio ",
-    template: "%s | Next.js Portfolio Starter",
+    default: "Portfolio",
+    template: "%s | Portfolio",
   },
-  description: "This is my portfolio.",
+  description: "My personal portfolio",
   openGraph: {
     title: "My Portfolio",
     description: "This is my portfolio.",
     url: baseUrl,
-    siteName: "My Portfolio",
+    siteName: "Portfolio",
     locale: "en_US",
     type: "website",
   },
@@ -34,9 +39,8 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  manifest: "/favicon/site.webmanifest",
 };
-
-const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 export default function RootLayout({
   children,
@@ -48,8 +52,7 @@ export default function RootLayout({
       lang="en"
       className={cx(
         "text-black bg-white dark:text-white dark:bg-black",
-        GeistSans.variable,
-        GeistMono.variable,
+        font.className
       )}
     >
       <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">

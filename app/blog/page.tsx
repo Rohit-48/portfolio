@@ -1,15 +1,15 @@
-import { BlogPosts } from 'app/components/posts'
+import { SpecializedBlogPosts } from 'app/components/specialized-posts'
 
 export const metadata = {
-  title: 'Blog',
-  description: 'Read my blog.',
+  title: 'STEM Blog Posts',
+  description: 'Read my STEM blog posts on various topics.',
 }
 
 export default function Page() {
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
-      <BlogPosts />
+      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">STEM Categories</h1>
+      <SpecializedBlogPosts />
     </section>
   )
 }

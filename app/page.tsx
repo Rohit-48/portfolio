@@ -1,29 +1,41 @@
 import { BlogPosts } from "app/components/posts";
+import { SpecializedBlogPosts } from "app/components/specialized-posts";
+import Link from "next/link";
 
 export default function Page() {
   return (
     <section>
-      <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
-        <div className="w-80 h-64 relative rounded-lg overflow-hidden">
-          <img 
-            src="/images/ChatGPT Image Mar 30, 2025, 06_17_29 AM.png" 
-            alt="Profile photo" 
-            className="object-cover w-full h-full"
-          />
-        </div>
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tighter mb-4">
-            Rohit.cpp Portfolio
-          </h1>
-          <p className="mb-4">
-            {`Hola, I'm computer science student,
-            I Love what i do, i strongly believes in be a multidimensional
-            person(Jack of All Trades), polymath Learning.`}
-          </p>
-        </div>
+      <div className="mb-8">
+        <h1 className="text-2xl font-semibold tracking-tighter mb-4">
+          Rohit.cpp Portfolio
+        </h1>
+        <p className="mb-4">
+          {`Hola, I'm computer science student,
+          I Love what i do, i strongly believes in be a multidimensional
+          person(Jack of All Trades), polymath Learning.`}
+        </p>
       </div>
-      <div className="my-8">
-        <BlogPosts />
+      
+      <div className="space-y-12">
+        <div>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-semibold tracking-tighter">STEM Categories</h2>
+            <Link href="/blog" className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100">
+              View all →
+            </Link>
+          </div>
+          <SpecializedBlogPosts />
+        </div>
+
+        <div>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-semibold tracking-tighter">General Posts</h2>
+            <Link href="/blog/general" className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100">
+              View all →
+            </Link>
+          </div>
+          <BlogPosts />
+        </div>
       </div>
     </section>
   );
