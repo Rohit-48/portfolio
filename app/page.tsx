@@ -10,7 +10,7 @@ export default function Page() {
           Rohit.cpp Portfolio
         </h1>
         <p className="mb-4">
-          {`Hola, I'm computer science student,
+          {`Hola, I'm computer science student, web dev + AI.
           I Love what i do, i strongly believes in be a multidimensional
           person(Jack of All Trades), polymath Learning.`}
         </p>
