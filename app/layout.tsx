@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   description: "My personal portfolio",
   openGraph: {
-    title: "My Portfolio",
+    title: "Portfolio",
     description: "This is my portfolio.",
     url: baseUrl,
     siteName: "Portfolio",
