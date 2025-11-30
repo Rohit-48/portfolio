@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -29,7 +30,8 @@
   --color-secondary: var(--gold);
   --color-border: var(--border-color);
   --color-accent: var(--accent);
-  --color-cofee: var(--coffee)
+  --color-cofee: var(--coffee) ;
+  --color-black: var(--black);
 
   /* Fonts */
   --font-sans: var(--font-cooper-hewitt);
@@ -37,11 +39,27 @@
   
 }
 
+@font-face {
+    font-family: 'Electrolize';
+    src: url('/fonts/Electrolize-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .font-electrolize {
+    font-family: 'Electrolize', sans-serif;
+  }
+
 
 body {
   background: var(--background);
+  padding: 0 260px;
   color: var(--foreground);
   font-family: var(--font-cooper-hewitt), sans-serif;
-  margin: 0 auto;
   scroll-behavior: smooth;
+}
+
+@media (max-width: 768px){
+  body{
+    padding: 0 20px;
+  }
 }
