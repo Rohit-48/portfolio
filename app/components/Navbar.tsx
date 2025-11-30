@@ -39,7 +39,7 @@ export const Navbar = () => {
                             key={link.label}
                             className={`
                                 relative px-4 py-2 rounded-lg font-semibold text-sm transition-all flex items-center gap-4 
-                                ${pathname === link.path ? 'bg-amber-300 text-black border-black shadow-sm' : 'border-2 border-transparent hover:bg-gray-100 hover:text-black hover:border-gray-300'}
+                                ${pathname === link.path ? 'bg-amber-300 text-black border-2 border-black shadow-sm' : 'border-2 border-transparent hover:bg-gray-100 hover:text-black hover:border-gray-300'}
                               `}>
                             <Icon size={20} strokeWidth={2.5} className="text-black" />
                             {link.label}
