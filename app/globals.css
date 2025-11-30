@@ -30,7 +30,8 @@
   --color-secondary: var(--gold);
   --color-border: var(--border-color);
   --color-accent: var(--accent);
-  --color-cofee: var(--coffee)
+  --color-cofee: var(--coffee) ;
+  --color-black: var(--black);
 
   /* Fonts */
   --font-sans: var(--font-cooper-hewitt);
@@ -47,6 +48,8 @@
   .font-electrolize {
     font-family: 'Electrolize', sans-serif;
   }
+
+
 body {
   background: var(--background);
   padding: 0 260px;
