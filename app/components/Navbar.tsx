@@ -14,7 +14,7 @@ export const Navbar = () => {
 
     const pathname = usePathname();
     return (
-        <div className="flex justify-between items-center p-4 mx-auto bg-amber-50 text-black font-medium rounded-lg border-4  shadow-[6px_6px_0px_0px_black] ">
+        <div className="flex justify-between items-center p-4 mx-auto max-w-4xl w-full bg-amber-50 text-black font-medium rounded-lg border-4  shadow-[6px_6px_0px_0px_black] ">
             <div className="flex items-center gap-2 font-electrolize font-bold text-xl tracking-tighter hover:scale-105 transition-transform cursor-pointer">
                 <Link href="/" className="hover:scale-105 transition-transform cursor-pointer">
                     <Image

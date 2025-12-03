@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Container } from "./components/Container";
+import { Navbar } from "./components/Navbar";
+
 
 const cooperHewitt = localFont({
   src: [
@@ -69,7 +72,10 @@ export default function RootLayout({
       <body
         className={`${cooperHewitt.variable} ${geistMono.variable} antialiased`}
       >
+        <Container>
+        <Navbar />
         {children}
+        </Container>
       </body>
     </html>
   );
