@@ -1,10 +1,8 @@
-import { Container } from "@/app/components/Container";  
-import { Navbar } from "@/app/components/Navbar";  
-
 export default function Home() {
-   return(
-      <Container>
-         <Navbar />
-      </Container>
-   )
+  return (
+    <div>
+      <h1>Home Page</h1>
+      {/* Your home content will go here */}
+    </div>
+  );
 }
