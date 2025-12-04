@@ -41,7 +41,7 @@ export default function Projects() {
                 {projectListing.map((project, index) => (
                     <RetroCard
                         key={project.slug}
-                        className="flex flex-col group bg-amber-50 w-80 hover:scale-105 cursor-pointer"
+                        className="flex flex-col group bg-amber-50 w-80"
                         delay={index * 0.1}
                     >
                         {/* Image Section */}

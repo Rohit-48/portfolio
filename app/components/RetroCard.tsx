@@ -40,8 +40,7 @@ export const RetroCard: React.FC<RetroCardProps> = ({
         ${noShadow ? "" : "shadow-[4px_4px_0px_0px_black]"}
         overflow-hidden
         relative
-        transition-transform ease-in-out
-        ${onClick ? "hover:scale-105 cursor-pointer" : ""}
+        ${onClick ? "cursor-pointer" : ""}
         ${className}
       `}
     >
