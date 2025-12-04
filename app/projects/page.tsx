@@ -29,7 +29,7 @@ export default function Projects() {
     ]
     return (
         <div className="flex flex-col items-center py-8">
-            <h1 className="font-electrolize font-bold text-3xl border-4 rounded-full px-6 py-2 bg-amber-300 shadow-[2px_4px_0px_0px_black] hover:scale-105  transition-transform cursor-pointer">
+            <h1 className="font-electrolize font-bold text-6xl tracking-tighter border-4 rounded-full px-6 py-2 bg-amber-300 shadow-[2px_4px_0px_0px_black] hover:scale-105 uppercase transition-transform cursor-pointer">
                 Projects
             </h1>
             <p className="font-electrolize font-medium text-sm mt-4 opacity-60 text-center selection:bg-yellow-400 selection:text-black ...">
