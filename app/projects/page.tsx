@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { RetroCard } from "../components/RetroCard"
 
 
@@ -8,12 +9,22 @@ export default function Projects() {
             title: "CYBERDECK",
             tech: ["Next.js", "TypeScript"],
             description: "A cyberpunk-themed dashboard with real-time data visualization.",
+            imageUrl: "/images/cyberdeck.png",
+            githubUrl: "https://github.com/cyberdeck",
+            demoUrl: "https://cyberdeck.com",
+            tags: ["Next.js", "TypeScript", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
+            color: "bg-cyberdeck",
         },
         {
             slug: "task-rs",
             title: "TASK.RS",
             tech: ["Rust", "React"],
             description: "A blazingly fast task manager built with Rust backend.",
+            imageUrl: "/images/taskrs.png",
+            githubUrl: "https://github.com/taskrs",
+            demoUrl: "https://taskrs.com",
+            tags: ["Rust", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
+            color: "bg-taskrs",
         },
     ]
     return (
@@ -27,12 +38,19 @@ export default function Projects() {
             <div className="w-160 border-b-4 border-dashed border-yellow-400 mt-6 mb-6"></div>
             {/* projects Cards Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {Projects.map((project, index) => (
-                    <RetroCard 
-                    key={project.id}
-                    className="flex flex-col group bg-amber-50"
-                    delay={index * 0.1}
+                {projectListing.map((project, index) => (
+                    <RetroCard
+                        key={project.slug}
+                        className="flex flex-col group bg-amber-50"
+                        delay={index * 0.1}
                     >
+                        {/* Card content goes here */}
+                        <h2>{project.title}</h2>
+                        <p>{project.tech.join(" • ")}</p>
+                        <p>{project.description}</p>
+                        <p>{project.demoUrl}</p>
+                        
+                    </RetroCard>
                 ))}
             </div>
         </div>
