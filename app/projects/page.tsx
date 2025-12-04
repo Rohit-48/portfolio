@@ -78,9 +78,9 @@ export default function Projects() {
 
                         {/* Content Section */}
                         <div className="p-5">
-                            <h2 className="text-xl font-bold selection:bg-yellow-300">{project.title}</h2>
-                            <p className="text-sm text-gray-600 mt-1 selection:bg-yellow-300">{project.tech.join(" • ")}</p>
-                            <p className="mt-3 text-sm text-gray-700 selection:bg-yellow-300">{project.description}</p>
+                            <h2 className="text-xl font-bold selection:bg-yellow-300 selection:text-black transition-all">{project.title}</h2>
+                            <p className="text-sm text-gray-600 mt-1 selection:bg-yellow-300 selection:text-black transition-all">{project.tech.join(" • ")}</p>
+                            <p className="mt-3 text-sm text-gray-700 selection:bg-yellow-300 selection:text-black transition-all">{project.description}</p>
                             
                             {/* Tags */}
                             <div className="flex flex-wrap gap-2 mt-4">
