@@ -58,7 +58,7 @@ export default function Projects() {
                                         href={project.githubUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-2 bg-white border-black border-2 rounded-lg hover:bg-amber-300 hover:rotate-30 active:shadow-none transition-all duration-400"
+                                        className="p-2 bg-white border-black border-2 rounded-lg hover:bg-amber-300 hover:rotate-12 active:shadow-none transition-all duration-400"
                                     >
                                         <Github size={18}/>
                                     </a>
@@ -68,7 +68,7 @@ export default function Projects() {
                                         href={project.demoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-2 bg-white border-black border-2 rounded-lg hover:bg-amber-300 hover:rotate-30 active:shadow-none transition-all duration-400"
+                                        className="p-2 bg-white border-black border-2 rounded-lg hover:bg-amber-300 hover:rotate-12 active:shadow-none transition-all duration-400"
                                     >
                                         <ExternalLink size={18}/>
                                     </a>
