@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { RetroCard } from "../components/RetroCard"
-
+import { Github, ExternalLink } from "lucide-react"
 
 export default function Projects() {
     const projectListing = [
@@ -9,7 +9,7 @@ export default function Projects() {
             title: "CYBERDECK",
             tech: ["Next.js", "TypeScript"],
             description: "A cyberpunk-themed dashboard with real-time data visualization.",
-            imageUrl: "/images/cyberdeck.png",
+            imageUrl: "/Cynorous.png",      
             githubUrl: "https://github.com/cyberdeck",
             demoUrl: "https://cyberdeck.com",
             tags: ["Next.js", "TypeScript", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
@@ -20,7 +20,7 @@ export default function Projects() {
             title: "TASK.RS",
             tech: ["Rust", "React"],
             description: "A blazingly fast task manager built with Rust backend.",
-            imageUrl: "/images/taskrs.png",
+            imageUrl: "/taskmanager.png",
             githubUrl: "https://github.com/taskrs",
             demoUrl: "https://taskrs.com",
             tags: ["Rust", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
@@ -29,7 +29,7 @@ export default function Projects() {
     ]
     return (
         <div className="flex flex-col items-center py-8">
-            <h1 className="font-electrolize font-bold text-3xl border-4 rounded-full px-6 py-2 bg-amber-300 shadow-[2px_4px_0px_0px_black] hover:scale-105  transition-transform cursor-pointer">
+            <h1 className="font-electrolize font-bold text-6xl tracking-tighter border-4 rounded-full px-6 py-2 bg-amber-300 shadow-[2px_4px_0px_0px_black] hover:scale-105 uppercase transition-transform cursor-pointer">
                 Projects
             </h1>
             <p className="font-electrolize font-medium text-sm mt-4 opacity-60 text-center selection:bg-yellow-400 selection:text-black ...">
@@ -41,15 +41,59 @@ export default function Projects() {
                 {projectListing.map((project, index) => (
                     <RetroCard
                         key={project.slug}
-                        className="flex flex-col group bg-amber-50"
+                        className="flex flex-col group bg-amber-50 w-full max-w-sm"
                         delay={index * 0.1}
                     >
-                        {/* Card content goes here */}
-                        <h2>{project.title}</h2>
-                        <p>{project.tech.join(" • ")}</p>
-                        <p>{project.description}</p>
-                        <p>{project.demoUrl}</p>
-                        
+                        {/* Image Section */}
+                        <div className="h-48 overflow-hidden relative bg-gray-200">
+                            <img 
+                                src={project.imageUrl}
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            {/* GitHub Icon Overlay */}
+                            <div className="absolute top-3 right-3 flex gap-2">
+                                {project.githubUrl && (
+                                    <a 
+                                        href={project.githubUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="p-2 bg-white border-black border-2 rounded-lg hover:bg-amber-300 hover:rotate-12 active:shadow-none transition-all duration-400"
+                                    >
+                                        <Github size={18}/>
+                                    </a>
+                                )}
+                                {project.demoUrl && (
+                                    <a 
+                                        href={project.demoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="p-2 bg-white border-black border-2 rounded-lg hover:bg-amber-300 hover:rotate-12 active:shadow-none transition-all duration-400"
+                                    >
+                                        <ExternalLink size={18}/>
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Content Section */}
+                        <div className="p-5">
+                            <h2 className="text-xl font-bold selection:bg-yellow-300 selection:text-black transition-all">{project.title}</h2>
+                            <p className="text-sm text-gray-600 mt-1 selection:bg-yellow-300 selection:text-black transition-all">{project.tech.join(" • ")}</p>
+                            <p className="mt-3 text-sm text-gray-700 selection:bg-yellow-300 selection:text-black transition-all">{project.description}</p>
+                            
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-2 mt-4">
+                                {project.tags.slice(0, 3).map((tag) => (
+                                    <button 
+                                        key={tag}
+                                        className="px-3 py-1 text-xs font-medium bg-amber-200 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_black] cursor-pointer hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 hover:-translate-x-0.5 active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transition-all duration-150"
+                                    >
+                                        {tag}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </RetroCard>
                 ))}
             </div>
