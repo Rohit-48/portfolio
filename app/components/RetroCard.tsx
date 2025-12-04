@@ -35,7 +35,7 @@ export const RetroCard: React.FC<RetroCardProps> = ({
       onClick={onClick}
       className={`
         ${bgColor}
-        border-4 border-black
+        border-4 border-black 
         rounded-2xl
         ${noShadow ? "" : "shadow-[4px_4px_0px_0px_black]"}
         overflow-hidden

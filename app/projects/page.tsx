@@ -9,7 +9,7 @@ export default function Projects() {
             title: "CYBERDECK",
             tech: ["Next.js", "TypeScript"],
             description: "A cyberpunk-themed dashboard with real-time data visualization.",
-            imageUrl: "/Cynorous.png",      
+            imageUrl: "/Cynorous.png",
             githubUrl: "https://github.com/cyberdeck",
             demoUrl: "https://cyberdeck.com",
             tags: ["Next.js", "TypeScript", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
@@ -41,12 +41,12 @@ export default function Projects() {
                 {projectListing.map((project, index) => (
                     <RetroCard
                         key={project.slug}
-                        className="flex flex-col group bg-amber-50 w-80"
+                        className="flex flex-col group bg-amber-50 w-80 hover:scale-105 cursor-pointer"
                         delay={index * 0.1}
                     >
                         {/* Image Section */}
                         <div className="h-48 overflow-hidden relative bg-gray-200">
-                            <img 
+                            <img
                                 src={project.imageUrl}
                                 alt={project.title}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -54,23 +54,23 @@ export default function Projects() {
                             {/* GitHub Icon Overlay */}
                             <div className="absolute top-3 right-3 flex gap-2">
                                 {project.githubUrl && (
-                                    <a 
+                                    <a
                                         href={project.githubUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="p-2 bg-white border-black border-2 rounded-lg hover:bg-yellow-200 hover:rotate-30 active:shadow-none transition-all duration-400"
                                     >
-                                        <Github size={18}/>
+                                        <Github size={18} />
                                     </a>
                                 )}
                                 {project.demoUrl && (
-                                    <a 
+                                    <a
                                         href={project.demoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="p-2 bg-white border-black border-2 rounded-lg hover:bg-yellow-200 hover:rotate-30 active:shadow-none transition-all duration-400"
                                     >
-                                        <ExternalLink size={18}/>
+                                        <ExternalLink size={18} />
                                     </a>
                                 )}
                             </div>
@@ -81,11 +81,11 @@ export default function Projects() {
                             <h2 className="text-xl font-bold">{project.title}</h2>
                             <p className="text-sm text-gray-600 mt-1">{project.tech.join(" • ")}</p>
                             <p className="mt-3 text-sm text-gray-700">{project.description}</p>
-                            
+
                             {/* Tags */}
                             <div className="flex flex-wrap gap-2 mt-4">
                                 {project.tags.slice(0, 3).map((tag) => (
-                                    <button 
+                                    <button
                                         key={tag}
                                         className="px-3 py-1 text-xs font-medium bg-amber-200 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_black] cursor-pointer hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 hover:-translate-x-0.5 active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transition-all duration-150"
                                     >
