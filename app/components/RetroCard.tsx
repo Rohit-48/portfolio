@@ -35,11 +35,12 @@ export const RetroCard: React.FC<RetroCardProps> = ({
       onClick={onClick}
       className={`
         ${bgColor}
-        border-4 border-Black
+        border-4 border-black
         rounded-2xl
-        ${noShadow ? "" : "shadow-retro"}
+        ${noShadow ? "" : "shadow-[4px_4px_0px_0px_black]"}
         overflow-hidden
         relative
+        hover:scale-105 cursor-pointer transition-transform ease-in-out
         ${className}
       `}
     >
