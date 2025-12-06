@@ -1,3 +1,6 @@
+import Image from "next/image";
+import layout from "@/app/layout";
+
 export default function Home() {
   return (
     <div>
