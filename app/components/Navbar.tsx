@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Home, FolderOpenDot, Logs, Contact, Menu, X } from "lucide-react";
+import { Home, FolderOpenDot, Logs, Contact, Menu, X, icons, Eclipse} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
