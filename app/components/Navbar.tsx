@@ -10,7 +10,7 @@ export const Navbar = () => {
         { label: "Home", path: "/", icon: Home },
         { label: "Projects", path: "/projects", icon: FolderOpenDot },
         { label: "Blogs", path: "/blogs", icon: Logs },
-        { label: "Contact", path: "/contact", icon: Contact },
+       
     ];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();

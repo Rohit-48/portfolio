@@ -218,7 +218,7 @@ export default function Home() {
 
             {/* Discord Card */}
             <a 
-              href="https://discord.com/users/rohitvince"
+              href="https://discord.com/users/rohitvince0"
               target="_blank"
               rel="noopener noreferrer"
               className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-indigo-500 text-white p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-2 cursor-pointer"
