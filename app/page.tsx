@@ -7,7 +7,7 @@ export default function Home() {
         {/* Hero Section grid layout */}
         <div className="grid grid-cols-2 mt-10 mx-auto max-w-5xl gap-6 font-inter ">
            {/* heading section */}
-           <div className="h-full w-full shrink-0 bg-[#F7F4F3] col-span-1 border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer p-6">
+           <div className="h-full w-full shrink-0 bg-[#fffdf7] col-span-1 border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer p-6">
               <button className="mt-4 py-2 px-2 border-4 rounded-full flex items-center justify-center gap-2 bg-green-400  hover:rotate-12 transition-transform duration-300 cursor-pointer">
                 <Target size={16} /> <span className="text-xs font-bold">Open to Work</span> <ArrowUpRight size={16} className="text-black" />
               </button>
@@ -21,12 +21,14 @@ export default function Home() {
               </button>
             </div>
            {/* image section */}
-           <div className="relative h-full w-full shrink-0 bg-[#F7F4F3] col-span-1/2 border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer">
+           <div className="relative h-full w-full shrink-0 bg-[#F7F4F3] border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer">
               <Image src="/profileimage.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
-              <button className="absolute bottom-4 right-4 py-2 px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-12 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
+              <button className="absolute top-4 right-4 py-2 px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-12 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
                 <span className="text-xs font-bold uppercase">Est 2004</span>
               </button>
-              
+              <button className="absolute bottom-4 left-4 py-2 px-4 w-[250px] h-[100px] font-black border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[2px_4px_0px_0px_black] hover:scale-105 transition-transform duration-300">
+                <span className="text-4xl font-black uppercase">ROHIT HERE</span>
+              </button>
             </div>
             </div>
         </div> 

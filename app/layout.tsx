@@ -47,7 +47,9 @@ export default function RootLayout({
         <BackgroundPattern />
         <Container>
           <Navbar />
+          <div className="pt-20">
           {children}
+          </div>
           </Container>
       </body>
     </html>
