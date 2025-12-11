@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 interface RetroCardProps {
   children: React.ReactNode;
   className?: string;
-  bgColor?: string; // e.g., "bg-retro-yellow"
+  bgColor?: string; 
   noShadow?: boolean;
   onClick?: () => void;
   delay?: number;

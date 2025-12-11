@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Home, FolderOpenDot, Logs, Contact, Menu, X } from "lucide-react";
+import { Home, FolderOpenDot, Logs, Contact, Menu, X, icons, Eclipse} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -10,12 +10,12 @@ export const Navbar = () => {
         { label: "Home", path: "/", icon: Home },
         { label: "Projects", path: "/projects", icon: FolderOpenDot },
         { label: "Blogs", path: "/blogs", icon: Logs },
-        { label: "Contact", path: "/contact", icon: Contact },
+       
     ];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
     return (
-        <div className="relative flex justify-between items-center p-4 mx-auto max-w-5xl w-full bg-amber-50 text-black font-medium rounded-lg border-4 shadow-[6px_6px_0px_0px_black]">
+        <div className="fixed z-50 top-8 left-1/2 -translate-x-1/2 flex justify-between items-center p-4 max-w-5xl w-[calc(100%-2rem)] bg-amber-50 text-black font-medium rounded-lg border-4 shadow-[6px_6px_0px_0px_black]">
             <div className="flex items-center gap-2 font-electrolize font-bold text-xl tracking-tighter hover:scale-105 transition-transform cursor-pointer">
                 <Link href="/" className="hover:scale-105 transition-transform cursor-pointer">
                     <Image
