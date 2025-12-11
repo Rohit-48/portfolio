@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { ArrowUpRight, Target, SquareArrowRight  } from "lucide-react"
+import { ArrowUpRight, Target, SquareArrowRight } from "lucide-react"
 import Link from "next/link";
+import { SiReact, SiTypescript, SiNextdotjs, SiTailwindcss, SiDjango, SiJavascript, SiRust, SiNixos, SiCss3, SiC, SiNodedotjs, SiExpress, SiHono, SiPython, SiFramer, SiFigma, SiCplusplus } from "react-icons/si";
 
 export default function Home() {
   return (
@@ -36,20 +37,20 @@ export default function Home() {
       {/* Project Preview Section */}
       <div className="h-screen mx-auto max-w-5xl w-full mt-4 selection:bg-yellow-200">
         <div className="grid grid-cols-2 mt-10 mx-auto max-w-5xl gap-6 font-inter ">
-          <div className="flex flex-col py-4 px-4  justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
+          <div className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
             <div className="border-2 border-dashed w-full h-[240px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
               <Image src='/Cynorous.png' alt="Cyberdeck project preview" width={400} height={240} className="w-full h-full object-cover rounded-lg" />
             </div>
-            <div className="font-bold text-3xl mt-4 underline decoration-4 decoration-[#003f88]">
+            <div className="font-bold text-3xl mt-2 underline decoration-4 decoration-[#003f88]">
               CYBERDECK
             </div>
-            <div className="font-medium text-md mt-4 text-gray-500">
+            <div className="font-medium text-md mt-2 text-gray-500">
               A cyberpunk-themed dashboard with real-time data visualization.
             </div>
           </div>
           {/* 2 COL */}
           <div className="flex flex-col gap-6">
-            <div className="flex flex-col py-4 px-4 justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
+            <div className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
               <div className="border-2 border-dashed w-full h-[140px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
                 <Image src='/taskmanager.png' alt="Cyberdeck project preview" width={400} height={240} className="w-full h-full object-cover rounded-lg" />
               </div>
@@ -61,7 +62,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-row gap-4">
-              <div className="flex-1 flex flex-col py-4 px-4 justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
+              <div className="flex-1 flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
                 <div className="border-2 border-dashed w-full h-[80px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
                   <Image src='/Cynorous.png' alt="Project preview" width={200} height={80} className="w-full h-full object-cover rounded-lg" />
                 </div>
@@ -70,15 +71,80 @@ export default function Home() {
                 </div>
               </div>
               <Link href="/projects" className="flex-1 flex flex-col items-center justify-center gap-2 py-4 px-4 border-4 border-black shadow-[2px_4px_0px_0px_black] rounded-lg bg-amber-50 hover:bg-amber-300 hover:shadow-[4px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-400 cursor-pointer group ease-in-out">
-                  <span className="font-bold text-lg uppercase tracking-tight">View All</span>
-                  <SquareArrowRight size={40} className="text-black group-hover:-rotate-45 transition-transform duration-400 ease-in-out" />
+                <span className="font-bold text-lg uppercase tracking-tight">View All</span>
+                <SquareArrowRight size={40} className="text-black group-hover:-rotate-45 transition-transform duration-400 ease-in-out" />
               </Link>
             </div>
           </div>
         </div>
 
+          <div className="mx-auto max-w-5xl w-full mt-6 selection:bg-yellow-200">
+            <div className="border-4 w-full h-[140px] border-gray-900 overflow-hidden cursor-pointer shadow-[2px_4px_0px_0px_black] rounded-lg p-4 flex items-center bg-[#fffdf7]">
+              <div className="animate-marquee flex gap-4 whitespace-nowrap">
+                {[
+                  { icon: SiReact, label: "React" },
+                  { icon: SiJavascript, label: "JavaScript" },
+                  { icon: SiTypescript, label: "TypeScript" },
+                  { icon: SiRust, label: "Rust" },
+                  { icon: SiNixos, label: "Nix" },
+                  { icon: SiNextdotjs, label: "Next.js" },
+                  { icon: SiCss3, label: "CSS" },
+                  { icon: SiTailwindcss, label: "Tailwind" },
+                  { icon: SiC, label: "C" },
+                  { icon: SiNodedotjs, label: "Node" },
+                  { icon: SiExpress, label: "Express" },
+                  { icon: SiHono, label: "Hono.js" },
+                  { icon: SiPython, label: "Python" },
+                  { icon: SiFramer, label: "Framer" },
+                  { icon: SiFigma, label: "Figma" },
+                  { icon: SiDjango, label: "Django" },
+                  { icon: SiCplusplus, label: "C++" },
+                  
+                ].map(({ icon: Icon, label }) => (
+                  <button
+                    key={label}
+                    className="border-3 border-black rounded-lg p-3 hover:bg-amber-300 hover:scale-90 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center w-18 h-18 flex-shrink-0"
+                  >
+                    <Icon className="w-10 h-10" />
+                    <span className="text-xs font-semibold">{label}</span>
+                  </button>
+                ))}
+                {/* Duplicate for seamless infinite loop */}
+                {[
+                  { icon: SiReact, label: "React" },
+                  { icon: SiJavascript, label: "JavaScript" },
+                  { icon: SiTypescript, label: "TypeScript" },
+                  { icon: SiRust, label: "Rust" },
+                  { icon: SiNixos, label: "Nix" },
+                  { icon: SiNextdotjs, label: "Next.js" },
+                  { icon: SiCss3, label: "CSS" },
+                  { icon: SiTailwindcss, label: "Tailwind" },
+                  { icon: SiC, label: "C" },
+                  { icon: SiNodedotjs, label: "Node" },
+                  { icon: SiExpress, label: "Express" },
+                  { icon: SiHono, label: "Hono.js" },
+                  { icon: SiPython, label: "Python" },
+                  { icon: SiFramer, label: "Framer" },
+                  { icon: SiFigma, label: "Figma" },
+                  { icon: SiDjango, label: "Django" },
+                ].map(({ icon: Icon, label }) => (
+                  <button
+                    key={`${label}-duplicate`}
+                    className="border-3 border-black rounded-lg p-3 hover:bg-amber-300 hover:scale-90 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center w-18 h-18 flex-shrink-0"
+                  >
+                    <Icon className="w-10 h-10" />
+                    <span className="text-xs font-semibold">{label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Soical Icons, ruote to blogs, Section */}
+       
+        
       </div>
 
-    </div>
+    
   )
 }
