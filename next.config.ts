@@ -4,6 +4,15 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   // Enable MDX file extensions
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.scdn.co",
+      },
+    ],
+    domains: ["i.scdn.co"],
+  },
 };
 
 const withMDX = createMDX({
