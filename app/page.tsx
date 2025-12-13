@@ -171,7 +171,7 @@ export default function Home() {
       <div className="w-full max-w-5xl mt-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[80px] md:auto-rows-[150px]">
           {/* Large Blog Card - spans 2 cols, 2 rows */}
-          <a
+          <Link
             href="/blogs"
             className="col-span-2 row-span-2 border-4 border-black rounded-2xl bg-amber-300 p-4 md:p-6 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
           >
@@ -186,7 +186,7 @@ export default function Home() {
                 <ArrowUpRight size={18} />
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* GitHub Card */}
           <a
