@@ -28,7 +28,7 @@ export default function Projects() {
         },
     ]
     return (
-        <div className="flex flex-col items-center py-8">
+        <div className="flex flex-col items-center py-8 px-4 md:px-0">
             <h1 className="font-electrolize font-bold text-6xl tracking-tighter border-4 rounded-full px-6 py-2 bg-amber-300 shadow-[2px_4px_0px_0px_black] hover:scale-105 uppercase transition-transform cursor-pointer">
                 Projects
             </h1>

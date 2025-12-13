@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getNowPlaying, getRecentlyPlayed } from "@/lib/spotify";
 
-export const revalidate = 30; // Revalidate every 30 seconds
+export const revalidate = 30; 
 
 export async function GET() {
   try {

@@ -1,37 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background:#C4FFF9
-  --foreground:#001219
+  --background: #C4FFF9;
+  --foreground: #001219;
   /* COLOR PALETTE */
   --black: #0f1108;
-
 }
+
 /* Dark Mode */
-.dark{
-  --background: #001219
-  --foreground: #edf2f4
+.dark {
+  --background: #001219;
+  --foreground: #edf2f4;
 }
 
 @theme inline{
 
 }
 
-@font-face {
-    font-family: 'Electrolize';
-    src: url('/fonts/Electrolize-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  .font-electrolize {
-    font-family: 'Electrolize', sans-serif;
-  }
+.font-electrolize {
+  font-family: var(--font-electrolize), 'Electrolize', sans-serif;
+}
 
-  .font-inter {
-    font-family: 'Inter', sans-serif;
-  }
+.font-inter {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+}
 @theme{
   --animate-marquee: marquee 20s linear infinite;
 
