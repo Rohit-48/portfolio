@@ -1,6 +1,6 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, LayoutGroup } from "motion/react";
+import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
@@ -14,8 +14,12 @@ export const FlipWords = ({
 }) => {
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
 
-  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const startAnimation = useCallback(() => {
     const word = words[words.indexOf(currentWord) + 1] || words[0];
     setCurrentWord(word);
@@ -23,11 +27,23 @@ export const FlipWords = ({
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
+    if (!mounted) return;
+    if (!isAnimating) {
+      const timeout = setTimeout(() => {
         startAnimation();
       }, duration);
-  }, [isAnimating, duration, startAnimation]);
+      return () => clearTimeout(timeout);
+    }
+  }, [isAnimating, duration, startAnimation, mounted]);
+
+  // Render static content on server and initial client render to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <span className={cn("inline-block text-left text-black px-2", className)}>
+        {words[0]}
+      </span>
+    );
+  }
 
   return (
     <AnimatePresence
