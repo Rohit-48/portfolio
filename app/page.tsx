@@ -10,12 +10,12 @@ import { FlipWords } from "./components/ui/flip-word";
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-5xl w-full mt-4 px-4 md:px-0 selection:bg-yellow-200">
+    <div className="mx-auto max-w-5xl w-full mt-4 px-4 md:px-0 selection:bg-yellow-300">
       {/* Hero Section grid layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto max-w-5xl gap-6 font-inter mt-10 md:w-full ">
         {/* heading section */}
         <div className="h-full w-full shrink-0 bg-[#fffdf7] col-span-1 border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer p-4 md:p-6">
-          <button className="mt-4 py-2 px-2 border-4 rounded-full flex items-center justify-center gap-2 bg-green-400  hover:rotate-12 transition-transform duration-300 cursor-pointer">
+          <button className="mt-4 py-2 px-2 border-4 rounded-full flex items-center justify-center gap-2 bg-green-400  hover:rotate-12 transition-transform duration-500 cursor-pointer">
             <Target size={16} /> <span className="text-xs font-bold">Open to Work</span> <ArrowUpRight size={16} className="text-black" />
           </button>
           <TypewriterEffect
@@ -24,30 +24,27 @@ export default function Home() {
             ]}
             className="mt-4 text-left justify-start"
           />
-          <TypewriterEffect
-            words={[
-              {
-                text: "Web Engineer & UG CS Student",
-                className: "uppercase font-extrabold text-xl md:text-4xl transition-all duration-300 text-black"
-              }
-            ]}
-            className="text-left justify-start"
-          />
+          <h2 className="text-left text-4xl text-black font-black mt-4 selection:bg-yellow-300 selection:text-black">Web Engineer & UG CS Student</h2>
 
           <p className="text-left font-medium text-sm mt-4 opacity-60 selection:text-black">
             Web Engineer crafting pixel-perfect, retro-futuristic digital experiences. Obsessed with clean code and bento grids.
           </p>
-          <button className="py-2 mt-8 px-4 border-4 border-black rounded-full bg-yellow-400 text-black cursor-pointer flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform duration-300">
-            <span className="text-xs font-bold">Download CV</span> <ArrowUpRight size={16} className="text-black" />
-          </button>
+          <div className="relative mt-4 inline-block">
+            <button className="py-3 px-6 border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[4px_4px_0px_0px_black] hover:shadow-[2px_2px_0px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-[0px_0px_0px_0px_black] active:translate-x-[4px] active:translate-y-[4px] transition-all duration-100 min-w-[180px] justify-center font-bold">
+              <span className="text-sm font-medium">Resume</span>
+              <ArrowUpRight size={20} className="text-black" />
+            </button>
+          </div>
         </div>
+
+        {/* hero image section */}
         {/* image section */}
         <div className="relative h-64 md:h-full w-full shrink-0 bg-[#F7F4F3] border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer">
-          <Image src="/profileimage.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
-          <button className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-12 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
+          <Image src="/my-profile.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
+          <button className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-16 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
             <span className="text-xs font-bold uppercase">Est 2004</span>
           </button>
-          <button className="absolute bottom-2 left-2 md:bottom-4 md:left-4 py-2 px-3 md:px-4 w-[180px] md:w-[250px] h-[70px] md:h-[100px] font-black border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[2px_4px_0px_0px_black] hover:scale-105 transition-transform duration-300">
+          <button className="absolute bottom-2 left-2 md:bottom-4 md:left-4 py-2 px-3 md:px-4 w-[180px] md:w-[250px] h-[70px] md:h-[100px] font-black border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[2px_4px_0px_0px_black] hover:scale-110 transition-transform duration-300">
             <FlipWords
               words={[
                  "ROHIT HERE",
@@ -193,7 +190,7 @@ export default function Home() {
             href="https://github.com/Rohit-48"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-gray-900 text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
+            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#181717] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl">
               <Github size={18} />
@@ -206,7 +203,7 @@ export default function Home() {
             href="https://twitter.com/rohitcpp"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-black text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
+            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#000000] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl">
               <SiX size={18} />
@@ -219,7 +216,7 @@ export default function Home() {
             href="https://linkedin.com/in/rohit48"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-blue-600 text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
+            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#0A66C2] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl font-bold">
               <Linkedin size={18} />
@@ -230,7 +227,7 @@ export default function Home() {
           {/* Email Card */}
           <a
             href="mailto:rohitmandavkar3477@gmail.com"
-            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-rose-400 p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
+            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#EA4335] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl">
               <Mail size={18} />
@@ -243,7 +240,7 @@ export default function Home() {
             href="https://discord.com/users/rohitvince0"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-indigo-500 text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
+            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#5865F2] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl">
               <SiDiscord size={18} />
@@ -254,10 +251,10 @@ export default function Home() {
             href="https://cal.com/rohitvince0"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-white text-black p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
+            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#292929] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
           >
-            <span className="absolute inset-0 bg-gradient-to-t from-gray-100 via-transparent to-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-            <span className="absolute -top-4 -right-4 w-16 h-16 bg-black/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></span>
+            <span className="absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+            <span className="absolute -top-4 -right-4 w-16 h-16 bg-white/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></span>
             <span className="text-2xl md:text-3xl group-hover:rotate-12 transition-transform duration-300">
               <SiCaldotcom size={26} />
             </span>
@@ -267,9 +264,9 @@ export default function Home() {
             href="https://buymeacoffee.com/rohit77"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500 text-black p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
+            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#FFDD00] text-black p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
           >
-            <span className="absolute inset-0 bg-gradient-to-t from-orange-400/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span className="absolute inset-0 bg-gradient-to-t from-orange-300/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             <span className="text-2xl md:text-3xl group-hover:animate-bounce transition-all duration-300">
               <SiBuymeacoffee size={22} />
             </span>
@@ -279,9 +276,9 @@ export default function Home() {
             href="https://pin.it/6H1ZDBaie"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-linear-to-br from-red-500 via-red-600 to-red-700 text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
+            className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#E60023] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
           >
-            <span className="absolute inset-0 bg-linear-to-br from-red-800/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span className="absolute inset-0 bg-linear-to-br from-red-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             <span className="absolute -top-2 -right-2 w-12 h-12 bg-white/10 rounded-full blur-lg group-hover:scale-150 transition-transform duration-500"></span>
             <span className="text-2xl md:text-3xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
               <SiPinterest size={22} />
