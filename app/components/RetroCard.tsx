@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
 
 interface RetroCardProps {
   children: React.ReactNode;
@@ -21,18 +20,11 @@ export const RetroCard: React.FC<RetroCardProps> = ({
   delay = 0,
 }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay, type: "spring", bounce: 0.3 }}
-      whileHover={
-        onClick ? { y: -4, x: -2, boxShadow: "8px 8px 0px 0px #232323" } : {}
-      }
-      whileTap={
-        onClick ? { y: 2, x: 2, boxShadow: "2px 2px 0px 0px #232323" } : {}
-      }
+    <div
       onClick={onClick}
+      style={{ 
+        animationDelay: `${delay * 1000}ms`,
+      }}
       className={`
         ${bgColor}
         border-4 border-black 
@@ -40,11 +32,13 @@ export const RetroCard: React.FC<RetroCardProps> = ({
         ${noShadow ? "" : "shadow-[4px_4px_0px_0px_black]"}
         overflow-hidden
         relative
-        ${onClick ? "cursor-pointer" : ""}
+        animate-fade-in-up
+        ${onClick ? "cursor-pointer hover:-translate-y-1 hover:-translate-x-0.5 hover:shadow-[8px_8px_0px_0px_#232323] active:translate-y-0.5 active:translate-x-0.5 active:shadow-[2px_2px_0px_0px_#232323]" : ""}
+        transition-all duration-200
         ${className}
       `}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };

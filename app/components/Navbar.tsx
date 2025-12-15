@@ -57,6 +57,7 @@ export const Navbar = () => {
                         <Link
                             href={link.path}
                             key={link.label}
+                            prefetch={true}
                             className={`
                                 relative px-2 xl:px-3 py-1.5 xl:py-2 rounded-lg font-semibold text-xs xl:text-sm transition-all flex items-center gap-1.5 xl:gap-2 
                                 ${pathname === link.path ? 'bg-amber-300 text-black border-2 border-black shadow-sm' : 'border-2 border-transparent hover:bg-gray-100 hover:text-black hover:border-gray-300'}
@@ -87,6 +88,7 @@ export const Navbar = () => {
                             <Link
                                 href={link.path}
                                 key={link.label}
+                                prefetch={true}
                                 onClick={() => setIsMenuOpen(false)}
                                 className={`
                                     flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all
