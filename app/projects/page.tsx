@@ -26,6 +26,17 @@ export default function Projects() {
             tags: ["Rust", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
             color: "bg-taskrs",
         },
+        {
+            slug: "yapitte",
+            title: "Yapitte",
+            tech: ["django", "python","tailwind"],
+            description: "A social media platform built with Django and Python.",
+            imageUrl: "/yapitte.png",
+            githubUrl: "https://github.com/Rohit-48/Django-Project",
+            demoUrl: "https://github.com/Rohit-48/Django-Project",
+            tags: ["Django", "Python", "SQL", "TailwindCSS"],
+            color: "bg-yapitte",
+        }
     ]
     return (
         <div className="flex flex-col items-center py-8 px-4 md:px-0">
