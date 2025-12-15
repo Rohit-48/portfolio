@@ -67,13 +67,8 @@ export default function SpotifyNowPlaying() {
     );
   }
 
-  return (
-    <a
-      href={data.songUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group border-4 border-black rounded-xl p-4 bg-[#1DB954] shadow-[6px_6px_0px_0px_black] hover:shadow-[8px_8px_0px_0px_black] hover:-translate-x-1 hover:-translate-y-1 active:shadow-[2px_2px_0px_0px_black] active:translate-x-1 active:translate-y-1 transition-all duration-200 block font-inter"
-    >
+  const content = (
+    <>
       {/* Header */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
@@ -121,6 +116,27 @@ export default function SpotifyNowPlaying() {
           )}
         </div>
       </div>
-    </a>
+    </>
+  );
+
+  const className = "group border-4 border-black rounded-xl p-4 bg-[#1DB954] shadow-[6px_6px_0px_0px_black] hover:shadow-[8px_8px_0px_0px_black] hover:-translate-x-1 hover:-translate-y-1 active:shadow-[2px_2px_0px_0px_black] active:translate-x-1 active:translate-y-1 transition-all duration-200 block font-inter";
+
+  if (data.songUrl) {
+    return (
+      <a
+        href={data.songUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className={className}>
+      {content}
+    </div>
   );
 }
