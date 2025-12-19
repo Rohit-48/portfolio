@@ -30,10 +30,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    url: "https://rohitvince.in",
     title: "Rohit | Web Engineer & Developer",
     description: "Web Engineer crafting pixel-perfect, retro-futuristic digital experiences.",
     siteName: "Rohit's Portfolio",
-    images: "/Profile.png",
+    images: [
+      {
+        url: "/Profile.png",
+        width: 1200,
+        height: 630,
+        alt: "Rohit - Web Engineer & Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
