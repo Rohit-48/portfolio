@@ -35,10 +35,16 @@ export default function Home() {
             Web Engineer crafting pixel-perfect, retro-futuristic digital experiences. Obsessed with clean code and bento grids.
           </p>
           <div className="relative mt-4 inline-block">
-            <button className="py-3 px-6 border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[4px_4px_0px_0px_black] hover:shadow-[2px_2px_0px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-[0px_0px_0px_0px_black] active:translate-x-[4px] active:translate-y-[4px] transition-all duration-100 min-w-[180px] justify-center font-bold">
+            <a 
+              href="/myResume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 px-6 border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[4px_4px_0px_0px_black] hover:shadow-[2px_2px_0px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-[0px_0px_0px_0px_black] active:translate-x-[4px] active:translate-y-[4px] transition-all duration-100 min-w-[180px] justify-center font-bold"
+            >
               <span className="text-sm font-medium">Resume</span>
               <ArrowUpRight size={20} className="text-black" />
-            </button>
+            </a>
+           
           </div>
         </div>
 
