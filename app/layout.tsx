@@ -33,12 +33,14 @@ export const metadata: Metadata = {
     title: "Rohit | Web Engineer & Developer",
     description: "Web Engineer crafting pixel-perfect, retro-futuristic digital experiences.",
     siteName: "Rohit's Portfolio",
+    images: "/Profile.png",
   },
   twitter: {
     card: "summary_large_image",
     title: "Rohit | Web Engineer & Developer",
     description: "Web Engineer crafting pixel-perfect, retro-futuristic digital experiences.",
     creator: "@rohitcpp",
+    images: "/Profile.png",
   },
   robots: {
     index: true,

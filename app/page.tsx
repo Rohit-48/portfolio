@@ -51,7 +51,7 @@ export default function Home() {
         {/* hero image section */}
         {/* image section */}
         <div className="relative h-64 md:h-full w-full shrink-0 bg-[#F7F4F3] border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer">
-          <Image src="/my-profile.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
+          <Image src="/Profile.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
           <button className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-16 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
             <span className="text-xs font-bold uppercase">Est 2004</span>
           </button>
