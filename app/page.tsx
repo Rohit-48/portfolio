@@ -24,7 +24,7 @@ export default function Home() {
               { text: "ROHIT", className: "uppercase font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black" }
             ]}
             className="mt-4 text-left justify-start"
-  
+
           />
           <h3 className="text-sm text-gray-500 font-medium">
             <span>ROH-hit</span>
@@ -35,7 +35,7 @@ export default function Home() {
             Web Engineer crafting pixel-perfect, retro-futuristic digital experiences. Obsessed with clean code and bento grids.
           </p>
           <div className="relative mt-4 inline-block">
-            <a 
+            <a
               href="/myResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
@@ -44,21 +44,21 @@ export default function Home() {
               <span className="text-sm font-medium">Resume</span>
               <ArrowUpRight size={20} className="text-black" />
             </a>
-           
+
           </div>
         </div>
 
         {/* hero image section */}
         {/* image section */}
         <div className="relative h-64 md:h-full w-full shrink-0 bg-[#F7F4F3] border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer">
-          <Image src="/profile-image.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
+          <Image src="/my-profile.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
           <button className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-16 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
             <span className="text-xs font-bold uppercase">Est 2004</span>
           </button>
           <button className="absolute bottom-2 left-2 md:bottom-4 md:left-4 py-2 px-3 md:px-4 w-[180px] md:w-[250px] h-[70px] md:h-[100px] font-black border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[2px_4px_0px_0px_black] hover:scale-110 transition-transform duration-300">
             <FlipWords
               words={[
-                 "ROHIT HERE",
+                "ROHIT HERE",
               ]}
               duration={3000}
               className="text-2xl md:text-4xl font-black uppercase text-black"
