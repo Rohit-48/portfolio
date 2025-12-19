@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Home, FolderOpenDot, Logs, Menu, X } from "lucide-react";
+import { Home, FolderOpenDot, Logs, Menu, X, FolderArchive} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -10,6 +10,7 @@ export const Navbar = () => {
         { label: "Home", path: "/", icon: Home },
         { label: "Projects", path: "/projects", icon: FolderOpenDot },
         { label: "Blogs", path: "/blogs", icon: Logs },
+        { label: "Others", path: "/other", icon: FolderArchive},
     ];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();

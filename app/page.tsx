@@ -15,16 +15,16 @@ export default function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto max-w-5xl gap-6 font-inter mt-10 md:w-full ">
         {/* heading section */}
         <div className="h-full w-full shrink-0 bg-[#fffdf7] col-span-1 border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer p-4 md:p-6">
-          <button className="mt-4 py-2 px-2 border-4 rounded-full flex items-center justify-center gap-2 bg-green-400  hover:rotate-12 transition-transform duration-500 cursor-pointer">
+          <button className="mt-4 py-2 px-2 border-4 rounded-full flex items-center justify-center gap-2 bg-green-400  hover:rotate-12 transition-transform duration-500 cursor-pointer ">
             <Target size={16} /> <span className="text-xs font-bold">Open to Work</span> <ArrowUpRight size={16} className="text-black" />
           </button>
           <TypewriterEffect
             words={[
-              { text: "ROHIT", className: "uppercase font-extrabold text-5xl md:text-8xl text-black" }
+              { text: "ROHIT", className: "uppercase font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black" }
             ]}
             className="mt-4 text-left justify-start"
           />
-          <h2 className="text-left text-4xl text-black font-black mt-4 selection:bg-yellow-300 selection:text-black">Web Engineer & UG CS Student</h2>
+          <h2 className="text-left text-base sm:text-lg md:text-xl lg:text-2xl text-black font-black mt-2 sm:mt-1 md:mt-4 selection:bg-yellow-300 selection:text-black">Web Engineer & UG CS Student</h2>
 
           <p className="text-left font-medium text-sm mt-4 opacity-60 selection:text-black">
             Web Engineer crafting pixel-perfect, retro-futuristic digital experiences. Obsessed with clean code and bento grids.
@@ -40,7 +40,7 @@ export default function Home() {
         {/* hero image section */}
         {/* image section */}
         <div className="relative h-64 md:h-full w-full shrink-0 bg-[#F7F4F3] border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer">
-          <Image src="/my-profile.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
+          <Image src="/profile-image.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
           <button className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-16 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
             <span className="text-xs font-bold uppercase">Est 2004</span>
           </button>

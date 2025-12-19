@@ -7,14 +7,13 @@ import { useEffect } from "react";
 export const TypewriterEffect = ({
     words,
     className,
-    cursorClassName,
 }: {
     words: {
         text: string;
         className?: string;
     }[];
     className?: string;
-    cursorClassName?: string;
+    cursorClassName?: string
 }) => {
     // split text inside of words into array of characters
     const wordsArray = words.map((word) => {
