@@ -19,8 +19,31 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Web Engineer crafting pixel-perfect, retro-futuristic digital experiences.",
+  title: {
+    default: "Rohit | Web Engineer & Developer",
+    template: "%s | Rohit",
+  },
+  description: "Web Engineer crafting pixel-perfect, retro-futuristic digital experiences. Specializing in React, Next.js, TypeScript, and modern web technologies.",
+  keywords: ["Web Developer", "Frontend Engineer", "React", "Next.js", "TypeScript", "Portfolio", "Rohit"],
+  authors: [{ name: "Rohit" }],
+  creator: "Rohit",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: "Rohit | Web Engineer & Developer",
+    description: "Web Engineer crafting pixel-perfect, retro-futuristic digital experiences.",
+    siteName: "Rohit's Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rohit | Web Engineer & Developer",
+    description: "Web Engineer crafting pixel-perfect, retro-futuristic digital experiences.",
+    creator: "@rohitcpp",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {

@@ -1,3 +1,4 @@
+"use client";
 
 import Image from "next/image";
 import { ArrowUpRight, Target, SquareArrowRight, Github, Linkedin, Mail } from "lucide-react"
@@ -23,7 +24,18 @@ export default function Home() {
               { text: "ROHIT", className: "uppercase font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black" }
             ]}
             className="mt-4 text-left justify-start"
+  
           />
+          <h3 className="flex items-center gap-2">
+            <span>ROH-hit</span>
+            <button 
+              onClick={() => new Audio('/rohit-pronunciation.mp3').play()} 
+              className="p-1 rounded-full hover:bg-gray-200 transition-colors"
+              aria-label="Listen to pronunciation"
+            >
+              🔊
+            </button>
+          </h3>
           <h2 className="text-left text-base sm:text-lg md:text-xl lg:text-2xl text-black font-black mt-2 sm:mt-1 md:mt-4 selection:bg-yellow-300 selection:text-black">Web Engineer & UG CS Student</h2>
 
           <p className="text-left font-medium text-sm mt-4 opacity-60 selection:text-black">

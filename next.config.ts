@@ -4,6 +4,10 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   // Enable MDX file extensions
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  // Set turbopack root to silence workspace warning
+  turbopack: {
+    root: process.cwd(),
+  },
   images: {
     remotePatterns: [
       {
@@ -11,7 +15,6 @@ const nextConfig: NextConfig = {
         hostname: "i.scdn.co",
       },
     ],
-    domains: ["i.scdn.co"],
   },
 };
 
