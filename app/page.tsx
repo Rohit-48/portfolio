@@ -26,15 +26,8 @@ export default function Home() {
             className="mt-4 text-left justify-start"
   
           />
-          <h3 className="flex items-center gap-2">
+          <h3 className="text-sm text-gray-500 font-medium">
             <span>ROH-hit</span>
-            <button 
-              onClick={() => new Audio('/rohit-pronunciation.mp3').play()} 
-              className="p-1 rounded-full hover:bg-gray-200 transition-colors"
-              aria-label="Listen to pronunciation"
-            >
-              🔊
-            </button>
           </h3>
           <h2 className="text-left text-base sm:text-lg md:text-xl lg:text-2xl text-black font-black mt-2 sm:mt-1 md:mt-4 selection:bg-yellow-300 selection:text-black">Web Engineer & UG CS Student</h2>
 
