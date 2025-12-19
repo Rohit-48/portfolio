@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Inter, Electrolize } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Container } from "./components/Container";
 import { Navbar } from "./components/Navbar";
@@ -74,6 +75,7 @@ export default function RootLayout({
             {children}
           </div>
         </Container>
+        <Analytics />
       </body>
     </html>
   );
