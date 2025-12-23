@@ -50,6 +50,8 @@ export async function getNowPlaying() {
     album: song.item.album.name,
     albumImageUrl: song.item.album.images[0]?.url,
     songUrl: song.item.external_urls.spotify,
+    progress_ms: song.progress_ms,
+    duration_ms: song.item.duration_ms,
   };
 }
 

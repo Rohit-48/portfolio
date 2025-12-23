@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { SiSpotify } from "react-icons/si";
 
@@ -11,7 +11,17 @@ interface SpotifyData {
   album?: string;
   albumImageUrl?: string;
   songUrl?: string;
+  progress_ms?: number;
+  duration_ms?: number;
 }
+
+// Format milliseconds to mm:ss
+const formatTime = (ms: number) => {
+  const totalSeconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+};
 
 const SoundBars = () => (
   <div className="flex items-end gap-[2px] h-3">
@@ -31,24 +41,56 @@ const SoundBars = () => (
 export default function SpotifyNowPlaying() {
   const [data, setData] = useState<SpotifyData | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [currentProgress, setCurrentProgress] = useState(0);
+  const lastFetchTime = useRef<number>(Date.now());
+  const animationRef = useRef<number | null>(null);
 
+  const fetchNowPlaying = useCallback(async () => {
+    try {
+      const res = await fetch("/api/spotify");
+      const json = await res.json();
+      setData(json);
+      lastFetchTime.current = Date.now();
+      if (json.progress_ms) {
+        setCurrentProgress(json.progress_ms);
+      }
+    } catch (error) {
+      console.error("Failed to fetch Spotify data:", error);
+    }
+  }, []);
+
+  // Fetch data on mount and interval
   useEffect(() => {
     setMounted(true);
+    fetchNowPlaying();
+    const interval = setInterval(fetchNowPlaying, 10000); // Fetch every 10s for better sync
+    return () => clearInterval(interval);
+  }, [fetchNowPlaying]);
 
-    async function fetchNowPlaying() {
-      try {
-        const res = await fetch("/api/spotify");
-        const json = await res.json();
-        setData(json);
-      } catch (error) {
-        console.error("Failed to fetch Spotify data:", error);
-      }
+  // Smooth progress interpolation - updates every second when playing
+  useEffect(() => {
+    if (!data?.isPlaying || !data.progress_ms || !data.duration_ms) {
+      return;
     }
 
-    fetchNowPlaying();
-    const interval = setInterval(fetchNowPlaying, 30000);
-    return () => clearInterval(interval);
-  }, []);
+    const updateProgress = () => {
+      const elapsed = Date.now() - lastFetchTime.current;
+      const newProgress = Math.min(
+        (data.progress_ms || 0) + elapsed,
+        data.duration_ms || 0
+      );
+      setCurrentProgress(newProgress);
+      animationRef.current = requestAnimationFrame(updateProgress);
+    };
+
+    animationRef.current = requestAnimationFrame(updateProgress);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [data]);
 
   const baseCardClass =
     "border-4 border-black rounded-2xl p-5 bg-linear-to-br from-zinc-900 via-zinc-800 to-zinc-900 shadow-[6px_6px_0px_0px_black] hover:shadow-[8px_8px_0px_0px_black] hover:-translate-y-1 transition-all duration-300";
@@ -152,11 +194,29 @@ export default function SpotifyNowPlaying() {
         </div>
       </div>
 
-      {/* Progress indicator (decorative) */}
-      {data.isPlaying && (
+      {/* Real Progress Bar */}
+      {data.isPlaying && data.duration_ms && (
         <div className="mt-4 pt-3 border-t border-zinc-800">
-          <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-            <div className="h-full bg-linear-to-r from-[#1DB954] to-[#1ed760] rounded-full w-2/3 animate-[progress_8s_ease-in-out_infinite]" />
+          {/* Timestamps */}
+          <div className="flex justify-between text-[10px] text-zinc-500 font-mono mb-1.5">
+            <span>{formatTime(currentProgress)}</span>
+            <span>{formatTime(data.duration_ms)}</span>
+          </div>
+          {/* Progress Bar */}
+          <div className="relative h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+            <div
+              className="absolute inset-y-0 left-0 bg-linear-to-r from-[#1DB954] to-[#1ed760] rounded-full transition-all duration-100"
+              style={{
+                width: `${Math.min((currentProgress / data.duration_ms) * 100, 100)}%`,
+              }}
+            />
+            {/* Glowing dot at the end */}
+            <div
+              className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#1DB954] rounded-full shadow-[0_0_8px_rgba(29,185,84,0.6)] transition-all duration-100"
+              style={{
+                left: `calc(${Math.min((currentProgress / data.duration_ms) * 100, 100)}% - 5px)`,
+              }}
+            />
           </div>
         </div>
       )}
