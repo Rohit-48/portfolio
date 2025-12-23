@@ -40,6 +40,14 @@ const galleryImages = [
         span: "col-span-2 row-span-1",
         category: "Art"
     },
+    {
+        src: "/Gallery/blacksiphere.png",
+        alt: "Black_Sapphire_Artwork",
+        title: "Black Sapphire",
+        description: "Cyberpunk aesthetic",
+        span: "col-span-4 row-span-2",
+        category: "Art"
+    },
 ];
 
 export default function Other() {

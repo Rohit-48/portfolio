@@ -264,7 +264,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#292929] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
           >
-            <span className="absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+            <span className="absolute inset-0 bg-linear-to-t from-gray-800 via-transparent to-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
             <span className="absolute -top-4 -right-4 w-16 h-16 bg-white/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></span>
             <span className="text-2xl md:text-3xl group-hover:rotate-12 transition-transform duration-300">
               <SiCaldotcom size={26} />
