@@ -36,7 +36,7 @@ export default function Home() {
           </p>
           <div className="relative mt-4 inline-block">
             <a
-              href="/myResume.pdf"
+              href="/documents/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="py-3 px-6 border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[4px_4px_0px_0px_black] hover:shadow-[2px_2px_0px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-[0px_0px_0px_0px_black] active:translate-x-[4px] active:translate-y-[4px] transition-all duration-100 min-w-[180px] justify-center font-bold"
@@ -51,7 +51,7 @@ export default function Home() {
         {/* hero image section */}
         {/* image section */}
         <div className="relative h-64 md:h-full w-full shrink-0 bg-[#F7F4F3] border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer">
-          <Image src="/Profile.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
+          <Image src="/images/profile/avatar.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
           <button className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-16 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
             <span className="text-xs font-bold uppercase">Est 2004</span>
           </button>
@@ -72,7 +72,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 mt-10 mx-auto max-w-5xl gap-6 font-inter ">
           <div className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
             <div className="border-2 border-dashed w-full h-[180px] md:h-[240px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-              <Image src='/Cynorous.png' alt="Cyberdeck project preview" width={400} height={240} className="w-full h-full object-cover rounded-lg" />
+              <Image src='/images/projects/cynorous.png' alt="Cyberdeck project preview" width={400} height={240} className="w-full h-full object-cover rounded-lg" />
             </div>
             <div className="font-bold text-2xl md:text-3xl mt-1 underline decoration-4 decoration-[#003f88]">
               CYBERDECK
@@ -85,7 +85,7 @@ export default function Home() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
               <div className="border-2 border-dashed w-full h-[120px] md:h-[140px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-                <Image src='/taskmanager.png' alt="Cyberdeck project preview" width={400} height={240} className="w-full h-full object-cover rounded-lg" />
+                <Image src='/images/projects/taskmanager.png' alt="Cyberdeck project preview" width={400} height={240} className="w-full h-full object-cover rounded-lg" />
               </div>
               <div className="font-bold text-lg md:text-[20px] mt-4 underline decoration-4 decoration-[#003f88]">
                 TASK.RS
@@ -97,7 +97,7 @@ export default function Home() {
             <div className="flex flex-row gap-4">
               <div className="flex-1 flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
                 <div className="border-2 border-dashed w-full h-[60px] md:h-[80px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-                  <Image src='/Cynorous.png' alt="Project preview" width={200} height={80} className="w-full h-full object-cover rounded-lg" />
+                  <Image src='/images/projects/cynorous.png' alt="Project preview" width={200} height={80} className="w-full h-full object-cover rounded-lg" />
                 </div>
                 <div className="font-bold text-sm mt-2 underline decoration-2 decoration-[#003f88]">
                   PROJECT

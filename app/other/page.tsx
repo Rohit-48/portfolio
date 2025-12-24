@@ -8,7 +8,7 @@ import { X, Camera, Sparkles, ImageIcon } from "lucide-react";
 
 const galleryImages = [
     {
-        src: "/Gallery/nixos.png",
+        src: "/images/gallery/nixos.png",
         alt: "NixOS Setup",
         title: "NixOS",
         description: "My daily driver Linux distro",
@@ -16,7 +16,7 @@ const galleryImages = [
         category: "Desktop"
     },
     {
-        src: "/Gallery/btop.png",
+        src: "/images/gallery/btop.png",
         alt: "Btop System Monitor",
         title: "Btop++",
         description: "Terminal system monitor",
@@ -25,7 +25,7 @@ const galleryImages = [
 
     },
     {
-        src: "/Gallery/arasaka-parade.png",
+        src: "/images/gallery/arasaka-parade.png",
         alt: "Arasaka Parade",
         title: "Arasaka",
         description: "Cyberpunk aesthetic",
@@ -33,7 +33,7 @@ const galleryImages = [
         category: "Wallpaper"
     },
     {
-        src: "/Gallery/Zeneistu.png",
+        src: "/images/gallery/zeneistu.png",
         alt: "Zeneistu Artwork",
         title: "Zeneistu",
         description: "Anime inspired art",
@@ -41,7 +41,7 @@ const galleryImages = [
         category: "Art"
     },
     {
-        src: "/Gallery/blacksiphere.png",
+        src: "/images/gallery/blacksphere.png",
         alt: "Black_Sapphire_Artwork",
         title: "Black Sapphire",
         description: "Cyberpunk aesthetic",

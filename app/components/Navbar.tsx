@@ -36,7 +36,7 @@ export const Navbar = () => {
             <div className="flex items-center gap-1 sm:gap-2 font-electrolize font-bold text-xl tracking-tighter hover:scale-105 transition-transform cursor-pointer min-w-0 shrink">
                 <Link href="/" className="hover:scale-105 transition-transform cursor-pointer shrink-0">
                     <Image
-                        src="/terminal.png"
+                        src="/images/icons/terminal.png"
                         alt="terminal"
                         width={60}
                         height={60}
