@@ -9,7 +9,7 @@ export default function Projects() {
             title: "CYBERDECK",
             tech: ["Next.js", "TypeScript"],
             description: "A cyberpunk-themed dashboard with real-time data visualization.",
-            imageUrl: "/images/projects/cynorous.png",      
+            imageUrl: "/Cynorous.png",      
             githubUrl: "https://github.com/cyberdeck",
             demoUrl: "https://cyberdeck.com",
             tags: ["Next.js", "TypeScript", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
