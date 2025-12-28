@@ -8,6 +8,10 @@ import SpotifyNowPlaying from "./components/SpotifyNowPlaying";
 import LocalTime from "./components/LocalTime";
 import { TypewriterEffect } from "./components/ui/typewriter-effect";
 import { FlipWords } from "./components/ui/flip-word";
+import { useState } from "react";
+import { type } from "node:os";
+
+
 
 export default function Home() {
   return (
