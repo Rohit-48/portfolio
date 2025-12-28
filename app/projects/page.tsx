@@ -5,6 +5,41 @@ import { Github, ExternalLink } from "lucide-react"
 import { projects } from "@/lib/projects"
 
 export default function Projects() {
+    const projectListing = [
+        {
+            slug: "cyberchoom",
+            title: "CYBERDECK",
+            tech: ["Next.js", "TypeScript"],
+            description: "A cyberpunk-themed dashboard with real-time data visualization.",
+            imageUrl: "/images/projects/cynorous.png",      
+            githubUrl: "https://github.com/cyberdeck",
+            demoUrl: "https://cyberdeck.com",
+            tags: ["Next.js", "TypeScript", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
+            color: "bg-cyberdeck",
+        },
+        {
+            slug: "task-rs",
+            title: "TASK.RS",
+            tech: ["Rust", "React"],
+            description: "A blazingly fast task manager built with Rust backend.",
+            imageUrl: "/images/projects/taskmanager.png",
+            githubUrl: "https://github.com/taskrs",
+            demoUrl: "https://taskrs.com",
+            tags: ["Rust", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
+            color: "bg-taskrs",
+        },
+        {
+            slug: "yapitte",
+            title: "Yapitte",
+            tech: ["django", "python","tailwind"],
+            description: "A social media platform built with Django and Python.",
+            imageUrl: "/images/projects/yapitte.png",
+            githubUrl: "https://github.com/Rohit-48/Django-Project",
+            demoUrl: "https://github.com/Rohit-48/Django-Project",
+            tags: ["Django", "Python", "SQL", "TailwindCSS"],
+            color: "bg-yapitte",
+        }
+    ]
     return (
         <div className="flex flex-col items-center py-8 px-4 md:px-0">
             <h1 className="font-electrolize font-bold text-6xl tracking-tighter border-4 rounded-full px-6 py-2 bg-amber-300 shadow hover:scale-105 uppercase transition-transform cursor-pointer">
