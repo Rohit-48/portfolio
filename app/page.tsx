@@ -9,11 +9,17 @@ import LocalTime from "./components/LocalTime";
 import { TypewriterEffect } from "./components/ui/typewriter-effect";
 import { FlipWords } from "./components/ui/flip-word";
 import { useState } from "react";
-import { type } from "node:os";
+import FloatingWindow from "./components/FloatingWindow";
+import { projects, Project } from "@/lib/projects";
 
 
 
 export default function Home() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Get featured projects (first 3 from projects array)
+  const featuredProjects = projects.slice(0, 3);
+
   return (
     <div className="mx-auto max-w-5xl w-full mt-4 px-4 md:px-0 selection:bg-yellow-300">
       {/* Hero Section grid layout */}
@@ -74,39 +80,80 @@ export default function Home() {
       {/* Project Preview Section */}
       <div className="mx-auto max-w-5xl w-full mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 mt-10 mx-auto max-w-5xl gap-6 font-inter ">
-          <div className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
-            <div className="border-2 border-dashed w-full h-[180px] md:h-[240px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-              <Image src='/images/projects/cynorous.png' alt="Cyberdeck project preview" width={400} height={240} className="w-full h-full object-cover rounded-lg" />
+          {/* First Project - Large Card */}
+          {featuredProjects[0] && (
+            <div 
+              className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+              onClick={() => setSelectedProject(featuredProjects[0])}
+            >
+              <div className="border-2 border-dashed w-full h-[180px] md:h-[240px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
+                <Image 
+                  src={featuredProjects[0].imageUrl.trim()} 
+                  alt={`${featuredProjects[0].title} project preview`} 
+                  width={400} 
+                  height={240} 
+                  className="w-full h-full object-cover rounded-lg" 
+                />
+              </div>
+              <div className="font-bold text-2xl md:text-3xl mt-1 underline decoration-4 decoration-[#003f88]">
+                {featuredProjects[0].title}
+              </div>
+              <div className="font-medium text-sm md:text-md mt-1 text-gray-500">
+                {featuredProjects[0].description}
+              </div>
             </div>
-            <div className="font-bold text-2xl md:text-3xl mt-1 underline decoration-4 decoration-[#003f88]">
-              CYBERDECK
-            </div>
-            <div className="font-medium text-sm md:text-md mt-1 text-gray-500">
-              A cyberpunk-themed dashboard with real-time data visualization.
-            </div>
-          </div>
-          {/* 2 COL */}
+          )}
+          
+          {/* 2 COL - Second and Third Projects */}
           <div className="flex flex-col gap-6">
-            <div className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
-              <div className="border-2 border-dashed w-full h-[120px] md:h-[140px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-                <Image src='/images/projects/taskmanager.png' alt="Cyberdeck project preview" width={400} height={240} className="w-full h-full object-cover rounded-lg" />
+            {/* Second Project - Medium Card */}
+            {featuredProjects[1] && (
+              <div 
+                className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                onClick={() => setSelectedProject(featuredProjects[1])}
+              >
+                <div className="border-2 border-dashed w-full h-[120px] md:h-[140px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
+                  <Image 
+                    src={featuredProjects[1].imageUrl.trim()} 
+                    alt={`${featuredProjects[1].title} project preview`} 
+                    width={400} 
+                    height={240} 
+                    className="w-full h-full object-cover rounded-lg" 
+                  />
+                </div>
+                <div className="font-bold text-lg md:text-[20px] mt-4 underline decoration-4 decoration-[#003f88]">
+                  {featuredProjects[1].title}
+                </div>
+                <div className="font-medium text-sm md:text-md mt-4 text-gray-500">
+                  {featuredProjects[1].description}
+                </div>
               </div>
-              <div className="font-bold text-lg md:text-[20px] mt-4 underline decoration-4 decoration-[#003f88]">
-                TASK.RS
-              </div>
-              <div className="font-medium text-sm md:text-md mt-4 text-gray-500">
-                A blazingly fast task manager built with Rust backend.
-              </div>
-            </div>
+            )}
+            
+            {/* Third Project + View All Link */}
             <div className="flex flex-row gap-4">
-              <div className="flex-1 flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
-                <div className="border-2 border-dashed w-full h-[60px] md:h-[80px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-                  <Image src='/images/projects/cynorous.png' alt="Project preview" width={200} height={80} className="w-full h-full object-cover rounded-lg" />
+              {/* Third Project - Small Card */}
+              {featuredProjects[2] && (
+                <div 
+                  className="flex-1 flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                  onClick={() => setSelectedProject(featuredProjects[2])}
+                >
+                  <div className="border-2 border-dashed w-full h-[60px] md:h-[80px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
+                    <Image 
+                      src={featuredProjects[2].imageUrl.trim()} 
+                      alt={`${featuredProjects[2].title} project preview`} 
+                      width={200} 
+                      height={80} 
+                      className="w-full h-full object-cover rounded-lg" 
+                    />
+                  </div>
+                  <div className="font-bold text-sm mt-2 underline decoration-2 decoration-[#003f88]">
+                    {featuredProjects[2].title}
+                  </div>
                 </div>
-                <div className="font-bold text-sm mt-2 underline decoration-2 decoration-[#003f88]">
-                  PROJECT
-                </div>
-              </div>
+              )}
+              
+              {/* View All Projects Link */}
               <Link href="/projects" className="flex-1 flex flex-col items-center justify-center gap-2 py-4 px-4 border-4 border-black shadow-[2px_4px_0px_0px_black] rounded-lg bg-amber-50 hover:bg-amber-300 hover:shadow-[4px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-400 cursor-pointer group ease-in-out">
                 <span className="font-bold text-base md:text-lg uppercase tracking-tight">View All</span>
                 <SquareArrowRight size={32} className="md:w-10 md:h-10 text-black group-hover:-rotate-45 transition-transform duration-400 ease-in-out" />
@@ -281,7 +328,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#FFDD00] text-black p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
           >
-            <span className="absolute inset-0 bg-gradient-to-t from-orange-300/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span className="absolute inset-0 bg-linear-to-t from-orange-300/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             <span className="text-2xl md:text-3xl group-hover:animate-bounce transition-all duration-300">
               <SiBuymeacoffee size={22} />
             </span>
@@ -307,6 +354,12 @@ export default function Home() {
         <SpotifyNowPlaying />
         <LocalTime />
       </div>
+
+      {/* Floating Window for Project Details */}
+      <FloatingWindow 
+        selectedProject={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </div>
 
   );
