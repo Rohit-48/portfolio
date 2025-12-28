@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Inter, Electrolize } from "next/font/google";
+import { Inter, Electrolize, Google_Sans} from "next/font/google";
 import "./globals.css";
 import { Container } from "./components/Container";
 import { Navbar } from "./components/Navbar";
@@ -17,6 +17,14 @@ const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
+
+
+const googlesans = Google_Sans({
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700",],
+  subsets: ["latin"],
+});
+
 
 export const metadata: Metadata = {
   title: {

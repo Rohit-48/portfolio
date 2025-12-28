@@ -24,11 +24,20 @@
 .font-inter {
   font-family: var(--font-inter), 'Inter', sans-serif;
 }
+
+.font-googlesans {
+  font-family: var(--font-Google_Sans), 'Google_Sans', sans-serif;
+}
+
+.shadow {
+  box-shadow: 2px 4px 0px 0px black !important;
+}
+
 @theme{
-  --animate-marquee: marquee 20s linear infinite;
-  --animate-fade-in-up: fade-in-up 0.4s ease-out both;
-  --animate-soundwave: soundwave 1s ease-in-out infinite;
-  --animate-progress: progress 8s ease-in-out infinite;
+  --animate-marquee: marquee 20s linear infinite !important;
+  --animate-fade-in-up: fade-in-up 0.4s ease-out both !important;
+  --animate-soundwave: soundwave 1s ease-in-out infinite !important;
+  --animate-progress: progress 8s ease-in-out infinite !important;
 
   @keyframes marquee {
     from {

@@ -1,58 +1,24 @@
-import Link from "next/link"
+"use client";
+
 import { RetroCard } from "../components/RetroCard"
 import { Github, ExternalLink } from "lucide-react"
-import {useState} from "react" 
+import { projects } from "@/lib/projects"
 
 export default function Projects() {
-    const projectListing = [
-        {
-            slug: "cyberchoom",
-            title: "CYBERDECK",
-            tech: ["Next.js", "TypeScript"],
-            description: "A cyberpunk-themed dashboard with real-time data visualization.",
-            imageUrl: "/images/projects/cynorous.png",      
-            githubUrl: "https://github.com/cyberdeck",
-            demoUrl: "https://cyberdeck.com",
-            tags: ["Next.js", "TypeScript", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
-            color: "bg-cyberdeck",
-        },
-        {
-            slug: "task-rs",
-            title: "TASK.RS",
-            tech: ["Rust", "React"],
-            description: "A blazingly fast task manager built with Rust backend.",
-            imageUrl: "/images/projects/taskmanager.png",
-            githubUrl: "https://github.com/taskrs",
-            demoUrl: "https://taskrs.com",
-            tags: ["Rust", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
-            color: "bg-taskrs",
-        },
-        {
-            slug: "yapitte",
-            title: "Yapitte",
-            tech: ["django", "python","tailwind"],
-            description: "A social media platform built with Django and Python.",
-            imageUrl: "/images/projects/yapitte.png",
-            githubUrl: "https://github.com/Rohit-48/Django-Project",
-            demoUrl: "https://github.com/Rohit-48/Django-Project",
-            tags: ["Django", "Python", "SQL", "TailwindCSS"],
-            color: "bg-yapitte",
-        }
-    ]
-
-    const [selectedImage, setSelectedImage] = useState<string | null>(null)
     return (
         <div className="flex flex-col items-center py-8 px-4 md:px-0">
-            <h1 className="font-electrolize font-bold text-6xl tracking-tighter border-4 rounded-full px-6 py-2 bg-amber-300 shadow-[2px_4px_0px_0px_black] hover:scale-105 uppercase transition-transform cursor-pointer">
+            <h1 className="font-electrolize font-bold text-6xl tracking-tighter border-4 rounded-full px-6 py-2 bg-amber-300 shadow hover:scale-105 uppercase transition-transform cursor-pointer">
                 Projects
             </h1>
-            <p className="font-electrolize font-medium text-sm mt-4 opacity-60 text-center selection:bg-yellow-400 selection:text-black ...">
-                Projects are a contrast: either they can help the world develop or just be a waste of resources.
+            <p className="font-googlesans font-medium text-sm mt-4 opacity-60 text-center selection:bg-yellow-400 selection:text-black">
+                Explore my latest work,  where creativity meets code.
+                <br />
+                Each project is a step toward building something meaningful.
             </p>
             <div className="w-160 border-b-4 border-dashed border-yellow-400 mt-6 mb-6"></div>
             {/* projects Cards Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {projectListing.map((project, index) => (
+                {projects.map((project, index) => (
                     <RetroCard
                         key={project.slug}
                         className="flex flex-col group bg-amber-50 w-full max-w-sm"
@@ -109,7 +75,6 @@ export default function Projects() {
                             </div>
                         </div>
                     </RetroCard>
-                   
                 ))}
             </div>
         </div>
