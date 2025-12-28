@@ -29,7 +29,7 @@
   font-family: var(--font-Google_Sans), 'Google_Sans', sans-serif;
 }
 
-.shadow {
+.myshadow {
   box-shadow: 2px 4px 0px 0px black !important;
 }
 
