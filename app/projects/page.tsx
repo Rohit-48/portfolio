@@ -9,8 +9,46 @@ import { useState } from "react";
 
 
 export default function Projects() {
+<<<<<<< HEAD
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     
+=======
+    const projectListing = [
+        {
+            slug: "cyberchoom",
+            title: "CYBERDECK",
+            tech: ["Next.js", "TypeScript"],
+            description: "A cyberpunk-themed dashboard with real-time data visualization.",
+            imageUrl: "/Cyberdeck.png",      
+            githubUrl: "https://github.com/cyberdeck",
+            demoUrl: "https://cyberdeck.com",
+            tags: ["Next.js", "TypeScript", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
+            color: "bg-cyberdeck",
+        },
+        {
+            slug: "task-rs",
+            title: "TASK.RS",
+            tech: ["Rust", "React"],
+            description: "A blazingly fast task manager built with Rust backend.",
+            imageUrl: "/taskmanager.png",
+            githubUrl: "https://github.com/taskrs",
+            demoUrl: "https://taskrs.com",
+            tags: ["Rust", "React", "Tailwind", "Shadcn", "Lucide", "Vercel"],
+            color: "bg-taskrs",
+        },
+        {
+            slug: "yapitte",
+            title: "Yapitte",
+            tech: ["django", "python","tailwind"],
+            description: "A social media platform built with Django and Python.",
+            imageUrl: "/yapitte.png",
+            githubUrl: "https://github.com/Rohit-48/Django-Project",
+            demoUrl: "https://github.com/Rohit-48/Django-Project",
+            tags: ["Django", "Python", "SQL", "TailwindCSS"],
+            color: "bg-yapitte",
+        }
+    ]
+>>>>>>> cdb62f2 (Update bun.lock for configuration version and correct image URL in Projects component)
     return (
         <div className="flex flex-col items-center pt-32 sm:pt-36 md:pt-40 pb-8 px-4 md:px-6 max-w-6xl mx-auto w-full">
             <div className="flex flex-col items-center w-full max-w-4xl">
