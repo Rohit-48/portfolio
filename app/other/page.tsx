@@ -54,7 +54,7 @@ export default function Other() {
     const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
 
     return (
-        <div className="max-w-5xl mx-auto mt-10 py-4 px-4">
+        <div className="max-w-5xl mx-auto pt-32 sm:pt-36 md:pt-40 pb-8 px-4">
             {/* Header Section */}
             <div className="flex flex-col items-center justify-center mb-10">
                 <div className="flex items-center gap-3 mb-4">
@@ -181,7 +181,7 @@ const GalleryCard = ({ image, onClick, index }: GalleryCardProps) => {
                 />
 
                 {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Category Badge */}
                 <div className="absolute top-3 left-3 px-2 py-1 border-2 border-black rounded-lg bg-amber-300 text-xs font-bold shadow-[2px_2px_0px_0px_black] opacity-0 group-hover:opacity-100 transition-opacity duration-300">

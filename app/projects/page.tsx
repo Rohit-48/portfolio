@@ -12,34 +12,37 @@ export default function Projects() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     
     return (
-        <div className="flex flex-col items-center py-8 px-4 md:px-0">
-            <h1 className="font-electrolize font-bold tracking-tighter border-4 rounded-full px-6 py-2 bg-amber-300 shadow hover:scale-105 uppercase transition-transform cursor-pointer">
-                <TypewriterEffect
-                    words={[
-                        {
-                            text: "Project",
-                            className: "text-6xl"
-                        }
-                    ]}>
-                </TypewriterEffect>
-            </h1>
-            <p className="font-googlesans font-medium text-sm mt-4 opacity-60 text-center selection:bg-yellow-400 selection:text-black">
-                Explore my latest work,  where creativity meets code.
-                <br />
-                Each project is a step toward building something meaningful.
-            </p>
-            <div className="w-160 border-b-4 border-dashed border-yellow-400 mt-6 mb-6"></div>
+        <div className="flex flex-col items-center pt-32 sm:pt-36 md:pt-40 pb-8 px-4 md:px-6 max-w-6xl mx-auto w-full">
+            <div className="flex flex-col items-center w-full max-w-4xl">
+                <div className="font-electrolize font-bold tracking-tighter border-4 border-black rounded-2xl px-6 sm:px-8 py-3 sm:py-4 bg-amber-300 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 uppercase transition-all duration-300 cursor-pointer">
+                    <TypewriterEffect
+                        words={[
+                            {
+                                text: "Projects",
+                                className: "text-4xl sm:text-5xl md:text-6xl"
+                            }
+                        ]}>
+                    </TypewriterEffect>
+                </div>
+                <p className="font-googlesans font-medium text-sm sm:text-base mt-6 opacity-70 text-center selection:bg-yellow-400 selection:text-black max-w-2xl">
+                    Explore my latest work, where creativity meets code.
+                    <br />
+                    Each project is a step toward building something meaningful.
+                </p>
+                <div className="w-full max-w-md border-b-4 border-dashed border-amber-400 mt-6 mb-8"></div>
+            </div>
+            
             {/* projects Cards Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 w-full">
                 {projects.map((project, index) => (
                     <RetroCard
                         key={project.slug}
-                        className="flex flex-col group bg-amber-50 w-full max-w-sm cursor-pointer"
+                        className="flex flex-col group bg-[#fffdf7] w-full cursor-pointer"
                         delay={index * 0.1}
                         onClick={() => setSelectedProject(project)}
                     >
                         {/* Image Section */}
-                        <div className="h-48 overflow-hidden relative bg-gray-200">
+                        <div className="h-48 sm:h-56 md:h-64 overflow-hidden relative bg-gray-200">
                             <img
                                 src={project.imageUrl}
                                 alt={project.title}
@@ -52,7 +55,8 @@ export default function Projects() {
                                         href={project.githubUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-2 bg-white border-black border-2 rounded-lg hover:bg-amber-300 hover:rotate-12 active:shadow-none transition-all duration-400"
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="p-2 bg-white border-black border-3 rounded-lg hover:bg-amber-300 hover:rotate-12 hover:scale-110 active:scale-95 shadow-[2px_2px_0px_0px_black] transition-all duration-300"
                                     >
                                         <Github size={18} />
                                     </a>
@@ -62,7 +66,8 @@ export default function Projects() {
                                         href={project.demoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-2 bg-white border-black border-2 rounded-lg hover:bg-amber-300 hover:rotate-12 active:shadow-none transition-all duration-400"
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="p-2 bg-white border-black border-3 rounded-lg hover:bg-amber-300 hover:rotate-12 hover:scale-110 active:scale-95 shadow-[2px_2px_0px_0px_black] transition-all duration-300"
                                     >
                                         <ExternalLink size={18} />
                                     </a>
@@ -71,26 +76,29 @@ export default function Projects() {
                         </div>
 
                         {/* Content Section */}
-                        <div className="p-5">
-                            <h2 className="text-xl font-bold selection:bg-yellow-300 selection:text-black transition-all">{project.title}</h2>
-                            <p className="text-sm text-gray-600 mt-1 selection:bg-yellow-300 selection:text-black transition-all">{project.tech.join(" • ")}</p>
-                            <p className="mt-3 text-sm text-gray-700 selection:bg-yellow-300 selection:text-black transition-all">{project.description}</p>
+                        <div className="p-5 sm:p-6">
+                            <h2 className="text-xl sm:text-2xl font-bold selection:bg-yellow-300 selection:text-black transition-all">{project.title}</h2>
+                            <p className="text-xs sm:text-sm text-gray-600 mt-2 font-medium selection:bg-yellow-300 selection:text-black transition-all">{project.tech.join(" • ")}</p>
+                            <p className="mt-3 text-sm sm:text-base text-gray-700 selection:bg-yellow-300 selection:text-black transition-all line-clamp-3">{project.description}</p>
 
                             {/* Tags */}
                             <div className="flex flex-wrap gap-2 mt-4">
                                 {project.tags.slice(0, 3).map((tag) => (
-                                    <button
+                                    <span
                                         key={tag}
-                                        className="px-3 py-1 text-xs font-medium bg-amber-200 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_black] cursor-pointer hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 hover:-translate-x-0.5 active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transition-all duration-150"
+                                        className="px-3 py-1.5 text-xs font-bold bg-amber-200 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_black] cursor-pointer hover:bg-amber-300 hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 hover:-translate-x-0.5 active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transition-all duration-150"
                                     >
                                         {tag}
-                                    </button>
+                                    </span>
                                 ))}
+                                {project.tags.length > 3 && (
+                                    <span className="px-3 py-1.5 text-xs font-bold bg-gray-200 rounded-full border-2 border-black">
+                                        +{project.tags.length - 3}
+                                    </span>
+                                )}
                             </div>
                         </div>
                     </RetroCard>
-                    
- 
                 ))}
             </div>
 

@@ -93,18 +93,18 @@ export default function SpotifyNowPlaying() {
   }, [data]);
 
   const baseCardClass =
-    "border-4 border-black rounded-2xl p-5 bg-linear-to-br from-zinc-900 via-zinc-800 to-zinc-900 shadow-[6px_6px_0px_0px_black] hover:shadow-[8px_8px_0px_0px_black] hover:-translate-y-1 transition-all duration-300";
+    "border-4 border-black rounded-2xl p-5 bg-[#fffdf7] shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300";
 
   if (!mounted) {
     return (
       <div className={baseCardClass}>
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-[#1DB954] rounded-xl border-2 border-[#1ed760]">
+          <div className="p-2.5 bg-[#1DB954] rounded-xl border-3 border-black">
             <SiSpotify className="w-5 h-5 text-black" />
           </div>
           <div className="flex flex-col gap-1">
-            <div className="h-3 w-20 bg-zinc-700 rounded animate-pulse" />
-            <div className="h-2 w-14 bg-zinc-700/50 rounded animate-pulse" />
+            <div className="h-3 w-20 bg-gray-200 rounded animate-pulse" />
+            <div className="h-2 w-14 bg-gray-100 rounded animate-pulse" />
           </div>
         </div>
       </div>
@@ -115,12 +115,12 @@ export default function SpotifyNowPlaying() {
     return (
       <div className={baseCardClass}>
         <div className="flex items-center gap-4">
-          <div className="p-3 bg-zinc-800 rounded-xl border-2 border-zinc-700">
-            <SiSpotify className="w-6 h-6 text-zinc-500" />
+          <div className="p-3 bg-gray-200 rounded-xl border-3 border-black">
+            <SiSpotify className="w-6 h-6 text-gray-400" />
           </div>
           <div>
-            <span className="font-bold text-sm text-zinc-400 block">Not Playing</span>
-            <span className="text-xs text-zinc-600">Spotify is offline</span>
+            <span className="font-bold text-sm text-black block">Not Playing</span>
+            <span className="text-xs text-gray-500">Spotify is offline</span>
           </div>
         </div>
       </div>
@@ -132,10 +132,10 @@ export default function SpotifyNowPlaying() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 bg-[#1DB954] rounded-lg border-2 border-[#1ed760] shadow-[0_0_12px_rgba(29,185,84,0.4)]">
+          <div className="p-1.5 bg-[#1DB954] rounded-lg border-2 border-black">
             <SiSpotify className="w-4 h-4 text-black" />
           </div>
-          <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">
+          <span className="text-xs font-bold uppercase tracking-widest text-black">
             Spotify
           </span>
         </div>
@@ -143,12 +143,12 @@ export default function SpotifyNowPlaying() {
           {data.isPlaying ? (
             <>
               <SoundBars />
-              <span className="text-[10px] uppercase tracking-wide text-[#1DB954] font-semibold bg-[#1DB954]/10 px-2 py-0.5 rounded-full border border-[#1DB954]/30">
+              <span className="text-[10px] uppercase tracking-wide text-black font-bold bg-[#1DB954] px-2 py-0.5 rounded-full border-2 border-black">
                 Live
               </span>
             </>
           ) : (
-            <span className="text-[10px] uppercase tracking-wide text-zinc-500 font-medium">
+            <span className="text-[10px] uppercase tracking-wide text-gray-500 font-bold bg-gray-100 px-2 py-0.5 rounded-full border-2 border-black">
               Last Played
             </span>
           )}
@@ -159,35 +159,34 @@ export default function SpotifyNowPlaying() {
       <div className="flex items-center gap-4">
         {data.albumImageUrl ? (
           <div className="relative shrink-0 group/album">
-            <div className="absolute -inset-1 bg-[#1DB954]/20 rounded-xl blur-md group-hover:bg-[#1DB954]/30 transition-all duration-300" />
             <Image
               src={data.albumImageUrl}
               alt={data.album || "Album"}
               width={80}
               height={80}
-              className="relative rounded-xl border-2 border-zinc-700 group-hover:scale-105 group-hover:border-[#1DB954]/50 transition-all duration-300 shadow-lg"
+              className="rounded-xl border-3 border-black group-hover:scale-105 transition-all duration-300 shadow-[2px_2px_0px_0px_black]"
             />
             {data.isPlaying && (
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#1DB954] rounded-full border-2 border-zinc-900 flex items-center justify-center">
-                <span className="w-1.5 h-1.5 bg-black rounded-full animate-pulse" />
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#1DB954] rounded-full border-3 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_black]">
+                <span className="w-2 h-2 bg-black rounded-full animate-pulse" />
               </div>
             )}
           </div>
         ) : (
-          <div className="w-20 h-20 rounded-xl bg-zinc-800 border-2 border-zinc-700 flex items-center justify-center">
-            <SiSpotify className="w-8 h-8 text-zinc-600" />
+          <div className="w-20 h-20 rounded-xl bg-gray-200 border-3 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_black]">
+            <SiSpotify className="w-8 h-8 text-gray-400" />
           </div>
         )}
 
         <div className="overflow-hidden min-w-0 flex-1">
-          <p className="font-bold text-white text-sm truncate leading-tight group-hover:text-[#1DB954] transition-colors duration-200">
+          <p className="font-bold text-black text-sm truncate leading-tight">
             {data.title}
           </p>
-          <p className="text-xs text-zinc-400 font-medium truncate mt-1.5">
+          <p className="text-xs text-gray-600 font-medium truncate mt-1.5">
             {data.artist}
           </p>
           {data.album && (
-            <p className="text-[10px] text-zinc-600 truncate mt-1 font-medium bg-zinc-800/50 px-2 py-0.5 rounded-full w-fit max-w-full">
+            <p className="text-[10px] text-gray-700 truncate mt-1.5 font-medium bg-amber-100 px-2 py-0.5 rounded-full w-fit max-w-full border-2 border-black">
               💿 {data.album}
             </p>
           )}
@@ -196,25 +195,25 @@ export default function SpotifyNowPlaying() {
 
       {/* Real Progress Bar */}
       {data.isPlaying && data.duration_ms && (
-        <div className="mt-4 pt-3 border-t border-zinc-800">
+        <div className="mt-4 pt-3 border-t-2 border-black/20">
           {/* Timestamps */}
-          <div className="flex justify-between text-[10px] text-zinc-500 font-mono mb-1.5">
-            <span>{formatTime(currentProgress)}</span>
-            <span>{formatTime(data.duration_ms)}</span>
+          <div className="flex justify-between text-[10px] text-black font-mono font-bold mb-2">
+            <span className="bg-amber-300 px-2 py-0.5 rounded border-2 border-black">{formatTime(currentProgress)}</span>
+            <span className="bg-amber-300 px-2 py-0.5 rounded border-2 border-black">{formatTime(data.duration_ms)}</span>
           </div>
           {/* Progress Bar */}
-          <div className="relative h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+          <div className="relative h-2.5 bg-gray-200 rounded-full overflow-hidden border-2 border-black">
             <div
-              className="absolute inset-y-0 left-0 bg-linear-to-r from-[#1DB954] to-[#1ed760] rounded-full transition-all duration-100"
+              className="absolute inset-y-0 left-0 bg-[#1DB954] rounded-full transition-all duration-100"
               style={{
                 width: `${Math.min((currentProgress / data.duration_ms) * 100, 100)}%`,
               }}
             />
-            {/* Glowing dot at the end */}
+            {/* Dot at the end */}
             <div
-              className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#1DB954] rounded-full shadow-[0_0_8px_rgba(29,185,84,0.6)] transition-all duration-100"
+              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-black rounded-full border-2 border-[#1DB954] transition-all duration-100"
               style={{
-                left: `calc(${Math.min((currentProgress / data.duration_ms) * 100, 100)}% - 5px)`,
+                left: `calc(${Math.min((currentProgress / data.duration_ms) * 100, 100)}% - 6px)`,
               }}
             />
           </div>

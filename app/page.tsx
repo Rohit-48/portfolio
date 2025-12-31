@@ -17,7 +17,7 @@ import { projects, Project } from "@/lib/projects";
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Get featured projects (first 3 from projects array)
+  // 3 project feature
   const featuredProjects = projects.slice(0, 3);
 
   return (

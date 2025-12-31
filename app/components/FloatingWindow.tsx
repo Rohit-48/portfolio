@@ -24,7 +24,7 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
                 <div className="bg-[#fff6cc] border-4 border-black shadow-[8px_8px_0px_0px_black] rounded-lg selection:bg-yellow-300 overflow-hidden max-h-[90vh] flex flex-col">
                     
                     {/* Title Bar */}
-                    <div className="bg-linear-to-r from-[#ffd60a] to-[#ffc300] px-4 py-3 flex items-center justify-between border-b-4 border-black shrink-0">
+                    <div className="bg-gradient-to-r from-[#ffd60a] to-[#ffc300] px-4 py-3 flex items-center justify-between border-b-4 border-black shrink-0">
                         <div className="flex items-center gap-3">
                             <div className="w-7 h-7 bg-white border-2 border-black rounded shadow-[2px_2px_0px_0px_black] flex items-center justify-center">
                                 <div className="w-4 h-4 bg-[#ffd60a] border border-black rounded"></div>
@@ -57,9 +57,9 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
                     </div>
 
                     {/* Content Area - Scrollable */}
-                    <div className="bg-white border-4 border-black m-2 p-6 rounded-lg shadow-[inset_2px_2px_0px_0px_rgba(0,0,0,0.1)] overflow-y-auto flex-1">
+                    <div className="bg-white border-4 border-black m-2 p-4 sm:p-6 rounded-lg shadow-[inset_2px_2px_0px_0px_rgba(0,0,0,0.1)] overflow-y-auto flex-1">
                         {/* Project Image */}
-                        <div className="w-full h-48 md:h-72 relative bg-gray-200 mb-6 border-2 border-black border-dashed rounded-lg overflow-hidden shadow-[4px_4px_0px_0px_black]">
+                        <div className="w-full h-48 sm:h-56 md:h-72 relative bg-gray-200 mb-4 sm:mb-6 border-2 border-black border-dashed rounded-lg overflow-hidden shadow-[4px_4px_0px_0px_black]">
                             <img
                                 src={selectedProject.imageUrl}
                                 alt={selectedProject.title}
@@ -68,25 +68,25 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
                         </div>
 
                         {/* Project Info */}
-                        <div className="mb-6">
-                            <h2 className="text-3xl md:text-4xl font-black font-electrolize uppercase tracking-tight mb-3 text-black decoration-4 underline decoration-amber-400">
+                        <div className="mb-4 sm:mb-6">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-electrolize uppercase tracking-tight mb-2 sm:mb-3 text-black decoration-4 underline decoration-amber-400">
                                 {selectedProject.title}
                             </h2>
-                            <p className="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
+                            <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed font-medium">
                                 {selectedProject.extraInfo}
                             </p>
                         </div>
 
                         {/* Tech Stack */}
-                        <div className="mb-6">
-                            <span className="font-bold text-sm font-googlesans uppercase tracking-wide text-gray-800 mb-3 block">
+                        <div className="mb-4 sm:mb-6">
+                            <span className="font-bold text-xs sm:text-sm font-googlesans uppercase tracking-wide text-gray-800 mb-2 sm:mb-3 block">
                                 Tech Stack:
                             </span>
                             <div className="flex flex-wrap gap-2">
                                 {selectedProject.tags.map((tag: string) => (
                                     <span
                                         key={tag}
-                                        className="px-3 py-1.5 bg-[#ffd60a] border-2 border-black text-xs font-bold rounded-lg hover:bg-[#ffc300] hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer shadow-[2px_2px_0px_0px_black] active:shadow-[1px_1px_0px_0px_black] active:translate-x-px active:translate-y-px"
+                                        className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#ffd60a] border-2 border-black text-xs font-bold rounded-lg hover:bg-[#ffc300] hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer shadow-[2px_2px_0px_0px_black] active:shadow-[1px_1px_0px_0px_black] active:translate-x-px active:translate-y-px"
                                     >
                                         {tag}
                                     </span>
@@ -95,23 +95,27 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex flex-wrap gap-3 mt-8">
-                            <a
-                                href={selectedProject.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="font-googlesans flex items-center gap-2 px-6 py-3 bg-[#fdf8e1] border-2 border-black hover:bg-[#ffd60a] rounded-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer text-sm font-bold shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] active:shadow-[2px_2px_0px_0px_black] active:translate-x-0.5 active:translate-y-0.5"
-                            >
-                                <Github size={18} className="text-black" /> View Code
-                            </a>
-                            <a
-                                href={selectedProject.demoUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="font-googlesans flex items-center gap-2 px-6 py-3 bg-[#fdf8e1] border-2 border-black hover:bg-[#ffd60a] rounded-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer text-sm font-bold shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] active:shadow-[2px_2px_0px_0px_black] active:translate-x-0.5 active:translate-y-0.5"
-                            >
-                                <ExternalLink size={18} className="text-black" /> Live Demo
-                            </a>
+                        <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6 sm:mt-8">
+                            {selectedProject.githubUrl && (
+                                <a
+                                    href={selectedProject.githubUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-googlesans flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-[#fdf8e1] border-3 border-black hover:bg-[#ffd60a] rounded-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer text-sm font-bold shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] active:shadow-[2px_2px_0px_0px_black] active:translate-x-0.5 active:translate-y-0.5"
+                                >
+                                    <Github size={18} className="text-black" /> View Code
+                                </a>
+                            )}
+                            {selectedProject.demoUrl && (
+                                <a
+                                    href={selectedProject.demoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-googlesans flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-[#fdf8e1] border-3 border-black hover:bg-[#ffd60a] rounded-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer text-sm font-bold shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] active:shadow-[2px_2px_0px_0px_black] active:translate-x-0.5 active:translate-y-0.5"
+                                >
+                                    <ExternalLink size={18} className="text-black" /> Live Demo
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>

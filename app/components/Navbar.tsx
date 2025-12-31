@@ -32,7 +32,7 @@ export const Navbar = () => {
     }, []);
 
     return (
-        <div className="fixed z-50 top-4 sm:top-6 md:top-8 left-1/2 -translate-x-1/2 flex justify-between items-center p-2 sm:p-3 md:p-4 max-w-5xl w-[calc(100%-1rem)] sm:w-[calc(100%-1.5rem)] md:w-[calc(100%-2rem)] bg-amber-50 text-black font-medium rounded-lg border-2 sm:border-3 md:border-4 shadow-[3px_3px_0px_0px_black] sm:shadow-[4px_4px_0px_0px_black] md:shadow-[6px_6px_0px_0px_black]">
+        <div className="fixed z-50 top-4 sm:top-6 md:top-8 left-1/2 -translate-x-1/2 flex justify-between items-center p-3 sm:p-3 md:p-4 max-w-5xl w-[calc(100%-1rem)] sm:w-[calc(100%-1.5rem)] md:w-[calc(100%-2rem)] bg-amber-50 text-black font-medium rounded-lg border-3 sm:border-3 md:border-4 shadow-[4px_4px_0px_0px_black] sm:shadow-[4px_4px_0px_0px_black] md:shadow-[6px_6px_0px_0px_black]">
             <div className="flex items-center gap-1 sm:gap-2 font-electrolize font-bold text-xl tracking-tighter hover:scale-105 transition-transform cursor-pointer min-w-0 shrink">
                 <Link href="/" className="hover:scale-105 transition-transform cursor-pointer shrink-0">
                     <Image
@@ -73,35 +73,47 @@ export const Navbar = () => {
 
             {/* Mobile/Tablet Hamburger */}
             <button
-                className="lg:hidden p-1.5 sm:p-2 rounded-lg border-2 border-black hover:bg-amber-200 transition-colors shrink-0"
+                className="lg:hidden p-2 sm:p-2.5 rounded-lg border-3 border-black hover:bg-amber-300 hover:scale-105 active:scale-95 transition-all duration-200 shrink-0 shadow-[2px_2px_0px_0px_black] active:shadow-none"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-                {isMenuOpen ? <X size={20} className="sm:w-6 sm:h-6" /> : <Menu size={20} className="sm:w-6 sm:h-6" />}
+                {isMenuOpen ? <X size={22} className="sm:w-6 sm:h-6" strokeWidth={2.5} /> : <Menu size={22} className="sm:w-6 sm:h-6" strokeWidth={2.5} />}
             </button>
 
             {/* Mobile/Tablet Dropdown Menu */}
             {isMenuOpen && (
-                <div className="absolute top-full left-0 right-0 mt-1 sm:mt-2 lg:hidden bg-amber-50 border-2 sm:border-3 md:border-4 border-black rounded-lg shadow-[2px_2px_0px_0px_black] sm:shadow-[3px_3px_0px_0px_black] md:shadow-[4px_4px_0px_0px_black] p-2 sm:p-3 md:p-4 z-50">
-                    {navLinks.map((link) => {
-                        const Icon = link.icon;
-                        return (
-                            <Link
-                                href={link.path}
-                                key={link.label}
-                                prefetch={true}
-                                onClick={() => setIsMenuOpen(false)}
-                                className={`
-                                    flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all
-                                    ${pathname === link.path ? 'bg-amber-300 border-2 border-black' : 'hover:bg-amber-100'}
-                                `}
-                            >
-                                <Icon size={18} className="sm:w-5 sm:h-5" strokeWidth={2.5} />
-                                {link.label}
-                            </Link>
-                        );
-                    })}
-                </div>
+                <>
+                    {/* Backdrop */}
+                    <div 
+                        className="fixed inset-0 bg-black/20 backdrop-blur-sm lg:hidden -z-10"
+                        onClick={() => setIsMenuOpen(false)}
+                    />
+                    
+                    {/* Menu */}
+                    <div className="absolute top-full left-0 right-0 mt-2 sm:mt-3 lg:hidden bg-amber-50 border-3 sm:border-3 md:border-4 border-black rounded-lg shadow-[4px_4px_0px_0px_black] sm:shadow-[4px_4px_0px_0px_black] md:shadow-[6px_6px_0px_0px_black] p-2 sm:p-3 z-50 animate-in slide-in-from-top-2 duration-200">
+                        {navLinks.map((link) => {
+                            const Icon = link.icon;
+                            return (
+                                <Link
+                                    href={link.path}
+                                    key={link.label}
+                                    prefetch={true}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className={`
+                                        flex items-center gap-3 px-4 py-3 rounded-lg font-bold text-base transition-all min-h-[48px]
+                                        ${pathname === link.path 
+                                            ? 'bg-amber-300 border-3 border-black shadow-[2px_2px_0px_0px_black] mb-2' 
+                                            : 'hover:bg-amber-200 border-3 border-transparent hover:border-black mb-2 last:mb-0'
+                                        }
+                                    `}
+                                >
+                                    <Icon size={20} className="sm:w-5 sm:h-5" strokeWidth={2.5} />
+                                    {link.label}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </>
             )}
         </div>
     );

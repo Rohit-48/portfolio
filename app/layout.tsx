@@ -20,7 +20,7 @@ const inter = Inter({
 
 
 const googlesans = Google_Sans({
-  variable: "--font-inter",
+  variable: "--font-googlesans",
   weight: ["400", "500", "600", "700",],
   subsets: ["latin"],
 });
