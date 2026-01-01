@@ -54,7 +54,7 @@ export default function Other() {
     const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
 
     return (
-        <div className="max-w-5xl mx-auto pt-32 sm:pt-36 md:pt-40 pb-8 px-4">
+        <div className="max-w-5xl mx-auto mt-10 sm:mt-12 md:mt-14 pb-8 px-4">
             {/* Header Section */}
             <div className="flex flex-col items-center justify-center mb-10">
                 <div className="flex items-center gap-3 mb-4">

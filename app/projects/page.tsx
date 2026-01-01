@@ -12,7 +12,7 @@ export default function Projects() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     
     return (
-        <div className="flex flex-col items-center pt-32 sm:pt-36 md:pt-40 pb-8 px-4 md:px-6 max-w-6xl mx-auto w-full">
+        <div className="flex flex-col items-center mt-10 sm:mt-12 md:mt-14 pb-8 px-4 md:px-6 max-w-6xl mx-auto w-full">
             <div className="flex flex-col items-center w-full max-w-4xl">
                 <div className="font-electrolize font-bold tracking-tighter border-4 border-black rounded-2xl px-6 sm:px-8 py-3 sm:py-4 bg-amber-300 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 uppercase transition-all duration-300 cursor-pointer">
                     <TypewriterEffect
@@ -33,7 +33,7 @@ export default function Projects() {
             </div>
             
             {/* projects Cards Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 w-5xl">
                 {projects.map((project, index) => (
                     <RetroCard
                         key={project.slug}
