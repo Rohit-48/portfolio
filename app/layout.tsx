@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "Rohit's Portfolio",
     images: [
       {
-        url: "/images/profile/avatar.png",
+        url: "https://rohitvince.in/images/profile/avatar.png",
         width: 1200,
         height: 630,
         alt: "Rohit - Web Engineer & Developer",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Rohit | Web Engineer & Developer",
     description: "Web Engineer crafting pixel-perfect, retro-futuristic digital experiences.",
     creator: "@rohitcpp",
-    images: "/images/profile/avatar.png",
+    images: "https://rohitvince.in/images/profile/avatar.png",
   },
   robots: {
     index: true,
