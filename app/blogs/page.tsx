@@ -16,7 +16,7 @@ const BlogPosts = [
 
 export default function Blogs() {
     return (
-        <div className="flex flex-col items-center pt-32 sm:pt-36 md:pt-40 pb-8 px-4 md:px-6 max-w-6xl mx-auto w-full">
+        <div className="flex flex-col items-center mt-10 sm:mt-12 md:mt-14 pb-8 px-4 md:px-6 max-w-6xl mx-auto w-full">
             {/* Header Section */}
             <div className="flex flex-col items-center w-full max-w-4xl mb-12">
                 <div className="flex items-center gap-3 mb-6">
