@@ -1,9 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Target, SquareArrowRight, Github, Linkedin, Mail } from "lucide-react"
+import {
+  ArrowUpRight,
+  Target,
+  SquareArrowRight,
+  Github,
+  Linkedin,
+  Mail,
+} from "lucide-react";
 import Link from "next/link";
-import { SiReact, SiTypescript, SiNextdotjs, SiTailwindcss, SiDjango, SiJavascript, SiRust, SiNixos, SiCss3, SiC, SiNodedotjs, SiExpress, SiHono, SiPython, SiFramer, SiFigma, SiCplusplus, SiX, SiCaldotcom, SiDiscord, SiBuymeacoffee, SiPinterest } from "react-icons/si";
+import {
+  SiReact,
+  SiTypescript,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiDjango,
+  SiJavascript,
+  SiRust,
+  SiNixos,
+  SiCss3,
+  SiC,
+  SiNodedotjs,
+  SiExpress,
+  SiHono,
+  SiPython,
+  SiFramer,
+  SiFigma,
+  SiCplusplus,
+  SiX,
+  SiCaldotcom,
+  SiDiscord,
+  SiBuymeacoffee,
+  SiPinterest,
+} from "react-icons/si";
 import SpotifyNowPlaying from "./components/SpotifyNowPlaying";
 import LocalTime from "./components/LocalTime";
 import { TypewriterEffect } from "./components/ui/typewriter-effect";
@@ -11,8 +41,6 @@ import { FlipWords } from "./components/ui/flip-word";
 import { useState } from "react";
 import FloatingWindow from "./components/FloatingWindow";
 import { projects, Project } from "@/lib/projects";
-
-
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -27,22 +55,30 @@ export default function Home() {
         {/* heading section */}
         <div className="h-full w-full shrink-0 bg-[#fffdf7] col-span-1 border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer p-4 md:p-6">
           <button className="mt-4 py-2 px-2 border-4 rounded-full flex items-center justify-center gap-2 bg-green-400  hover:rotate-12 transition-transform duration-500 cursor-pointer ">
-            <Target size={16} /> <span className="text-xs font-bold">Open to Work</span> <ArrowUpRight size={16} className="text-black" />
+            <Target size={16} />{" "}
+            <span className="text-xs font-bold">Open to Work</span>{" "}
+            <ArrowUpRight size={16} className="text-black" />
           </button>
           <TypewriterEffect
             words={[
-              { text: "ROHIT", className: "uppercase font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black" }
+              {
+                text: "ROHIT",
+                className:
+                  "uppercase font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black",
+              },
             ]}
             className="mt-4 text-left justify-start"
-
           />
           <h3 className="text-sm text-gray-500 font-medium">
             <span>ROH-hit</span>
           </h3>
-          <h2 className="text-left text-base sm:text-lg md:text-xl lg:text-2xl text-black font-black mt-2 sm:mt-1 md:mt-4 selection:bg-yellow-300 selection:text-black">Web Engineer & UG CS Student</h2>
+          <h2 className="text-left text-base sm:text-lg md:text-xl lg:text-2xl text-black font-black mt-2 sm:mt-1 md:mt-4 selection:bg-yellow-300 selection:text-black">
+            Web Engineer & UG CS Student
+          </h2>
 
           <p className="text-left font-medium text-sm mt-4 opacity-60 selection:text-black">
-            Web Engineer crafting pixel-perfect, retro-futuristic digital experiences. Obsessed with clean code and bento grids.
+            Web Engineer crafting pixel-perfect, retro-futuristic digital
+            experiences. Obsessed with clean code and bento grids.
           </p>
           <div className="relative mt-4 inline-block">
             <a
@@ -54,22 +90,25 @@ export default function Home() {
               <span className="text-sm font-medium">Resume</span>
               <ArrowUpRight size={20} className="text-black" />
             </a>
-
           </div>
         </div>
 
         {/* hero image section */}
         {/* image section */}
         <div className="relative h-64 md:h-full w-full shrink-0 bg-[#F7F4F3] border-4 rounded-lg shadow-[2px_4px_0px_0px_black] cursor-pointer">
-          <Image src="/images/profile/avatar.png" alt="hero" width={500} height={500} className="w-full h-full object-cover rounded-lg" />
+          <Image
+            src="/images/profile/avatar.png"
+            alt="hero"
+            width={500}
+            height={500}
+            className="w-full h-full object-cover rounded-lg"
+          />
           <button className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-16 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
             <span className="text-xs font-bold uppercase">Est 2004</span>
           </button>
           <button className="absolute bottom-2 left-2 md:bottom-4 md:left-4 py-2 px-3 md:px-4 w-[180px] md:w-[250px] h-[70px] md:h-[100px] font-black border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[2px_4px_0px_0px_black] hover:scale-110 transition-transform duration-300">
             <FlipWords
-              words={[
-                "ROHIT HERE",
-              ]}
+              words={["ROHIT HERE"]}
               duration={3000}
               className="text-2xl md:text-4xl font-black uppercase text-black"
             />
@@ -82,17 +121,23 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 mt-10 mx-auto max-w-5xl gap-6 font-inter ">
           {/* First Project - Large Card */}
           {featuredProjects[0] && (
-            <div 
-              className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+            <div
+              className="flex flex-col py-4 px-4 justify-between bg-amber-500 border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+              style={{
+                background:
+                  "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0), " +
+                  "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px), " +
+                  "repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px)"
+              }}
               onClick={() => setSelectedProject(featuredProjects[0])}
             >
-              <div className="border-2 border-dashed w-full h-[180px] md:h-[240px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-                <Image 
-                  src={featuredProjects[0].imageUrl.trim()} 
-                  alt={`${featuredProjects[0].title} project preview`} 
-                  width={400} 
-                  height={240} 
-                  className="w-full h-full object-cover rounded-lg" 
+              <div className="borde2 w-full h-[180px] md:h-60 rounded-lg border-gray-900 overflow-hidden cursor-pointer">
+                <Image
+                  src={featuredProjects[0].imageUrl.trim()}
+                  alt={`${featuredProjects[0].title} project preview`}
+                  width={400}
+                  height={240}
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
               <div className="font-bold text-2xl md:text-3xl mt-1 underline decoration-4 decoration-[#003f88]">
@@ -103,22 +148,22 @@ export default function Home() {
               </div>
             </div>
           )}
-          
+
           {/* 2 COL - Second and Third Projects */}
           <div className="flex flex-col gap-6">
             {/* Second Project - Medium Card */}
             {featuredProjects[1] && (
-              <div 
+              <div
                 className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                 onClick={() => setSelectedProject(featuredProjects[1])}
               >
-                <div className="border-2 border-dashed w-full h-[120px] md:h-[140px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-                  <Image 
-                    src={featuredProjects[1].imageUrl.trim()} 
-                    alt={`${featuredProjects[1].title} project preview`} 
-                    width={400} 
-                    height={240} 
-                    className="w-full h-full object-cover rounded-lg" 
+                <div className="border-2  w-full h-[120px] md:h-[140px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
+                  <Image
+                    src={featuredProjects[1].imageUrl.trim()}
+                    alt={`${featuredProjects[1].title} project preview`}
+                    width={400}
+                    height={240}
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
                 <div className="font-bold text-lg md:text-[20px] mt-4 underline decoration-4 decoration-[#003f88]">
@@ -129,22 +174,22 @@ export default function Home() {
                 </div>
               </div>
             )}
-            
+
             {/* Third Project + View All Link */}
             <div className="flex flex-row gap-4">
               {/* Third Project - Small Card */}
               {featuredProjects[2] && (
-                <div 
+                <div
                   className="flex-1 flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                   onClick={() => setSelectedProject(featuredProjects[2])}
                 >
-                  <div className="border-2 border-dashed w-full h-[60px] md:h-[80px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
-                    <Image 
-                      src={featuredProjects[2].imageUrl.trim()} 
-                      alt={`${featuredProjects[2].title} project preview`} 
-                      width={200} 
-                      height={80} 
-                      className="w-full h-full object-cover rounded-lg" 
+                  <div className="border-2  w-full h-[60px] md:h-[80px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
+                    <Image
+                      src={featuredProjects[2].imageUrl.trim()}
+                      alt={`${featuredProjects[2].title} project preview`}
+                      width={200}
+                      height={80}
+                      className="w-full h-full object-cover rounded-lg"
                     />
                   </div>
                   <div className="font-bold text-sm mt-2 underline decoration-2 decoration-[#003f88]">
@@ -152,11 +197,19 @@ export default function Home() {
                   </div>
                 </div>
               )}
-              
+
               {/* View All Projects Link */}
-              <Link href="/projects" className="flex-1 flex flex-col items-center justify-center gap-2 py-4 px-4 border-4 border-black shadow-[2px_4px_0px_0px_black] rounded-lg bg-amber-50 hover:bg-amber-300 hover:shadow-[4px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-400 cursor-pointer group ease-in-out">
-                <span className="font-bold text-base md:text-lg uppercase tracking-tight">View All</span>
-                <SquareArrowRight size={32} className="md:w-10 md:h-10 text-black group-hover:-rotate-45 transition-transform duration-400 ease-in-out" />
+              <Link
+                href="/projects"
+                className="flex-1 flex flex-col items-center justify-center gap-2 py-4 px-4 border-4 border-black shadow-[2px_4px_0px_0px_black] rounded-lg bg-amber-50 hover:bg-amber-300 hover:shadow-[4px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-400 cursor-pointer group ease-in-out"
+              >
+                <span className="font-bold text-base md:text-lg uppercase tracking-tight">
+                  View All
+                </span>
+                <SquareArrowRight
+                  size={32}
+                  className="md:w-10 md:h-10 text-black group-hover:-rotate-20 transition-transform duration-400 ease-in-out"
+                />
               </Link>
             </div>
           </div>
@@ -183,14 +236,15 @@ export default function Home() {
                 { icon: SiFigma, label: "Figma" },
                 { icon: SiDjango, label: "Django" },
                 { icon: SiCplusplus, label: "C++" },
-
               ].map(({ icon: Icon, label }) => (
                 <button
                   key={label}
                   className="border-2 md:border-3 border-black rounded-lg p-2 md:p-3 hover:bg-amber-300 hover:scale-90 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center w-14 h-14 md:w-18 md:h-18 shrink-0"
                 >
                   <Icon className="w-7 h-7 md:w-10 md:h-10" />
-                  <span className="text-[10px] md:text-xs font-semibold">{label}</span>
+                  <span className="text-[10px] md:text-xs font-semibold">
+                    {label}
+                  </span>
                 </button>
               ))}
               {/* Duplicate for seamless infinite loop */}
@@ -217,14 +271,15 @@ export default function Home() {
                   className="border-2 md:border-3 border-black rounded-lg p-2 md:p-3 hover:bg-amber-300 hover:scale-90 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center w-14 h-14 md:w-18 md:h-18 shrink-0"
                 >
                   <Icon className="w-7 h-7 md:w-10 md:h-10" />
-                  <span className="text-[10px] md:text-xs font-semibold">{label}</span>
+                  <span className="text-[10px] md:text-xs font-semibold">
+                    {label}
+                  </span>
                 </button>
               ))}
             </div>
           </div>
         </div>
       </div>
-
 
       {/* Social Icons, route to blogs, Section */}
       <div className="w-full max-w-5xl mt-8">
@@ -235,9 +290,15 @@ export default function Home() {
             className="col-span-2 row-span-2 border-4 border-black rounded-2xl bg-amber-300 p-4 md:p-6 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
           >
             <div>
-              <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-60">Blog</span>
-              <h3 className="font-electrolize text-xl md:text-2xl font-bold mt-1 md:mt-2">Read My Thoughts</h3>
-              <p className="text-xs md:text-sm mt-1 md:mt-2 opacity-70">Exploring code, design, and everything in between.</p>
+              <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-60">
+                Blog
+              </span>
+              <h3 className="font-electrolize text-xl md:text-2xl font-bold mt-1 md:mt-2">
+                Read My Thoughts
+              </h3>
+              <p className="text-xs md:text-sm mt-1 md:mt-2 opacity-70">
+                Exploring code, design, and everything in between.
+              </p>
             </div>
             <div className="flex items-center gap-2 font-semibold text-sm md:text-base group-hover:gap-4 transition-all">
               <span>Explore blogs</span>
@@ -320,7 +381,9 @@ export default function Home() {
             <span className="text-2xl md:text-3xl group-hover:rotate-12 transition-transform duration-300">
               <SiCaldotcom size={26} />
             </span>
-            <span className="font-bold text-xs md:text-sm tracking-wide">Book a Call</span>
+            <span className="font-bold text-xs md:text-sm tracking-wide">
+              Book a Call
+            </span>
           </a>
           <a
             href="https://buymeacoffee.com/rohit77"
@@ -332,7 +395,9 @@ export default function Home() {
             <span className="text-2xl md:text-3xl group-hover:animate-bounce transition-all duration-300">
               <SiBuymeacoffee size={22} />
             </span>
-            <span className="font-bold text-xs md:text-sm tracking-wide">Buy me Coffee</span>
+            <span className="font-bold text-xs md:text-sm tracking-wide">
+              Buy me Coffee
+            </span>
           </a>
           <a
             href="https://pin.it/6H1ZDBaie"
@@ -345,7 +410,9 @@ export default function Home() {
             <span className="text-2xl md:text-3xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
               <SiPinterest size={22} />
             </span>
-            <span className="font-bold text-xs md:text-sm tracking-wide">Pinterest</span>
+            <span className="font-bold text-xs md:text-sm tracking-wide">
+              Pinterest
+            </span>
           </a>
         </div>
       </div>
@@ -356,11 +423,10 @@ export default function Home() {
       </div>
 
       {/* Floating Window for Project Details */}
-      <FloatingWindow 
+      <FloatingWindow
         selectedProject={selectedProject}
         onClose={() => setSelectedProject(null)}
       />
     </div>
-
   );
 }

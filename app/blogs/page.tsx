@@ -43,7 +43,7 @@ export default function Blogs() {
             </div>
 
             {/* Blog Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 w-full">
                 {BlogPosts.map((post) => (
                     <BlogCard key={post.slug} {...post} />
                 ))}

@@ -79,6 +79,7 @@ export const BackgroundPattern = () => {
   )
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
