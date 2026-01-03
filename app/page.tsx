@@ -33,6 +33,7 @@ import {
   SiDiscord,
   SiBuymeacoffee,
   SiPinterest,
+  SiBun,
 } from "react-icons/si";
 import SpotifyNowPlaying from "./components/SpotifyNowPlaying";
 import LocalTime from "./components/LocalTime";
@@ -236,6 +237,7 @@ export default function Home() {
                 { icon: SiFigma, label: "Figma" },
                 { icon: SiDjango, label: "Django" },
                 { icon: SiCplusplus, label: "C++" },
+                { icon: SiBun, label: "Bun" }
               ].map(({ icon: Icon, label }) => (
                 <button
                   key={label}
@@ -265,6 +267,7 @@ export default function Home() {
                 { icon: SiFramer, label: "Framer" },
                 { icon: SiFigma, label: "Figma" },
                 { icon: SiDjango, label: "Django" },
+                { icon: SiBun, label: "Bun" }
               ].map(({ icon: Icon, label }) => (
                 <button
                   key={`${label}-duplicate`}
