@@ -8,6 +8,10 @@ import {
   Github,
   Linkedin,
   Mail,
+  BookOpen,
+  BarChart3,
+  Calculator,
+  Palette,
 } from "lucide-react";
 import Link from "next/link";
 import {
@@ -78,8 +82,9 @@ export default function Home() {
           </h2>
 
           <p className="text-left font-medium text-sm mt-4 opacity-60 selection:text-black">
-            Web Engineer crafting pixel-perfect, retro-futuristic digital
-            experiences. Obsessed with clean code and bento grids.
+            Focused full-stack developer with strong foundations in web engineering, modern JavaScript frameworks, and
+            backend systems. Passionate about building clean, scalable products with performance and developer experience
+            in mind. Currently expanding expertise into AI/ML integration while pursuing computer science degree.
           </p>
           <div className="relative mt-4 inline-block">
             <a
@@ -430,6 +435,86 @@ export default function Home() {
         selectedProject={selectedProject}
         onClose={() => setSelectedProject(null)}
       />
+      {/* current learning section */}
+      <div className="w-full max-w-5xl pb-8">
+        <style>{`
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          @keyframes gentleGlow {
+            0%, 100% {
+              box-shadow: 4px 4px 0px 0px black;
+            }
+            50% {
+              box-shadow: 6px 6px 0px 0px black;
+            }
+          }
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-5px);
+            }
+          }
+        `}</style>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Small left-hand side box */}
+          <div className="md:col-span-1">
+            <div
+              className="border-4 border-black rounded-2xl p-6 bg-[#fffdf7] shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300"
+              style={{ animation: 'gentleGlow 3s ease-in-out infinite' }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div
+                  className="p-2 bg-amber-300 border-2 border-black rounded-full shadow-[2px_2px_0px_0px_black] hover:scale-110 transform duration-300"
+                  style={{ animation: 'float 2s ease-in-out infinite' }}
+                >
+                  <BookOpen className="w-5 h-5 text-black animate-pulse" />
+                </div>
+                <h3 className="font-electrolize text-lg md:text-xl font-bold text-black">
+                  Current Learning
+                </h3>
+              </div>
+              <p className="text-sm opacity-70 mb-4">
+                Exploring new skills and expanding my knowledge
+              </p>
+              <div className="space-y-3">
+                <div
+                  className="flex items-center gap-3 p-3 bg-amber-100 border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_black] hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group"
+                  style={{ animation: 'fadeInUp 0.8s ease-out forwards', animationDelay: '0s' }}
+                >
+                  <BarChart3 className="w-4 h-4 text-black group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-sm font-medium">Data Analytics</span>
+                </div>
+                <div
+                  className="flex items-center gap-3 p-3 bg-blue-100 border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_black] hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group"
+                  style={{ animation: 'fadeInUp 0.8s ease-out forwards', animationDelay: '0.2s' }}
+                >
+                  <Calculator className="w-4 h-4 text-black group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-sm font-medium">Mathematics</span>
+                </div>
+                <div
+                  className="flex items-center gap-3 p-3 bg-purple-100 border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_black] hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group"
+                  style={{ animation: 'fadeInUp 0.8s ease-out forwards', animationDelay: '0.4s' }}
+                >
+                  <Palette className="w-4 h-4 text-black group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-sm font-medium">Tailwind CSS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Empty space for right side */}
+          <div className="md:col-span-2"></div>
+        </div>
+      </div>
     </div>
   );
 }

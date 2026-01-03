@@ -5,50 +5,8 @@ import { HyperText } from "../components/ui/HyperText";
 import { Highlighter } from "@/components/ui/highlighter";
 import Image from "next/image";
 import { X, Camera, Sparkles, ImageIcon } from "lucide-react";
+import { galleryImages } from "@/lib/otherstuff";
 
-const galleryImages = [
-    {
-        src: "/images/gallery/nixos.png",
-        alt: "NixOS Setup",
-        title: "NixOS",
-        description: "My daily driver Linux distro",
-        span: "col-span-2 row-span-2",
-        category: "Desktop"
-    },
-    {
-        src: "/images/gallery/btop.png",
-        alt: "Btop System Monitor",
-        title: "Btop++",
-        description: "Terminal system monitor",
-        span: "col-span-1 row-span-1",
-        category: "Terminal"
-
-    },
-    {
-        src: "/images/gallery/arasaka-parade.png",
-        alt: "Arasaka Parade",
-        title: "Arasaka",
-        description: "Cyberpunk aesthetic",
-        span: "col-span-1 row-span-2",
-        category: "Wallpaper"
-    },
-    {
-        src: "/images/gallery/zeneistu.png",
-        alt: "Zeneistu Artwork",
-        title: "Zeneistu",
-        description: "Anime inspired art",
-        span: "col-span-2 row-span-1",
-        category: "Art"
-    },
-    {
-        src: "/images/gallery/blacksphere.png",
-        alt: "Black_Sapphire_Artwork",
-        title: "Black Sapphire",
-        description: "Cyberpunk aesthetic",
-        span: "col-span-4 row-span-2",
-        category: "Art"
-    },
-];
 
 export default function Other() {
     const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
@@ -77,7 +35,7 @@ export default function Other() {
                     </Highlighter>
                 </div>
                 <p className="text-center text-xs sm:text-sm md:text-base text-gray-600 font-medium max-w-md px-2 selection:bg-yellow-300 selection:text-black">
-                    A curated collection of my setups, wallpapers, and digital aesthetics ✨
+                    My cursority collection, life, and other stuff
                 </p>
             </div>
 
