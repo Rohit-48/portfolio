@@ -46,6 +46,7 @@ import { FlipWords } from "./components/ui/flip-word";
 import { useState } from "react";
 import FloatingWindow from "./components/FloatingWindow";
 import { projects, Project } from "@/lib/projects";
+import { skillshowcase } from "@/lib/skillshowcase";
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -224,65 +225,23 @@ export default function Home() {
         <div className="mx-auto max-w-5xl w-full mt-6">
           <div className="border-4 w-full h-full border-gray-900 overflow-hidden cursor-pointer shadow-[2px_4px_0px_0px_black] rounded-lg p-3 md:p-4 flex items-center bg-[#fffdf7]">
             <div className="animate-marquee flex gap-3 md:gap-4 whitespace-nowrap">
-              {[
-                { icon: SiReact, label: "React" },
-                { icon: SiJavascript, label: "JavaScript" },
-                { icon: SiTypescript, label: "TypeScript" },
-                { icon: SiRust, label: "Rust" },
-                { icon: SiNixos, label: "Nix" },
-                { icon: SiNextdotjs, label: "Next.js" },
-                { icon: SiCss3, label: "CSS" },
-                { icon: SiTailwindcss, label: "Tailwind" },
-                { icon: SiC, label: "C" },
-                { icon: SiNodedotjs, label: "Node" },
-                { icon: SiExpress, label: "Express" },
-                { icon: SiHono, label: "Hono.js" },
-                { icon: SiPython, label: "Python" },
-                { icon: SiFramer, label: "Framer" },
-                { icon: SiFigma, label: "Figma" },
-                { icon: SiDjango, label: "Django" },
-                { icon: SiCplusplus, label: "C++" },
-                { icon: SiBun, label: "Bun" }
-              ].map(({ icon: Icon, label }) => (
-                <button
-                  key={label}
-                  className="border-2 md:border-3 border-black rounded-lg p-2 md:p-3 hover:bg-amber-300 hover:scale-90 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center w-14 h-14 md:w-18 md:h-18 shrink-0"
+              {skillshowcase.map(({ icon: Icon, label }, i) => (
+                <div
+                  key={label || `skill-${i}`}
+                  className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 border-2 border-black rounded-lg bg-white"
                 >
-                  <Icon className="w-7 h-7 md:w-10 md:h-10" />
-                  <span className="text-[10px] md:text-xs font-semibold">
-                    {label}
-                  </span>
-                </button>
+                  <Icon className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="text-xs md:text-sm font-medium">{label}</span>
+                </div>
               ))}
-              {/* Duplicate for seamless infinite loop */}
-              {[
-                { icon: SiReact, label: "React" },
-                { icon: SiJavascript, label: "JavaScript" },
-                { icon: SiTypescript, label: "TypeScript" },
-                { icon: SiRust, label: "Rust" },
-                { icon: SiNixos, label: "Nix" },
-                { icon: SiNextdotjs, label: "Next.js" },
-                { icon: SiCss3, label: "CSS" },
-                { icon: SiTailwindcss, label: "Tailwind" },
-                { icon: SiC, label: "C" },
-                { icon: SiNodedotjs, label: "Node" },
-                { icon: SiExpress, label: "Express" },
-                { icon: SiHono, label: "Hono.js" },
-                { icon: SiPython, label: "Python" },
-                { icon: SiFramer, label: "Framer" },
-                { icon: SiFigma, label: "Figma" },
-                { icon: SiDjango, label: "Django" },
-                { icon: SiBun, label: "Bun" }
-              ].map(({ icon: Icon, label }) => (
-                <button
-                  key={`${label}-duplicate`}
-                  className="border-2 md:border-3 border-black rounded-lg p-2 md:p-3 hover:bg-amber-300 hover:scale-90 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center w-14 h-14 md:w-18 md:h-18 shrink-0"
+              {skillshowcase.map(({ icon: Icon, label }, i) => (
+                <div
+                  key={label ? `${label}-duplicate` : `skill-${i}-duplicate`}
+                  className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 border-2 border-black rounded-lg bg-white"
                 >
-                  <Icon className="w-7 h-7 md:w-10 md:h-10" />
-                  <span className="text-[10px] md:text-xs font-semibold">
-                    {label}
-                  </span>
-                </button>
+                  <Icon className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="text-xs md:text-sm font-medium">{label}</span>
+                </div>
               ))}
             </div>
           </div>

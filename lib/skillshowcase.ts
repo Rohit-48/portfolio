@@ -1,0 +1,39 @@
+import { SiReact } from "react-icons/si";
+import { SiJavascript } from "react-icons/si";
+import { SiTypescript } from "react-icons/si";
+import { SiRust } from "react-icons/si";
+import { SiNixos } from "react-icons/si";
+import { SiNextdotjs } from "react-icons/si";
+import { SiCss3 } from "react-icons/si";
+import { SiTailwindcss } from "react-icons/si";
+import { SiC } from "react-icons/si";
+import { SiNodedotjs } from "react-icons/si";
+import { SiExpress } from "react-icons/si";
+import { SiHono } from "react-icons/si";
+import { SiPython } from "react-icons/si";
+import { SiFramer } from "react-icons/si";
+import { SiFigma } from "react-icons/si";
+import { SiDjango } from "react-icons/si";
+import { SiCplusplus } from "react-icons/si";
+import { SiBun } from "react-icons/si";
+
+export const skillshowcase: { icon: typeof SiReact | typeof SiJavascript | typeof SiTypescript | typeof SiRust | typeof SiNixos | typeof SiNextdotjs | typeof SiCss3 | typeof SiTailwindcss | typeof SiC | typeof SiNodedotjs | typeof SiExpress | typeof SiHono | typeof SiPython | typeof SiFramer | typeof SiFigma | typeof SiDjango | typeof SiCplusplus | typeof SiBun; label: string }[] = [
+    { icon: SiReact, label: "React" },
+    { icon: SiJavascript, label: "JavaScript" },
+    { icon: SiTypescript, label: "TypeScript" },
+    { icon: SiRust, label: "Rust" },
+    { icon: SiNixos, label: "Nix" },
+    { icon: SiNextdotjs, label: "Next.js" },
+    { icon: SiCss3, label: "CSS" },
+    { icon: SiTailwindcss, label: "Tailwind" },
+    { icon: SiC, label: "C" },
+    { icon: SiNodedotjs, label: "Node" },
+    { icon: SiExpress, label: "Express" },
+    { icon: SiHono, label: "Hono.js" },
+    { icon: SiPython, label: "Python" },
+    { icon: SiFramer, label: "Framer" },
+    { icon: SiFigma, label: "Figma" },
+    { icon: SiDjango, label: "Django" },
+    { icon: SiCplusplus, label: "C++" },
+    { icon: SiBun, label: "Bun" }
+]
