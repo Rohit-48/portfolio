@@ -47,6 +47,7 @@ import { useState } from "react";
 import FloatingWindow from "./components/FloatingWindow";
 import { projects, Project } from "@/lib/projects";
 import { skillshowcase } from "@/lib/skillshowcase";
+import { playClickSound } from "@/lib/sounds";
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -92,6 +93,7 @@ export default function Home() {
               href="/documents/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => playClickSound('button')}
               className="py-3 px-6 border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[4px_4px_0px_0px_black] hover:shadow-[2px_2px_0px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-[0px_0px_0px_0px_black] active:translate-x-[4px] active:translate-y-[4px] transition-all duration-100 min-w-[180px] justify-center font-bold"
             >
               <span className="text-sm font-medium">Resume</span>
@@ -110,10 +112,16 @@ export default function Home() {
             height={500}
             className="w-full h-full object-cover rounded-lg"
           />
-          <button className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-16 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]">
+          <button 
+            className="absolute top-2 right-2 md:top-4 md:right-4 py-1.5 px-3 md:py-2 md:px-4 border-4 border-black rounded-full bg-amber-300 text-black cursor-pointer flex items-center gap-2 hover:rotate-16 transition-transform duration-300 shadow-[2px_4px_0px_0px_black]"
+            onClick={() => playClickSound('button')}
+          >
             <span className="text-xs font-bold uppercase">Est 2004</span>
           </button>
-          <button className="absolute bottom-2 left-2 md:bottom-4 md:left-4 py-2 px-3 md:px-4 w-[180px] md:w-[250px] h-[70px] md:h-[100px] font-black border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[2px_4px_0px_0px_black] hover:scale-110 transition-transform duration-300">
+          <button 
+            className="absolute bottom-2 left-2 md:bottom-4 md:left-4 py-2 px-3 md:px-4 w-[180px] md:w-[250px] h-[70px] md:h-[100px] font-black border-4 border-black rounded-xl bg-amber-300 text-black cursor-pointer flex items-center gap-2 shadow-[2px_4px_0px_0px_black] hover:scale-110 transition-transform duration-300"
+            onClick={() => playClickSound('button')}
+          >
             <FlipWords
               words={["ROHIT HERE"]}
               duration={3000}
@@ -136,7 +144,10 @@ export default function Home() {
                   "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px), " +
                   "repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px)"
               }}
-              onClick={() => setSelectedProject(featuredProjects[0])}
+              onClick={() => {
+                playClickSound('card');
+                setSelectedProject(featuredProjects[0]);
+              }}
             >
               <div className="borde2 w-full h-[180px] md:h-60 rounded-lg border-gray-900 overflow-hidden cursor-pointer">
                 <Image
@@ -162,7 +173,10 @@ export default function Home() {
             {featuredProjects[1] && (
               <div
                 className="flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
-                onClick={() => setSelectedProject(featuredProjects[1])}
+                onClick={() => {
+                  playClickSound('card');
+                  setSelectedProject(featuredProjects[1]);
+                }}
               >
                 <div className="border-2  w-full h-[120px] md:h-[140px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
                   <Image
@@ -188,7 +202,10 @@ export default function Home() {
               {featuredProjects[2] && (
                 <div
                   className="flex-1 flex flex-col py-4 px-4 bg-[#fffdf7] justify-between border-4 shadow-[2px_4px_0px_0px_black] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
-                  onClick={() => setSelectedProject(featuredProjects[2])}
+                  onClick={() => {
+                    playClickSound('card');
+                    setSelectedProject(featuredProjects[2]);
+                  }}
                 >
                   <div className="border-2  w-full h-[60px] md:h-[80px] rounded-lg border-gray-900 overflow-hidden cursor-pointer">
                     <Image
@@ -208,6 +225,7 @@ export default function Home() {
               {/* View All Projects Link */}
               <Link
                 href="/projects"
+                onClick={() => playClickSound('button')}
                 className="flex-1 flex flex-col items-center justify-center gap-2 py-4 px-4 border-4 border-black shadow-[2px_4px_0px_0px_black] rounded-lg bg-amber-50 hover:bg-amber-300 hover:shadow-[4px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-400 cursor-pointer group ease-in-out"
               >
                 <span className="font-bold text-base md:text-lg uppercase tracking-tight">
@@ -254,6 +272,7 @@ export default function Home() {
           {/* Large Blog Card - spans 2 cols, 2 rows */}
           <Link
             href="/blogs"
+            onClick={() => playClickSound('button')}
             className="col-span-2 row-span-2 border-4 border-black rounded-2xl bg-amber-300 p-4 md:p-6 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
           >
             <div>
@@ -280,6 +299,7 @@ export default function Home() {
             href="https://github.com/Rohit-48"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => playClickSound('button')}
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#181717] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl">
@@ -293,6 +313,7 @@ export default function Home() {
             href="https://twitter.com/rohitcpp"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => playClickSound('button')}
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#000000] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl">
@@ -306,6 +327,7 @@ export default function Home() {
             href="https://linkedin.com/in/rohit48"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => playClickSound('button')}
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#0A66C2] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl font-bold">
@@ -317,6 +339,7 @@ export default function Home() {
           {/* Email Card */}
           <a
             href="mailto:rohitmandavkar3477@gmail.com"
+            onClick={() => playClickSound('button')}
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#EA4335] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl">
@@ -330,6 +353,7 @@ export default function Home() {
             href="https://discord.com/users/rohitvince0"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => playClickSound('button')}
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#5865F2] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer"
           >
             <span className="text-2xl md:text-3xl">
@@ -341,6 +365,7 @@ export default function Home() {
             href="https://cal.com/rohitvince0"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => playClickSound('button')}
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#292929] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
           >
             <span className="absolute inset-0 bg-linear-to-t from-gray-800 via-transparent to-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
@@ -356,6 +381,7 @@ export default function Home() {
             href="https://buymeacoffee.com/rohit77"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => playClickSound('button')}
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#FFDD00] text-black p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
           >
             <span className="absolute inset-0 bg-linear-to-t from-orange-300/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
@@ -370,6 +396,7 @@ export default function Home() {
             href="https://pin.it/6H1ZDBaie"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => playClickSound('button')}
             className="col-span-1 row-span-1 border-4 border-black rounded-2xl bg-[#E60023] text-white p-3 md:p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-1 md:gap-2 cursor-pointer group relative overflow-hidden"
           >
             <span className="absolute inset-0 bg-linear-to-br from-red-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
@@ -449,6 +476,7 @@ export default function Home() {
                 <div
                   className="flex items-center gap-3 p-3 bg-amber-100 border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_black] hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group"
                   style={{ animation: 'fadeInUp 0.8s ease-out forwards', animationDelay: '0s' }}
+                  onClick={() => playClickSound('button')}
                 >
                   <BarChart3 className="w-4 h-4 text-black group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm font-medium">Data Analytics</span>
@@ -456,6 +484,7 @@ export default function Home() {
                 <div
                   className="flex items-center gap-3 p-3 bg-blue-100 border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_black] hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group"
                   style={{ animation: 'fadeInUp 0.8s ease-out forwards', animationDelay: '0.2s' }}
+                  onClick={() => playClickSound('button')}
                 >
                   <Calculator className="w-4 h-4 text-black group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm font-medium">Mathematics</span>
@@ -463,6 +492,7 @@ export default function Home() {
                 <div
                   className="flex items-center gap-3 p-3 bg-purple-100 border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_black] hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group"
                   style={{ animation: 'fadeInUp 0.8s ease-out forwards', animationDelay: '0.4s' }}
+                  onClick={() => playClickSound('button')}
                 >
                   <Palette className="w-4 h-4 text-black group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm font-medium">Tailwind CSS</span>
