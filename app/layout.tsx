@@ -4,6 +4,7 @@ import { Inter, Electrolize, Google_Sans} from "next/font/google";
 import "./globals.css";
 import { Container } from "./components/Container";
 import { Navbar } from "./components/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 
 
 const electrolize = Electrolize({
@@ -98,6 +99,7 @@ export default function RootLayout({
             {children}
           </div>
         </Container>
+        <Analytics />
       </body>
     </html>
   );
