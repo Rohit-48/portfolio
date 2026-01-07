@@ -70,7 +70,7 @@ export const Navbar = () => {
                             prefetch={true}
                             onClick={() => playClickSound('click')}
                             className={`
-                                relative px-2 xl:px-3 py-1.5 xl:py-2 rounded-lg font-semibold text-xs xl:text-sm transition-all flex items-center gap-1.5 xl:gap-2 
+                                relative px-2 xl:px-3 py-1.5 xl:py-2 rounded-lg font-semibold text-xs xl:text-sm transition-colors duration-150 flex items-center gap-1.5 xl:gap-2 
                                 ${pathname === link.path ? 'bg-amber-300 text-black border-2 border-black shadow-sm' : 'border-2 border-transparent hover:bg-gray-100 hover:text-black hover:border-gray-300'}
                             `}
                         >
@@ -83,7 +83,7 @@ export const Navbar = () => {
 
             {/* Mobile/Tablet Hamburger */}
             <button
-                className="lg:hidden p-2 sm:p-2.5 rounded-lg border-3 border-black hover:bg-amber-300 hover:scale-105 active:scale-95 transition-all duration-200 shrink-0 shadow-[2px_2px_0px_0px_black] active:shadow-none"
+                className="lg:hidden p-2 sm:p-2.5 rounded-lg border-3 border-black hover:bg-amber-300 hover:scale-105 active:scale-95 transition-[transform,background-color,box-shadow] duration-200 shrink-0 shadow-[2px_2px_0px_0px_black] active:shadow-none"
                 onClick={() => {
                     playClickSound('menu');
                     setIsMenuOpen(!isMenuOpen);
@@ -119,7 +119,7 @@ export const Navbar = () => {
                                         setIsMenuOpen(false);
                                     }}
                                     className={`
-                                        flex items-center gap-3 px-4 py-3 rounded-lg font-bold text-base transition-all min-h-[48px]
+                                        flex items-center gap-3 px-4 py-3 rounded-lg font-bold text-base transition-colors duration-150 min-h-[48px]
                                         ${pathname === link.path 
                                             ? 'bg-amber-300 border-3 border-black shadow-[2px_2px_0px_0px_black] mb-2' 
                                             : 'hover:bg-amber-200 border-3 border-transparent hover:border-black mb-2 last:mb-0'
