@@ -90,7 +90,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.variable} ${electrolize.variable} antialiased`}
-
+        suppressHydrationWarning
       >
         <BackgroundPattern />
         <Container>
