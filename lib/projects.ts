@@ -42,7 +42,7 @@ export const projects: Project[] =[
         tech: ["Next.js", "TypeScript", "MDX"],
         description: "The ultimate yap log template for techies. Minimalist and monochrome.",
         extraInfo:  "The ultimate yap log template for techies. Minimalist, monochrome, and powered by pure vibes. Just clone, write your blog posts in MDX, and deploy.",
-        imageUrl: "/images/projects/cynorous.png",
+        imageUrl: "/Projects/p1.png",
         githubUrl: "https://github.com/Rohit-48/Yappington",
         demoUrl: "https://github.com/Rohit-48/Yappington",
         tags: ["Next.js", "TypeScript", "MDX", "CSS"],
