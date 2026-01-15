@@ -23,54 +23,18 @@ const formatTime = (ms: number) => {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 };
 
-// Animated equalizer bars with smooth wave effect
 const SoundBars = () => (
-  <div className="flex items-end gap-[3px] h-4">
-    {[0, 1, 2, 3].map((i) => (
+  <div className="flex items-end gap-[2px] h-3">
+    {[0, 1, 2, 3, 4].map((i) => (
       <span
         key={i}
-        className="w-[3px] rounded-full bg-gradient-to-t from-emerald-500 to-emerald-300"
+        className="w-[3px] bg-[#1DB954] rounded-full animate-[soundwave_1s_ease-in-out_infinite]"
         style={{
-          animation: `equalizer 1.2s ease-in-out infinite`,
-          animationDelay: `${i * 0.15}s`,
+          height: `${40 + Math.random() * 60}%`,
+          animationDelay: `${i * 100}ms`,
         }}
       />
     ))}
-  </div>
-);
-
-// Album cover with rounded corners
-const AlbumCover = ({ isPlaying, albumUrl }: { isPlaying: boolean; albumUrl?: string }) => (
-  <div className="relative shrink-0 group/album">
-    {/* Subtle glow effect */}
-    <div className="absolute -inset-1 bg-gradient-to-br from-emerald-300/40 via-amber-200/30 to-orange-300/40 rounded-2xl blur-lg opacity-0 group-hover/album:opacity-100 transition-opacity duration-300 hidden sm:block" />
-    
-    {/* Album art container */}
-    <div className="relative w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-xl overflow-hidden border-[3px] border-black shadow-[3px_3px_0px_0px_black] group-hover/album:shadow-[4px_4px_0px_0px_black] group-hover/album:-translate-y-0.5 transition-all duration-200">
-      {albumUrl ? (
-        <Image
-          src={albumUrl}
-          alt="Album"
-          width={72}
-          height={72}
-          className="w-full h-full object-cover"
-        />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200">
-          <SiSpotify className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-400" />
-        </div>
-      )}
-      
-      {/* Shine overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
-    </div>
-    
-    {/* Playing indicator */}
-    {isPlaying && (
-      <div className="absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-400 border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_black]">
-        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse" />
-      </div>
-    )}
   </div>
 );
 
@@ -95,13 +59,15 @@ export default function SpotifyNowPlaying() {
     }
   }, []);
 
+  // Fetch data on mount and interval
   useEffect(() => {
     setMounted(true);
     fetchNowPlaying();
-    const interval = setInterval(fetchNowPlaying, 10000);
+    const interval = setInterval(fetchNowPlaying, 10000); // Fetch every 10s for better sync
     return () => clearInterval(interval);
   }, [fetchNowPlaying]);
 
+  // Smooth progress interpolation - updates every second when playing
   useEffect(() => {
     if (!data?.isPlaying || !data.progress_ms || !data.duration_ms) {
       return;
@@ -126,52 +92,35 @@ export default function SpotifyNowPlaying() {
     };
   }, [data]);
 
-  const progressPercent = data?.duration_ms
-    ? Math.min((currentProgress / data.duration_ms) * 100, 100)
-    : 0;
-
-  // Base card styling - warm cream with elegant shadow
   const baseCardClass =
-    "relative overflow-hidden bg-gradient-to-br from-[#fffdf7] via-[#fff9ed] to-[#fff5e1] border-4 border-black rounded-2xl p-4 sm:p-5 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300 ease-out";
+    "border-4 border-black rounded-2xl p-5 bg-[#fffdf7] shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-300";
 
-  // Loading skeleton
   if (!mounted) {
     return (
       <div className={baseCardClass}>
-        <div className="flex items-center gap-3 sm:gap-4">
-          <div className="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-xl bg-gradient-to-br from-zinc-200 to-zinc-300 animate-pulse border-3 border-black shrink-0" />
-          <div className="flex-1 space-y-2 sm:space-y-3 min-w-0">
-            <div className="h-4 w-20 sm:w-24 bg-zinc-200 rounded-full animate-pulse" />
-            <div className="h-3 w-24 sm:w-32 bg-zinc-100 rounded-full animate-pulse" />
-            <div className="h-2 w-16 sm:w-20 bg-zinc-100 rounded-full animate-pulse" />
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 bg-[#1DB954] rounded-xl border-3 border-black">
+            <SiSpotify className="w-5 h-5 text-black" />
+          </div>
+          <div className="flex flex-col gap-1">
+            <div className="h-3 w-20 bg-gray-200 rounded animate-pulse" />
+            <div className="h-2 w-14 bg-gray-100 rounded animate-pulse" />
           </div>
         </div>
       </div>
     );
   }
 
-  // Not playing state
   if (!data || !data.title) {
     return (
       <div className={baseCardClass}>
-        {/* Ambient background decoration */}
-        <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-gradient-to-bl from-amber-100/40 to-transparent rounded-full blur-2xl" />
-        
-        <div className="relative flex items-center gap-3 sm:gap-4">
-          <div className="relative shrink-0">
-            <div className="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-xl bg-gradient-to-br from-zinc-100 to-zinc-200 border-3 border-black shadow-[3px_3px_0px_0px_black] flex items-center justify-center">
-              <SiSpotify className="w-6 h-6 sm:w-7 sm:h-7 text-zinc-400" />
-            </div>
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-gray-200 rounded-xl border-3 border-black">
+            <SiSpotify className="w-6 h-6 text-gray-400" />
           </div>
-          <div className="min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <SiSpotify className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-400" />
-              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-zinc-400">
-                Spotify
-              </span>
-            </div>
-            <p className="font-bold text-zinc-800 text-sm">Not Playing</p>
-            <p className="text-xs text-zinc-500 mt-0.5">Vibes on pause ~</p>
+          <div>
+            <span className="font-bold text-sm text-black block">Not Playing</span>
+            <span className="text-xs text-gray-500">Spotify is offline</span>
           </div>
         </div>
       </div>
@@ -180,95 +129,93 @@ export default function SpotifyNowPlaying() {
 
   const content = (
     <>
-      {/* Ambient background gradient */}
-      <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-emerald-100/30 via-amber-100/20 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-orange-100/30 to-transparent rounded-full blur-2xl pointer-events-none" />
-
       {/* Header */}
-      <div className="relative flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_black]">
-            <SiSpotify className="w-3.5 h-3.5 text-black" />
+          <div className="p-1.5 bg-[#1DB954] rounded-lg border-2 border-black">
+            <SiSpotify className="w-4 h-4 text-black" />
           </div>
-          <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-600">
-            Now Vibing
+          <span className="text-xs font-bold uppercase tracking-widest text-black">
+            Spotify
           </span>
         </div>
-        
         <div className="flex items-center gap-2">
           {data.isPlaying ? (
             <>
               <SoundBars />
-              <span className="text-[9px] uppercase tracking-wide font-bold bg-gradient-to-r from-emerald-400 to-emerald-500 text-black px-2.5 py-1 rounded-full border-2 border-black shadow-[1px_1px_0px_0px_black]">
+              <span className="text-[10px] uppercase tracking-wide text-black font-bold bg-[#1DB954] px-2 py-0.5 rounded-full border-2 border-black">
                 Live
               </span>
             </>
           ) : (
-            <span className="text-[9px] uppercase tracking-wide font-bold bg-zinc-100 text-zinc-500 px-2.5 py-1 rounded-full border-2 border-black">
-              Recent
+            <span className="text-[10px] uppercase tracking-wide text-gray-500 font-bold bg-gray-100 px-2 py-0.5 rounded-full border-2 border-black">
+              Last Played
             </span>
           )}
         </div>
       </div>
 
-      {/* Main content - Album + Info */}
-      <div className="relative flex items-center gap-3 sm:gap-4">
-        <AlbumCover isPlaying={data.isPlaying} albumUrl={data.albumImageUrl} />
+      {/* Album Art & Info */}
+      <div className="flex items-center gap-4">
+        {data.albumImageUrl ? (
+          <div className="relative shrink-0 group/album">
+            <Image
+              src={data.albumImageUrl}
+              alt={data.album || "Album"}
+              width={80}
+              height={80}
+              className="rounded-xl border-3 border-black group-hover:scale-105 transition-all duration-300 shadow-[2px_2px_0px_0px_black]"
+            />
+            {data.isPlaying && (
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#1DB954] rounded-full border-3 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_black]">
+                <span className="w-2 h-2 bg-black rounded-full animate-pulse" />
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="w-20 h-20 rounded-xl bg-gray-200 border-3 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_black]">
+            <SiSpotify className="w-8 h-8 text-gray-400" />
+          </div>
+        )}
 
-        <div className="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
-          {/* Song title */}
-          <p className="font-bold text-zinc-900 text-sm leading-tight truncate">
+        <div className="overflow-hidden min-w-0 flex-1">
+          <p className="font-bold text-black text-sm truncate leading-tight">
             {data.title}
           </p>
-          
-          {/* Artist */}
-          <p className="text-xs text-zinc-600 font-medium truncate">
+          <p className="text-xs text-gray-600 font-medium truncate mt-1.5">
             {data.artist}
           </p>
-          
-          {/* Album tag */}
           {data.album && (
-            <div className="flex items-center gap-1.5 mt-1.5 sm:mt-2">
-              <span className="text-[9px] sm:text-[10px] text-zinc-700 font-medium bg-gradient-to-r from-amber-100 to-orange-100 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-amber-200/80 truncate max-w-[120px] sm:max-w-[160px]">
-                {data.album}
-              </span>
-            </div>
+            <p className="text-[10px] text-gray-700 truncate mt-1.5 font-medium bg-amber-100 px-2 py-0.5 rounded-full w-fit max-w-full border-2 border-black">
+              💿 {data.album}
+            </p>
           )}
         </div>
       </div>
 
-      {/* Progress section */}
+      {/* Real Progress Bar */}
       {data.isPlaying && data.duration_ms && (
-        <div className="relative mt-4 pt-3">
-          {/* Progress bar container */}
-          <div className="relative">
-            {/* Track background */}
-            <div className="h-2 bg-zinc-200/80 rounded-full overflow-hidden border border-zinc-300/50">
-              {/* Progress fill with gradient */}
-              <div
-                className="h-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-full transition-all duration-150 ease-linear relative"
-                style={{ width: `${progressPercent}%` }}
-              >
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" />
-              </div>
-            </div>
-            
-            {/* Progress dot */}
-            <div
-              className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white rounded-full border-2 border-emerald-500 shadow-sm transition-all duration-150 ease-linear"
-              style={{ left: `calc(${progressPercent}% - 7px)` }}
-            />
-          </div>
-          
+        <div className="mt-4 pt-3 border-t-2 border-black/20">
           {/* Timestamps */}
-          <div className="flex justify-between mt-2">
-            <span className="text-[10px] font-mono font-semibold text-zinc-500 tabular-nums">
-              {formatTime(currentProgress)}
-            </span>
-            <span className="text-[10px] font-mono font-semibold text-zinc-400 tabular-nums">
-              {formatTime(data.duration_ms)}
-            </span>
+          <div className="flex justify-between text-[10px] text-black font-mono font-bold mb-2">
+            <span className="bg-amber-300 px-2 py-0.5 rounded border-2 border-black">{formatTime(currentProgress)}</span>
+            <span className="bg-amber-300 px-2 py-0.5 rounded border-2 border-black">{formatTime(data.duration_ms)}</span>
+          </div>
+          {/* Progress Bar */}
+          <div className="relative h-2.5 bg-gray-200 rounded-full overflow-hidden border-2 border-black">
+            <div
+              className="absolute inset-y-0 left-0 bg-[#1DB954] rounded-full transition-all duration-100"
+              style={{
+                width: `${Math.min((currentProgress / data.duration_ms) * 100, 100)}%`,
+              }}
+            />
+            {/* Dot at the end */}
+            <div
+              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-black rounded-full border-2 border-[#1DB954] transition-all duration-100"
+              style={{
+                left: `clamp(0px, calc(${Math.min((currentProgress / data.duration_ms) * 100, 100)}% - 6px), calc(100% - 12px))`,
+              }}
+            />
           </div>
         </div>
       )}
