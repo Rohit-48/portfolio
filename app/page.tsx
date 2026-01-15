@@ -154,72 +154,100 @@ export default function Home() {
 
       {/* Connect Section */}
       <section className="mt-12">
-        <h2 className="text-xl md:text-2xl font-black uppercase mb-5">Connect</h2>
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-xl md:text-2xl font-black uppercase">Connect</h2>
+          <span className="text-xs font-bold text-black/50 uppercase tracking-wider">Let&apos;s chat ~</span>
+        </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {/* Blog Card - Large */}
           <Link
             href="/blogs"
-            className="col-span-2 row-span-2 bg-amber-300 border-4 border-black rounded-2xl p-5 md:p-6 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between min-h-[180px] md:min-h-[280px]"
+            className="group col-span-2 row-span-2 bg-[#fffdf7] border-4 border-black rounded-2xl p-5 md:p-6 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between min-h-[180px] md:min-h-[280px] relative overflow-hidden"
           >
-            <div>
-              <span className="text-xs font-bold uppercase opacity-60">Blog</span>
-              <h3 className="text-xl md:text-2xl font-bold mt-1">Read My Thoughts</h3>
-              <p className="text-sm mt-2 opacity-70">Code, design, and everything in between.</p>
+            {/* Decorative corner */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-amber-200/50 rounded-full blur-2xl" />
+            <div className="relative">
+              <span className="inline-block px-2.5 py-1 bg-amber-300 border-2 border-black rounded-full text-[10px] font-bold uppercase">Blog</span>
+              <h3 className="text-xl md:text-2xl font-black mt-3 text-black">Read My Thoughts</h3>
+              <p className="text-sm mt-2 text-black/60">Code, design, and everything in between.</p>
             </div>
-            <div className="flex items-center gap-2 font-bold text-sm mt-4">
+            <div className="relative flex items-center gap-2 font-bold text-sm text-black group-hover:gap-3 transition-all">
               Explore
-              <ArrowUpRight size={16} />
+              <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform" />
             </div>
           </Link>
 
-          {/* Social Cards */}
+          {/* GitHub */}
           <a href="https://github.com/Rohit-48" target="_blank" rel="noopener noreferrer"
-            className="bg-[#181717] text-white border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
-            <Github size={24} />
-            <span className="text-xs font-bold">GitHub</span>
+            className="group bg-[#24292e] border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
+            <div className="p-2.5 bg-white rounded-xl border-2 border-black group-hover:scale-110 transition-transform">
+              <Github size={20} className="text-[#24292e]" />
+            </div>
+            <span className="text-xs font-bold text-white">GitHub</span>
           </a>
 
+          {/* X/Twitter */}
           <a href="https://twitter.com/rohitcpp" target="_blank" rel="noopener noreferrer"
-            className="bg-black text-white border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
-            <SiX size={24} />
-            <span className="text-xs font-bold">X</span>
+            className="group bg-black border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
+            <div className="p-2.5 bg-white rounded-xl border-2 border-black group-hover:scale-110 transition-transform">
+              <SiX size={20} className="text-black" />
+            </div>
+            <span className="text-xs font-bold text-white">X</span>
           </a>
 
+          {/* LinkedIn */}
           <a href="https://linkedin.com/in/rohit48" target="_blank" rel="noopener noreferrer"
-            className="bg-[#0A66C2] text-white border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
-            <Linkedin size={24} />
-            <span className="text-xs font-bold">LinkedIn</span>
+            className="group bg-[#0A66C2] border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
+            <div className="p-2.5 bg-white rounded-xl border-2 border-black group-hover:scale-110 transition-transform">
+              <Linkedin size={20} className="text-[#0A66C2]" />
+            </div>
+            <span className="text-xs font-bold text-white">LinkedIn</span>
           </a>
 
+          {/* Email */}
           <a href="mailto:rohitmandavkar3477@gmail.com"
-            className="bg-[#EA4335] text-white border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
-            <Mail size={24} />
-            <span className="text-xs font-bold">Email</span>
+            className="group bg-[#EA4335] border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
+            <div className="p-2.5 bg-white rounded-xl border-2 border-black group-hover:scale-110 transition-transform">
+              <Mail size={20} className="text-[#EA4335]" />
+            </div>
+            <span className="text-xs font-bold text-white">Email</span>
           </a>
 
+          {/* Discord */}
           <a href="https://discord.com/users/rohitvince0" target="_blank" rel="noopener noreferrer"
-            className="bg-[#5865F2] text-white border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
-            <SiDiscord size={24} />
-            <span className="text-xs font-bold">Discord</span>
+            className="group bg-[#5865F2] border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
+            <div className="p-2.5 bg-white rounded-xl border-2 border-black group-hover:scale-110 transition-transform">
+              <SiDiscord size={20} className="text-[#5865F2]" />
+            </div>
+            <span className="text-xs font-bold text-white">Discord</span>
           </a>
 
+          {/* Cal.com */}
           <a href="https://cal.com/rohitvince0" target="_blank" rel="noopener noreferrer"
-            className="bg-[#292929] text-white border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
-            <SiCaldotcom size={24} />
-            <span className="text-xs font-bold">Book a Call</span>
+            className="group bg-[#292929] border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
+            <div className="p-2.5 bg-white rounded-xl border-2 border-black group-hover:scale-110 transition-transform">
+              <SiCaldotcom size={20} className="text-[#292929]" />
+            </div>
+            <span className="text-xs font-bold text-white">Book a Call</span>
           </a>
 
+          {/* Buy Me a Coffee */}
           <a href="https://buymeacoffee.com/rohit77" target="_blank" rel="noopener noreferrer"
-            className="bg-[#FFDD00] text-black border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
-            <SiBuymeacoffee size={24} />
-            <span className="text-xs font-bold">Coffee</span>
+            className="group bg-[#FFDD00] border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
+            <div className="p-2.5 bg-white rounded-xl border-2 border-black group-hover:scale-110 transition-transform">
+              <SiBuymeacoffee size={20} className="text-[#FFDD00]" />
+            </div>
+            <span className="text-xs font-bold text-black">Coffee</span>
           </a>
 
+          {/* Pinterest */}
           <a href="https://pin.it/6H1ZDBaie" target="_blank" rel="noopener noreferrer"
-            className="bg-[#E60023] text-white border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
-            <SiPinterest size={24} />
-            <span className="text-xs font-bold">Pinterest</span>
+            className="group bg-[#E60023] border-4 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 min-h-[80px] md:min-h-[130px]">
+            <div className="p-2.5 bg-white rounded-xl border-2 border-black group-hover:scale-110 transition-transform">
+              <SiPinterest size={20} className="text-[#E60023]" />
+            </div>
+            <span className="text-xs font-bold text-white">Pinterest</span>
           </a>
         </div>
       </section>
