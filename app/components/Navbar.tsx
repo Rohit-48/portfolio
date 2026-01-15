@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Home, FolderOpenDot, Logs, Menu, X, FolderArchive} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { playClickSound } from "@/lib/sounds";
 
 export const Navbar = () => {
     const navLinks = [
@@ -38,7 +37,6 @@ export const Navbar = () => {
                 <Link 
                     href="/" 
                     className="hover:scale-105 transition-transform cursor-pointer shrink-0"
-                    onClick={() => playClickSound('click')}
                 >
                     <Image
                         src="/images/icons/terminal.png"
@@ -51,7 +49,6 @@ export const Navbar = () => {
                 <Link 
                     href="/" 
                     className="hover:scale-105 transition-transform cursor-pointer min-w-0"
-                    onClick={() => playClickSound('click')}
                 >
                     <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-black truncate">
                         Rohit<span className="text-yellow-500">folio</span>
@@ -68,7 +65,6 @@ export const Navbar = () => {
                             href={link.path}
                             key={link.label}
                             prefetch={true}
-                            onClick={() => playClickSound('click')}
                             className={`
                                 relative px-2 xl:px-3 py-1.5 xl:py-2 rounded-lg font-semibold text-xs xl:text-sm transition-colors duration-150 flex items-center gap-1.5 xl:gap-2 
                                 ${pathname === link.path ? 'bg-amber-300 text-black border-2 border-black shadow-sm' : 'border-2 border-transparent hover:bg-gray-100 hover:text-black hover:border-gray-300'}
@@ -84,10 +80,7 @@ export const Navbar = () => {
             {/* Mobile/Tablet Hamburger */}
             <button
                 className="lg:hidden p-2 sm:p-2.5 rounded-lg border-3 border-black hover:bg-amber-300 hover:scale-105 active:scale-95 transition-[transform,background-color,box-shadow] duration-200 shrink-0 shadow-[2px_2px_0px_0px_black] active:shadow-none"
-                onClick={() => {
-                    playClickSound('menu');
-                    setIsMenuOpen(!isMenuOpen);
-                }}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
                 {isMenuOpen ? <X size={22} className="sm:w-6 sm:h-6" strokeWidth={2.5} /> : <Menu size={22} className="sm:w-6 sm:h-6" strokeWidth={2.5} />}
@@ -99,10 +92,7 @@ export const Navbar = () => {
                     {/* Backdrop */}
                     <div 
                         className="fixed inset-0 bg-black/20 backdrop-blur-sm lg:hidden -z-10"
-                        onClick={() => {
-                            playClickSound('menu');
-                            setIsMenuOpen(false);
-                        }}
+                        onClick={() => setIsMenuOpen(false)}
                     />
                     
                     {/* Menu */}
@@ -114,10 +104,7 @@ export const Navbar = () => {
                                     href={link.path}
                                     key={link.label}
                                     prefetch={true}
-                                    onClick={() => {
-                                        playClickSound('click');
-                                        setIsMenuOpen(false);
-                                    }}
+                                    onClick={() => setIsMenuOpen(false)}
                                     className={`
                                         flex items-center gap-3 px-4 py-3 rounded-lg font-bold text-base transition-colors duration-150 min-h-[48px]
                                         ${pathname === link.path 

@@ -1,7 +1,8 @@
 "use client";
 
-import { Project } from "@/lib/projects"
-import { Minus, Square, X, Github, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { Project } from "@/lib/projects";
+import { X, Github, ExternalLink } from "lucide-react";
 
 interface FloatingWindowProps {
     selectedProject: Project | null;
@@ -13,80 +14,66 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
     
     return (
         <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200"
             onClick={onClose}
         >
             <div
-                className="w-full max-w-3xl animate-in zoom-in-95 duration-300"
+                className="w-full max-w-2xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-300"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Window Container */}
-                <div className="bg-[#fff6cc] border-4 border-black shadow-[8px_8px_0px_0px_black] rounded-lg selection:bg-yellow-300 overflow-hidden max-h-[90vh] flex flex-col">
+                <div className="bg-[#fffdf7] border-4 border-black rounded-2xl shadow-[6px_6px_0px_0px_black] overflow-hidden max-h-[85vh] flex flex-col">
                     
-                    {/* Title Bar */}
-                    <div className="bg-gradient-to-r from-[#ffd60a] to-[#ffc300] px-4 py-3 flex items-center justify-between border-b-4 border-black shrink-0">
-                        <div className="flex items-center gap-3">
-                            <div className="w-7 h-7 bg-white border-2 border-black rounded shadow-[2px_2px_0px_0px_black] flex items-center justify-center">
-                                <div className="w-4 h-4 bg-[#ffd60a] border border-black rounded"></div>
-                            </div>
-                            <span className="text-black font-bold font-electrolize text-sm uppercase tracking-tight drop-shadow-[1px_1px_0px_rgba(255,255,255,0.5)]">
-                                {selectedProject.title}.out
-                            </span>
-                        </div>
-                        <div className="flex gap-2">
-                            <button 
-                                className="w-7 h-7 bg-white border-2 border-black rounded-full flex items-center justify-center hover:bg-[#abc09f] hover:scale-110 active:scale-90 transition-all duration-150 shadow-[2px_2px_0px_0px_black] active:shadow-[1px_1px_0px_0px_black] active:translate-x-px active:translate-y-px"
-                                title="Minimize"
-                            >
-                                <Minus size={14} className="text-black" />
-                            </button>
-                            <button 
-                                className="w-7 h-7 bg-white border-2 border-black rounded-full flex items-center justify-center hover:bg-[#55a630] hover:scale-110 active:scale-90 transition-all duration-150 shadow-[2px_2px_0px_0px_black] active:shadow-[1px_1px_0px_0px_black] active:translate-x-px active:translate-y-px"
-                                title="Maximize"
-                            >
-                                <Square size={12} className="text-black" />
-                            </button>
-                            <button
-                                onClick={onClose}
-                                className="w-7 h-7 bg-white border-2 border-black rounded-full flex items-center justify-center hover:bg-[#bf211e] hover:text-white hover:scale-110 active:scale-90 transition-all duration-150 shadow-[2px_2px_0px_0px_black] active:shadow-[1px_1px_0px_0px_black] active:translate-x-px active:translate-y-px"
-                                title="Close"
-                            >
-                                <X size={14} />
-                            </button>
-                        </div>
+                    {/* Header */}
+                    <div className="bg-amber-300 px-4 py-3 flex items-center justify-between border-b-4 border-black">
+                        <h3 className="font-bold text-sm uppercase tracking-wide truncate pr-4">
+                            {selectedProject.title}
+                        </h3>
+                        <button
+                            onClick={onClose}
+                            className="p-1.5 bg-white border-2 border-black rounded-lg hover:bg-red-400 hover:text-white transition-colors shadow-[2px_2px_0px_0px_black] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+                        >
+                            <X size={16} />
+                        </button>
                     </div>
 
-                    {/* Content Area - Scrollable */}
-                    <div className="bg-white border-4 border-black m-2 p-4 sm:p-6 rounded-lg shadow-[inset_2px_2px_0px_0px_rgba(0,0,0,0.1)] overflow-y-auto flex-1">
-                        {/* Project Image */}
-                        <div className="w-full h-48 sm:h-56 md:h-72 relative bg-gray-200 mb-4 sm:mb-6 border-2 border-black border-dashed rounded-lg overflow-hidden shadow-[4px_4px_0px_0px_black]">
-                            <img
-                                src={selectedProject.imageUrl}
+                    {/* Content */}
+                    <div className="p-5 overflow-y-auto flex-1">
+                        {/* Image */}
+                        <div className="relative w-full h-48 md:h-56 bg-gray-100 rounded-lg border-2 border-black overflow-hidden mb-5">
+                            <Image
+                                src={selectedProject.imageUrl.trim()}
                                 alt={selectedProject.title}
-                                className="w-full h-full object-cover"
+                                fill
+                                className="object-cover"
                             />
                         </div>
 
-                        {/* Project Info */}
-                        <div className="mb-4 sm:mb-6">
-                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-electrolize uppercase tracking-tight mb-2 sm:mb-3 text-black decoration-4 underline decoration-amber-400">
-                                {selectedProject.title}
-                            </h2>
-                            <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed font-medium">
-                                {selectedProject.extraInfo}
-                            </p>
+                        {/* Tech badges */}
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {selectedProject.tech.map((tech: string) => (
+                                <span
+                                    key={tech}
+                                    className="px-2 py-0.5 bg-black text-white text-[10px] font-bold rounded"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
                         </div>
 
-                        {/* Tech Stack */}
-                        <div className="mb-4 sm:mb-6">
-                            <span className="font-bold text-xs sm:text-sm font-googlesans uppercase tracking-wide text-gray-800 mb-2 sm:mb-3 block">
-                                Tech Stack:
-                            </span>
+                        {/* Title & Description */}
+                        <h2 className="text-2xl font-black mb-2">{selectedProject.title}</h2>
+                        <p className="text-gray-600 text-sm leading-relaxed mb-5">
+                            {selectedProject.extraInfo}
+                        </p>
+
+                        {/* Tags */}
+                        <div className="mb-5">
+                            <span className="text-xs font-bold text-gray-500 uppercase mb-2 block">Tags</span>
                             <div className="flex flex-wrap gap-2">
                                 {selectedProject.tags.map((tag: string) => (
                                     <span
                                         key={tag}
-                                        className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#ffd60a] border-2 border-black text-xs font-bold rounded-lg hover:bg-[#ffc300] hover:scale-105 active:scale-95 transition-transform duration-200 cursor-pointer shadow-[2px_2px_0px_0px_black] active:shadow-[1px_1px_0px_0px_black] active:translate-x-px active:translate-y-px"
+                                        className="px-2 py-1 text-[10px] font-bold bg-amber-200 border-2 border-black rounded-full"
                                     >
                                         {tag}
                                     </span>
@@ -95,15 +82,16 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6 sm:mt-8">
+                        <div className="flex gap-3">
                             {selectedProject.githubUrl && (
                                 <a
                                     href={selectedProject.githubUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="font-googlesans flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-[#fdf8e1] border-3 border-black hover:bg-[#ffd60a] rounded-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer text-sm font-bold shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] active:shadow-[2px_2px_0px_0px_black] active:translate-x-0.5 active:translate-y-0.5"
+                                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-black text-white font-bold text-sm rounded-lg hover:bg-gray-800 transition-colors"
                                 >
-                                    <Github size={18} className="text-black" /> View Code
+                                    <Github size={18} />
+                                    Code
                                 </a>
                             )}
                             {selectedProject.demoUrl && (
@@ -111,9 +99,10 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
                                     href={selectedProject.demoUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="font-googlesans flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-[#fdf8e1] border-3 border-black hover:bg-[#ffd60a] rounded-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer text-sm font-bold shadow-[4px_4px_0px_0px_black] hover:shadow-[6px_6px_0px_0px_black] active:shadow-[2px_2px_0px_0px_black] active:translate-x-0.5 active:translate-y-0.5"
+                                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-amber-300 text-black font-bold text-sm rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_black] hover:shadow-[3px_3px_0px_0px_black] hover:-translate-y-0.5 transition-all"
                                 >
-                                    <ExternalLink size={18} className="text-black" /> Live Demo
+                                    <ExternalLink size={18} />
+                                    Live Demo
                                 </a>
                             )}
                         </div>
