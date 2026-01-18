@@ -8,10 +8,37 @@ export interface Project {
     githubUrl: string,
     demoUrl: string,
     tags: string[],
-    color: string
+    color: string,
+    status?: "building" | "completed"
 }
 
 export const projects: Project[] =[
+    {
+        slug: "example-building",
+        title: "New Project",
+        tech: ["Next.js", "TypeScript"],
+        description: "A new project currently under development.",
+        extraInfo: "This is an example of a project with building status. You can add your own building projects by setting status: 'building' in the project object.",
+        imageUrl: "/Projects/Cyberdeck.png",
+        githubUrl: "https://github.com/Rohit-48",
+        demoUrl: "https://github.com/Rohit-48",
+        tags: ["Next.js", "TypeScript", "React"],
+        color: "bg-example",
+        status: "building",
+    },
+    {
+        slug: "another-building",
+        title: "Another Project",
+        tech: ["React", "Node.js"],
+        description: "Another exciting project in active development.",
+        extraInfo: "This is another building project example. Currently working on core features and functionality.",
+        imageUrl: "/images/projects/taskmanager.png",
+        githubUrl: "https://github.com/Rohit-48",
+        demoUrl: "https://github.com/Rohit-48",
+        tags: ["React", "Node.js", "TypeScript"],
+        color: "bg-another",
+        status: "building",
+    },
     {
         slug: "cyberchoom",
         title: "CYBERDECK",

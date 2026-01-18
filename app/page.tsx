@@ -7,6 +7,7 @@ import {
   Github,
   Linkedin,
   Mail,
+  Hammer,
 } from "lucide-react";
 import Link from "next/link";
 import {
@@ -27,7 +28,8 @@ import { skillshowcase } from "@/lib/skillshowcase";
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const featuredProjects = projects.slice(0, 3);
+  const buildingProjects = projects.filter((p) => p.status === "building");
+  const featuredProjects = projects.filter((p) => p.status !== "building").slice(0, 3);
 
   return (
     <div className="mx-auto max-w-5xl w-full px-4 md:px-0 selection:bg-yellow-300 font-inter">
@@ -102,6 +104,54 @@ export default function Home() {
           </Link>
         </div>
 
+        {/* Building Projects Row */}
+        {buildingProjects.length > 0 && (
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <h3 className="text-lg md:text-xl font-bold uppercase">Currently Building</h3>
+              <div className="flex items-center gap-1 px-2 py-1 bg-orange-400 border-2 border-black rounded-full">
+                <Hammer size={14} className="animate-pulse" />
+                <span className="text-xs font-bold">Building</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {buildingProjects.map((project) => (
+                <div
+                  key={project.slug}
+                  className="bg-[#fffdf7] border-4 border-black rounded-xl shadow-[4px_4px_0px_0px_black] p-4 cursor-pointer hover:shadow-[6px_6px_0px_0px_black] hover:-translate-y-1 transition-all duration-200 relative"
+                  onClick={() => setSelectedProject(project)}
+                >
+                  <div className="absolute top-3 right-3 px-2 py-1 bg-orange-400 border-2 border-black rounded-full flex items-center gap-1 z-10">
+                    <Hammer size={12} className="animate-pulse" />
+                    <span className="text-[10px] font-bold">Building</span>
+                  </div>
+                  <div className="h-36 rounded-lg border-2 border-black overflow-hidden bg-gray-100">
+                    <Image
+                      src={project.imageUrl.trim()}
+                      alt={project.title}
+                      width={400}
+                      height={200}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="mt-3">
+                    <div className="flex gap-2 mb-2">
+                      {project.tech.slice(0, 2).map((tech, i) => (
+                        <span key={i} className="px-2 py-0.5 bg-black text-white text-[10px] font-bold rounded">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="font-bold text-base">{project.title}</h3>
+                    <p className="text-sm text-gray-600 mt-1 line-clamp-2">{project.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Featured Projects Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {featuredProjects.map((project) => (
             <div
