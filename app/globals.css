@@ -79,6 +79,31 @@
       width: 100%;
     }
   }
+
+  /* hammering animation for tool / build icons */
+  @keyframes hammer-swing {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-20deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    75% {
+      transform: rotate(-15deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+/* utility class to apply hammering animation */
+.hammer-swing {
+  transform-origin: bottom right;
+  animation: hammer-swing 0.5s ease-in-out infinite;
 }
 
 

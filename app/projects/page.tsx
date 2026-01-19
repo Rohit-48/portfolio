@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Github, ExternalLink, FolderOpen } from "lucide-react";
+import { CheckCircle2, ExternalLink, FolderOpen, Github, Hammer } from "lucide-react";
 import { projects, Project } from "@/lib/projects";
 import FloatingWindow from "../components/FloatingWindow";
 import { useState } from "react";
@@ -38,6 +38,33 @@ export default function Projects() {
                                 fill
                                 className="object-cover"
                             />
+                            {/* Status badge */}
+                            {project.status && (
+                                <div className="absolute top-3 left-3">
+                                    <div
+                                        className={[
+                                            "inline-flex items-center gap-1.5 px-2.5 py-1",
+                                            "border-2 border-black rounded-full",
+                                            "shadow-[2px_2px_0px_0px_black]",
+                                            project.status === "building"
+                                                ? "bg-amber-300 text-black"
+                                                : "bg-emerald-200 text-black",
+                                        ].join(" ")}
+                                    >
+                                        {project.status === "building" ? (
+                                            <>
+                                                <Hammer size={14} className="hammer-swing" />
+                                                <span className="text-[10px] font-black uppercase tracking-wide">Building</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <CheckCircle2 size={14} />
+                                                <span className="text-[10px] font-black uppercase tracking-wide">Completed</span>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
                             {/* Action Buttons */}
                             <div className="absolute top-3 right-3 flex gap-2">
                                 {project.githubUrl && (

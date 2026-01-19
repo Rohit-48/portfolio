@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Project } from "@/lib/projects";
-import { X, Github, ExternalLink } from "lucide-react";
+import { CheckCircle2, ExternalLink, Github, Hammer, X } from "lucide-react";
 
 interface FloatingWindowProps {
     selectedProject: Project | null;
@@ -25,9 +25,32 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
                     
                     {/* Header */}
                     <div className="bg-amber-300 px-4 py-3 flex items-center justify-between border-b-4 border-black">
-                        <h3 className="font-bold text-sm uppercase tracking-wide truncate pr-4">
-                            {selectedProject.title}
-                        </h3>
+                        <div className="flex items-center gap-2 min-w-0 pr-4">
+                            <h3 className="font-bold text-sm uppercase tracking-wide truncate">
+                                {selectedProject.title}
+                            </h3>
+                            {selectedProject.status && (
+                                <span
+                                    className={[
+                                        "shrink-0 inline-flex items-center gap-1 px-2 py-0.5",
+                                        "border-2 border-black rounded-full bg-white",
+                                        "text-[10px] font-black uppercase tracking-wide",
+                                    ].join(" ")}
+                                >
+                                    {selectedProject.status === "building" ? (
+                                        <>
+                                            <Hammer size={12} className="hammer-swing" />
+                                            Building
+                                        </>
+                                    ) : (
+                                        <>
+                                            <CheckCircle2 size={12} />
+                                            Completed
+                                        </>
+                                    )}
+                                </span>
+                            )}
+                        </div>
                         <button
                             onClick={onClose}
                             className="p-1.5 bg-white border-2 border-black rounded-lg hover:bg-red-400 hover:text-white transition-colors shadow-[2px_2px_0px_0px_black] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
