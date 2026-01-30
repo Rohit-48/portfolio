@@ -11,7 +11,7 @@ interface FloatingWindowProps {
 
 export default function FloatingWindow({ selectedProject, onClose }: FloatingWindowProps) {
     if (!selectedProject) return null;
-    
+
     return (
         <div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200"
@@ -22,7 +22,7 @@ export default function FloatingWindow({ selectedProject, onClose }: FloatingWin
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="bg-[#fffdf7] border-4 border-black rounded-2xl shadow-[6px_6px_0px_0px_black] overflow-hidden max-h-[85vh] flex flex-col">
-                    
+
                     {/* Header */}
                     <div className="bg-amber-300 px-4 py-3 flex items-center justify-between border-b-4 border-black">
                         <div className="flex items-center gap-2 min-w-0 pr-4">
