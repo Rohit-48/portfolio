@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    
+
     return (
         <div className="mx-auto max-w-5xl w-full px-4 md:px-0 font-inter mt-8 md:mt-12 pb-12">
             {/* Header */}
@@ -125,7 +125,7 @@ export default function Projects() {
                 ))}
             </div>
 
-            <FloatingWindow 
+            <FloatingWindow
                 selectedProject={selectedProject}
                 onClose={() => setSelectedProject(null)}
             />

@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-5xl w-full px-4 md:px-0 selection:bg-yellow-300 font-inter">
-      
+
       {/* Hero Section */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-8 md:mt-12">
         {/* Info Card */}
@@ -43,22 +43,22 @@ export default function Home() {
               <Target size={14} />
               Open to Work
             </span>
-            
+
             <TypewriterEffect
               words={[{ text: "ROHIT", className: "text-4xl md:text-6xl font-black text-black" }]}
               className="mt-6 text-left justify-start"
             />
             <p className="text-sm text-gray-500 font-medium mt-1">ROH-hit</p>
-            
+
             <h2 className="text-lg md:text-2xl font-black mt-3 text-black">
               Web Engineer & CS Student
             </h2>
-            
+
             <p className="text-sm text-gray-600 mt-4 leading-relaxed">
               Full-stack developer focused on web engineering, modern JavaScript frameworks, and backend systems. Building clean, scalable products with great DX.
             </p>
           </div>
-          
+
           <a
             href="/documents/resume.pdf"
             target="_blank"
@@ -205,7 +205,7 @@ export default function Home() {
       {/* Connect Section */}
       <section className="mt-12">
         <h2 className="text-xl md:text-2xl font-black uppercase mb-5">Connect</h2>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {/* Blog Card - Large */}
           <Link

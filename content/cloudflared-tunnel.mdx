@@ -1,0 +1,49 @@
+---
+title: "Cloudflare Tunnel (cloudflared): Expose Local Services Without Port Forwarding"
+date: "2026-01-30"
+excerpt: "A quick mental model for how Cloudflare Tunnel works and why it’s safer than port forwarding."
+tags: ["Cloudflare", "Tunnel", "Self-hosting", "Networking", "NixOS"]
+---
+
+Cloudflare Tunnel lets you connect resources to Cloudflare **without needing a publicly routable IP**. Instead of exposing your origin directly, a lightweight daemon (`cloudflared`) creates **outbound-only connections** to Cloudflare’s edge network.
+
+Normally, to make a local server public, you’d open an **inbound port** (like 80/443) on your router. That also invites random internet traffic to hit your origin directly.
+
+`cloudflared` flips that around: the daemon on your machine connects **outbound** to Cloudflare and maintains a persistent encrypted tunnel. When a user hits your domain, Cloudflare forwards that request *down the tunnel* to your origin.
+
+## How it works
+
+Source: [Cloudflare docs](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/#how-it-works)
+
+Cloudflare Tunnel establishes outbound connections (tunnels) between your resources and Cloudflare’s global network. A tunnel is a persistent object that routes traffic to DNS records. Within the same tunnel, you can run multiple connectors as needed—each connector establishes connections to Cloudflare and sends traffic to the nearest data center.
+
+<img
+  src="/blogs/Pasted%20image%2020260130120959.png"
+  alt="How Cloudflare Tunnel works diagram"
+  className="w-full rounded-xl border-4 border-black my-6"
+/>
+
+## Outbound-only connection
+
+Cloudflare Tunnel uses an outbound-only model to enable bidirectional communication. When you run `cloudflared`, it initiates an outbound connection through your firewall from the origin to Cloudflare’s network.
+
+Once established, traffic flows both directions over the tunnel between your origin and Cloudflare. Since most firewalls allow outbound traffic by default, you can keep **all inbound traffic blocked**, while still serving traffic through Cloudflare.
+
+### Why this is better than port forwarding
+
+- **No inbound ports**: your firewall stays closed.
+- **Hidden origin IP**: your home/ISP public IP isn’t revealed to visitors.
+- **WAF & DDoS protection**: Cloudflare absorbs a lot before it reaches your hardware.
+- **CGNAT friendly**: works even if your ISP doesn’t give you a real public IP.
+
+<img
+  src="/blogs/Pasted%20image%2020260130102450.png"
+  alt="Cloudflare Tunnel outbound-only connection diagram"
+  className="w-full rounded-xl border-4 border-black my-6"
+/>
+
+## Ways to configure it
+
+- **Cloudflare Dashboard path**: manage routes/ingress rules via the Cloudflare web UI.
+- **Security layer**: add Cloudflare Access (Zero Trust) as a login wall in front of your apps.
+- **Declarative (NixOS) path**: use `services.cloudflared` and manage the tunnel as a systemd service.
