@@ -1,54 +1,54 @@
-"use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { cn } from "@/lib/utils";
+'use client'
+import React, { useCallback, useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
+import { cn } from '@/lib/utils'
 
 export const FlipWords = ({
   words,
   duration = 3000,
   className,
 }: {
-  words: string[];
-  duration?: number;
-  className?: string;
+  words: string[]
+  duration?: number
+  className?: string
 }) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const [mounted, setMounted] = useState(false);
+  const [currentWord, setCurrentWord] = useState(words[0])
+  const [isAnimating, setIsAnimating] = useState<boolean>(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   const startAnimation = useCallback(() => {
-    const word = words[words.indexOf(currentWord) + 1] || words[0];
-    setCurrentWord(word);
-    setIsAnimating(true);
-  }, [currentWord, words]);
+    const word = words[words.indexOf(currentWord) + 1] || words[0]
+    setCurrentWord(word)
+    setIsAnimating(true)
+  }, [currentWord, words])
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted) return
     if (!isAnimating) {
       const timeout = setTimeout(() => {
-        startAnimation();
-      }, duration);
-      return () => clearTimeout(timeout);
+        startAnimation()
+      }, duration)
+      return () => clearTimeout(timeout)
     }
-  }, [isAnimating, duration, startAnimation, mounted]);
+  }, [isAnimating, duration, startAnimation, mounted])
 
   // Render static content on server and initial client render to avoid hydration mismatch
   if (!mounted) {
     return (
-      <span className={cn("inline-block text-left text-black px-2", className)}>
+      <span className={cn('inline-block px-2 text-left text-black', className)}>
         {words[0]}
       </span>
-    );
+    )
   }
 
   return (
     <AnimatePresence
       onExitComplete={() => {
-        setIsAnimating(false);
+        setIsAnimating(false)
       }}
     >
       <motion.div
@@ -61,7 +61,7 @@ export const FlipWords = ({
           y: 0,
         }}
         transition={{
-          type: "spring",
+          type: 'spring',
           stiffness: 100,
           damping: 10,
         }}
@@ -69,32 +69,32 @@ export const FlipWords = ({
           opacity: 0,
           y: -40,
           x: 40,
-          filter: "blur(8px)",
+          filter: 'blur(8px)',
           scale: 2,
-          position: "absolute",
+          position: 'absolute',
         }}
         className={cn(
-          "z-10 inline-block relative text-left text-black px-2",
-          className
+          'relative z-10 inline-block px-2 text-left text-black',
+          className,
         )}
         key={currentWord}
       >
-        {currentWord.split(" ").map((word, wordIndex) => (
+        {currentWord.split(' ').map((word, wordIndex) => (
           <motion.span
             key={word + wordIndex}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{
               delay: wordIndex * 0.3,
               duration: 0.3,
             }}
             className="inline-block whitespace-nowrap"
           >
-            {word.split("").map((letter, letterIndex) => (
+            {word.split('').map((letter, letterIndex) => (
               <motion.span
                 key={word + letterIndex}
-                initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{
                   delay: wordIndex * 0.3 + letterIndex * 0.05,
                   duration: 0.2,
@@ -109,5 +109,5 @@ export const FlipWords = ({
         ))}
       </motion.div>
     </AnimatePresence>
-  );
-};
+  )
+}

@@ -4,12 +4,11 @@ A simple portfolio website built with Next.js, Tailwind CSS, TypeScript, React, 
 
 ## Gallery
 
-| | |
-|---|---|
+|                                        |                                        |
+| -------------------------------------- | -------------------------------------- |
 | ![photo 1](public/readmeImages/p1.png) | ![photo 2](public/readmeImages/p2.png) |
 | ![photo 3](public/readmeImages/p3.png) | ![photo 4](public/readmeImages/p4.png) |
-| ![photo 5](public/readmeImages/p5.png) | |
-
+| ![photo 5](public/readmeImages/p5.png) |                                        |
 
 ## Features
 
@@ -20,11 +19,5 @@ A simple portfolio website built with Next.js, Tailwind CSS, TypeScript, React, 
 - Responsive, clean gallery UI
 - Currently hosted on vercel and you can view the live site [here](https://rohitvince.in/)
 
-
-MIT License 
+MIT License
 Copyright (c) 2025 Rohit-48
-
-
-
-
-

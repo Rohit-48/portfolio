@@ -1,49 +1,39 @@
 export default function ProjectsLoading() {
   return (
-    <div className="flex flex-col items-center py-8 px-4 md:px-0">
-      <div className="font-electrolize font-bold text-6xl tracking-tighter border-4 rounded-full px-6 py-2 bg-amber-300 shadow-[2px_4px_0px_0px_black] uppercase">
+    <div className="flex flex-col items-center px-4 py-8 md:px-0">
+      <div className="font-electrolize rounded-full border-4 bg-amber-300 px-6 py-2 text-6xl font-bold tracking-tighter uppercase shadow-[2px_4px_0px_0px_black]">
         Projects
       </div>
-      <p className="font-electrolize font-medium text-sm mt-4 opacity-60 text-center">
-        Projects are a contrast: either they can help the world develop or just be a waste of resources.
+      <p className="font-electrolize mt-4 text-center text-sm font-medium opacity-60">
+        Projects are a contrast: either they can help the world develop or just
+        be a waste of resources.
       </p>
-      <div className="w-160 border-b-4 border-dashed border-yellow-400 mt-6 mb-6"></div>
-      
+      <div className="mt-6 mb-6 w-160 border-b-4 border-dashed border-yellow-400"></div>
+
       {/* Skeleton Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            className="flex flex-col bg-amber-50 w-full max-w-sm border-4 border-black rounded-2xl shadow-[4px_4px_0px_0px_black] overflow-hidden animate-pulse"
+            className="flex w-full max-w-sm animate-pulse flex-col overflow-hidden rounded-2xl border-4 border-black bg-amber-50 shadow-[4px_4px_0px_0px_black]"
           >
             {/* Image skeleton */}
             <div className="h-48 bg-gray-200" />
             {/* Content skeleton */}
             <div className="p-5">
-              <div className="w-2/3 h-6 bg-gray-300 rounded mb-2" />
-              <div className="w-1/2 h-4 bg-gray-200 rounded mb-3" />
-              <div className="w-full h-4 bg-gray-200 rounded mb-2" />
-              <div className="w-3/4 h-4 bg-gray-200 rounded mb-4" />
+              <div className="mb-2 h-6 w-2/3 rounded bg-gray-300" />
+              <div className="mb-3 h-4 w-1/2 rounded bg-gray-200" />
+              <div className="mb-2 h-4 w-full rounded bg-gray-200" />
+              <div className="mb-4 h-4 w-3/4 rounded bg-gray-200" />
               {/* Tags skeleton */}
               <div className="flex flex-wrap gap-2">
-                <div className="w-16 h-6 bg-amber-200 rounded-full border-2 border-black" />
-                <div className="w-20 h-6 bg-amber-200 rounded-full border-2 border-black" />
+                <div className="h-6 w-16 rounded-full border-2 border-black bg-amber-200" />
+                <div className="h-6 w-20 rounded-full border-2 border-black bg-amber-200" />
               </div>
             </div>
           </div>
         ))}
       </div>
     </div>
-  );
+  )
 }
-
-
-
-
-
-
-
-
-
-
-

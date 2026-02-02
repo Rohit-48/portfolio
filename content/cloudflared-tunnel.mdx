@@ -1,8 +1,8 @@
 ---
-title: "Cloudflare Tunnel (cloudflared): Expose Local Services Without Port Forwarding"
-date: "2026-01-30"
-excerpt: "A quick mental model for how Cloudflare Tunnel works and why it’s safer than port forwarding."
-tags: ["Cloudflare", "Tunnel", "Self-hosting", "Networking", "NixOS"]
+title: 'Cloudflare Tunnel (cloudflared): Expose Local Services Without Port Forwarding'
+date: '2026-01-30'
+excerpt: 'A quick mental model for how Cloudflare Tunnel works and why it’s safer than port forwarding.'
+tags: ['Cloudflare', 'Tunnel', 'Self-hosting', 'Networking', 'NixOS']
 ---
 
 If you’ve ever exposed a service from home, you know the classic approach:
@@ -13,7 +13,7 @@ If you’ve ever exposed a service from home, you know the classic approach:
 
 Cloudflare Tunnel flips that entire model.
 
-Instead of allowing inbound connections to your server, you run a lightweight connector (`cloudflared`) **inside your network** that makes **outbound-only** connections to Cloudflare’s edge. When someone visits your domain, Cloudflare sends that request *through the tunnel* to your origin.
+Instead of allowing inbound connections to your server, you run a lightweight connector (`cloudflared`) **inside your network** that makes **outbound-only** connections to Cloudflare’s edge. When someone visits your domain, Cloudflare sends that request _through the tunnel_ to your origin.
 
 This gives you the two big wins most self-hosters want:
 
@@ -37,7 +37,7 @@ Cloudflare Tunnel establishes outbound connections (tunnels) between your resour
 <img
   src="/blogs/Pasted%20image%2020260130120959.png"
   alt="How Cloudflare Tunnel works diagram"
-  className="w-full rounded-xl border-4 border-black my-6"
+  className="my-6 w-full rounded-xl border-4 border-black"
 />
 
 ## Outbound-only is the point
@@ -56,7 +56,7 @@ Because most networks allow outbound traffic by default, you can keep **all inbo
 <img
   src="/blogs/Pasted%20image%2020260130102450.png"
   alt="Cloudflare Tunnel outbound-only connection diagram"
-  className="w-full rounded-xl border-4 border-black my-6"
+  className="my-6 w-full rounded-xl border-4 border-black"
 />
 
 ## Quickstart: publish one local service
