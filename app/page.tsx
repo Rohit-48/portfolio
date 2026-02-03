@@ -103,12 +103,22 @@ export default function Home() {
       {/* Hero Section */}
       <section className="mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-6">
         {/* Info Card */}
-        <div className="flex flex-col justify-between rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black] transition-all duration-300 hover:scale-105 md:p-8">
+        <motion.div
+          className="flex flex-col justify-between rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black] md:p-8"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          whileHover={{ y: -3 }}
+        >
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-green-400 px-3 py-1.5 text-xs font-bold">
+            <motion.span
+              className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-green-400 px-3 py-1.5 text-xs font-bold"
+              animate={{ y: [0, -1, 0] }}
+              transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+            >
               <Target size={14} />
               Open to Work
-            </span>
+            </motion.span>
 
             <TypewriterEffect
               words={[
@@ -132,36 +142,53 @@ export default function Home() {
             </p>
           </div>
 
-          <a
+          <motion.a
             href="/documents/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex w-fit items-center justify-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-6 py-3 font-bold shadow-[4px_4px_0px_0px_black] transition-all duration-100 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_black]"
+            className="mt-6 inline-flex w-fit items-center justify-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-6 py-3 font-bold shadow-[4px_4px_0px_0px_black] transition-shadow duration-150"
+            whileHover={{ x: 2, y: 2 }}
+            transition={{ duration: 0.15 }}
           >
             Resume
             <ArrowUpRight size={18} />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
         {/* Profile Image */}
-        <div className="relative h-72 overflow-hidden rounded-2xl border-4 border-black bg-[#F7F4F3] shadow-[4px_4px_0px_0px_black] transition-all duration-300 hover:scale-105 md:h-auto">
+        <motion.div
+          className="relative h-72 overflow-hidden rounded-2xl border-4 border-black bg-[#F7F4F3] shadow-[4px_4px_0px_0px_black] md:h-auto"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: 'easeOut', delay: 0.05 }}
+          whileHover={{ y: -3 }}
+        >
           <Image
             src="/images/profile/avatar.png"
             alt="Rohit"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-300 hover:scale-[1.02]"
           />
-          <span className="absolute top-3 right-3 rounded-full border-2 border-black bg-amber-300 px-3 py-1.5 text-xs font-bold">
+          <motion.span
+            className="absolute top-3 right-3 rounded-full border-2 border-black bg-amber-300 px-3 py-1.5 text-xs font-bold"
+            animate={{ rotate: [0, -1, 0, 1, 0] }}
+            transition={{ duration: 4.6, repeat: Infinity, ease: 'easeInOut' }}
+          >
             Est 2004
-          </span>
+          </motion.span>
           <div className="absolute bottom-3 left-3 rounded-xl border-4 border-black bg-amber-300 px-4 py-3 shadow-[2px_2px_0px_0px_black]">
-            <FlipWords
-              words={['ROHIT HERE']}
-              duration={3000}
-              className="text-xl font-black text-black md:text-2xl"
-            />
+            <motion.div
+              animate={{ y: [0, -1.5, 0] }}
+              transition={{ duration: 4.0, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <FlipWords
+                words={['ROHIT HERE']}
+                duration={3000}
+                className="text-xl font-black text-black md:text-2xl"
+              />
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Projects Section */}
