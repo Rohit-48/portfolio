@@ -170,7 +170,7 @@ export default function Home() {
           <h2 className="text-xl font-black uppercase md:text-2xl">Projects</h2>
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-gray-800"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-amber-300 px-4 py-2 text-xs font-bold uppercase text-black shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_black]"
           >
             View All
             <ArrowUpRight size={14} />
@@ -184,7 +184,7 @@ export default function Home() {
               <h3 className="text-lg font-bold uppercase md:text-xl">
                 Currently Building
               </h3>
-              <div className="flex items-center gap-1 rounded-full border-2 border-black bg-orange-400 px-2 py-1">
+              <div className="flex items-center gap-1 rounded-full border-2 border-black bg-amber-300 px-2 py-1">
                 <Hammer size={14} className="animate-pulse" />
                 <span className="text-xs font-bold">Building</span>
               </div>
@@ -193,10 +193,10 @@ export default function Home() {
               {buildingProjects.map((project) => (
                 <div
                   key={project.slug}
-                  className="relative cursor-pointer rounded-xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
+                  className="relative cursor-pointer rounded-xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_black]"
                   onClick={() => setSelectedProject(project)}
                 >
-                  <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full border-2 border-black bg-orange-400 px-2 py-1">
+                  <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full border-2 border-black bg-amber-300 px-2 py-1">
                     <Hammer size={12} className="animate-pulse" />
                     <span className="text-[10px] font-bold">Building</span>
                   </div>
@@ -210,11 +210,12 @@ export default function Home() {
                     />
                   </div>
                   <div className="mt-3">
+                    <div className="mb-2 h-1 w-10 rounded-full bg-amber-300" />
                     <div className="mb-2 flex gap-2">
                       {project.tech.slice(0, 2).map((tech, i) => (
                         <span
                           key={i}
-                          className="rounded bg-black px-2 py-0.5 text-[10px] font-bold text-white"
+                          className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold text-black"
                         >
                           {tech}
                         </span>
@@ -236,7 +237,7 @@ export default function Home() {
           {featuredProjects.map((project) => (
             <div
               key={project.slug}
-              className="cursor-pointer rounded-xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
+              className="cursor-pointer rounded-xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_black]"
               onClick={() => setSelectedProject(project)}
             >
               <div className="h-36 overflow-hidden rounded-lg border-2 border-black bg-gray-100">
@@ -249,11 +250,12 @@ export default function Home() {
                 />
               </div>
               <div className="mt-3">
+                <div className="mb-2 h-1 w-10 rounded-full bg-amber-300" />
                 <div className="mb-2 flex gap-2">
                   {project.tech.slice(0, 2).map((tech, i) => (
                     <span
                       key={i}
-                      className="rounded bg-black px-2 py-0.5 text-[10px] font-bold text-white"
+                      className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold text-black"
                     >
                       {tech}
                     </span>

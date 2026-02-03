@@ -44,7 +44,7 @@ export default function Blogs() {
           <Link
             key={post.slug}
             href={`/blogs/${post.slug}`}
-            className="group rounded-xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
+            className="group rounded-xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_black]"
           >
             {/* Date */}
             <div className="mb-3 flex items-center justify-between">
@@ -52,7 +52,7 @@ export default function Blogs() {
                 <Calendar size={14} />
                 <span className="text-xs font-medium">{post.date}</span>
               </div>
-              <div className="rounded-lg border-2 border-black bg-amber-300 p-1.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              <div className="rounded-full border-2 border-black bg-amber-300 p-1.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                 <ArrowUpRight size={14} />
               </div>
             </div>
@@ -67,12 +67,14 @@ export default function Blogs() {
               {post.excerpt}
             </p>
 
+            <div className="mt-3 h-1 w-10 rounded-full bg-amber-300" />
+
             {/* Tags */}
             <div className="mt-4 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border-2 border-black bg-amber-200 px-2 py-1 text-[10px] font-bold"
+                  className="rounded-full border-2 border-black bg-amber-200 px-2 py-1 text-[10px] font-bold text-black"
                 >
                   {tag}
                 </span>

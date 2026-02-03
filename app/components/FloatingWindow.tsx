@@ -78,7 +78,7 @@ export default function FloatingWindow({
               {selectedProject.tech.map((tech: string) => (
                 <span
                   key={tech}
-                  className="rounded bg-black px-2 py-0.5 text-[10px] font-bold text-white"
+                  className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold text-black"
                 >
                   {tech}
                 </span>
@@ -102,7 +102,7 @@ export default function FloatingWindow({
                 {selectedProject.tags.map((tag: string) => (
                   <span
                     key={tag}
-                    className="rounded-full border-2 border-black bg-amber-200 px-2 py-1 text-[10px] font-bold"
+                    className="rounded-full border-2 border-black bg-amber-100 px-2 py-1 text-[10px] font-bold"
                   >
                     {tag}
                   </span>

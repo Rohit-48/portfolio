@@ -17,7 +17,7 @@ export default function BlogCard({
   tags,
 }: BlogCardProps) {
   return (
-    <div className="group font-electrolize relative w-full max-w-[860px] rounded-xl border-4 border-black bg-amber-50 shadow-[6px_6px_0px_0px_black] transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black]">
+    <div className="group font-electrolize relative w-full max-w-[860px] rounded-xl border-4 border-black bg-amber-50 shadow-[6px_6px_0px_0px_black] transition-all duration-300 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0px_0px_black]">
       {/* Decorative corner accent */}
       <div className="absolute -top-2 -right-2 h-4 w-4 rounded-full border-2 border-black bg-amber-400 sm:h-5 sm:w-5 md:h-6 md:w-6" />
 
@@ -30,7 +30,7 @@ export default function BlogCard({
               {date}
             </span>
           </div>
-          <div className="rounded-lg border-2 border-black bg-amber-300 p-1.5 opacity-0 transition-all duration-300 group-hover:rotate-12 group-hover:opacity-100 sm:p-2">
+          <div className="rounded-full border-2 border-black bg-amber-300 p-1.5 opacity-0 transition-all duration-300 group-hover:rotate-6 group-hover:opacity-100 sm:p-2">
             <ArrowUpRight size={14} className="sm:h-4 sm:w-4" />
           </div>
         </div>

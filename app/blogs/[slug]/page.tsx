@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Back */}
       <Link
         href="/blogs"
-        className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-[#fffdf7] px-4 py-2 text-sm font-black uppercase shadow-[3px_3px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_black]"
+        className="inline-flex items-center gap-2 rounded-full border-4 border-black bg-amber-200 px-4 py-2 text-xs font-black uppercase shadow-[3px_3px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
       >
         <ArrowLeft size={18} />
         Back to posts
@@ -100,54 +100,57 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Header */}
       <header className="mt-6">
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-3 py-1.5 shadow-[3px_3px_0px_0px_black]">
-            <Calendar size={16} />
-            <time dateTime={post.date} className="text-xs font-black uppercase">
-              {formatDate(post.date)}
-            </time>
-          </div>
-          <div className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-[#fffdf7] px-3 py-1.5 shadow-[3px_3px_0px_0px_black]">
-            <Clock size={16} />
-            <span className="text-xs font-black uppercase">
-              {readingTime} min read
-            </span>
-          </div>
-        </div>
-
-        <h1 className="mt-5 text-3xl leading-tight font-black tracking-tight md:text-5xl">
-          {post.title}
-        </h1>
-
-        {post.excerpt && (
-          <p className="mt-3 max-w-3xl text-sm text-gray-700 md:text-base">
-            {post.excerpt}
-          </p>
-        )}
-
-        {post.tags.length > 0 && (
-          <div className="mt-5 flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-2 text-gray-700">
-              <Tag size={16} />
-              <span className="text-xs font-black uppercase">Tags</span>
+        <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black] md:p-6">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-3 py-1.5 shadow-[3px_3px_0px_0px_black]">
+              <Calendar size={16} />
+              <time dateTime={post.date} className="text-xs font-black uppercase">
+                {formatDate(post.date)}
+              </time>
             </div>
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border-2 border-black bg-amber-200 px-2 py-1 text-[10px] font-black uppercase"
-              >
-                {tag}
+            <div className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-[#fffdf7] px-3 py-1.5 shadow-[3px_3px_0px_0px_black]">
+              <Clock size={16} />
+              <span className="text-xs font-black uppercase">
+                {readingTime} min read
               </span>
-            ))}
+            </div>
           </div>
-        )}
+
+          <h1 className="mt-5 text-3xl leading-tight font-black tracking-tight md:text-5xl">
+            {post.title}
+          </h1>
+          <div className="mt-3 h-1 w-12 rounded-full bg-amber-300" />
+
+          {post.excerpt && (
+            <p className="mt-3 max-w-3xl text-sm text-gray-700 md:text-base">
+              {post.excerpt}
+            </p>
+          )}
+
+          {post.tags.length > 0 && (
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 text-gray-700">
+                <Tag size={16} />
+                <span className="text-xs font-black uppercase">Tags</span>
+              </div>
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border-2 border-black bg-amber-200 px-2 py-1 text-[10px] font-black uppercase"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
       </header>
 
       {/* Content + Sidebar */}
-      <div className="mt-8 grid grid-cols-1 items-start gap-6 lg:grid-cols-[1fr_320px]">
+      <div className="mt-8 grid grid-cols-1 items-start gap-6 lg:gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
         {/* Article */}
-        <article className="overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] shadow-[6px_6px_0px_0px_black]">
-          <div className="px-6 py-7 md:px-10 md:py-10">
+        <article className="order-1 overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] shadow-[5px_5px_0px_0px_black] lg:order-1">
+          <div className="px-5 py-6 sm:px-6 sm:py-7 md:px-10 md:py-10">
             <div className="text-[15px] leading-7 text-zinc-900 md:text-base">
               <MDXRemote
                 source={post.content}
@@ -193,7 +196,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   p: (props: ComponentPropsWithoutRef<'p'>) => (
                     <p
                       {...props}
-                      className={`my-4 text-zinc-800 ${props.className ?? ''}`}
+                      className={`my-4 text-zinc-800 leading-7 md:leading-8 ${props.className ?? ''}`}
                     />
                   ),
                   a: (props: ComponentPropsWithoutRef<'a'>) => (
@@ -238,13 +241,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   img: (props: ComponentPropsWithoutRef<'img'>) => (
                     <img
                       {...props}
-                      className={`my-6 rounded-2xl border-4 border-black ${props.className ?? ''}`}
+                      className={`my-6 h-auto w-full rounded-2xl border-4 border-black ${props.className ?? ''}`}
                     />
                   ),
                   pre: (props: ComponentPropsWithoutRef<'pre'>) => (
                     <pre
                       {...props}
-                      className={`my-6 overflow-x-auto rounded-2xl border-4 border-black bg-black p-4 text-sm leading-6 text-white ${props.className ?? ''}`}
+                      className={`my-6 overflow-x-auto rounded-2xl border-4 border-black bg-black p-4 text-xs leading-6 text-white md:text-sm ${props.className ?? ''}`}
                     />
                   ),
                   code: ({
@@ -291,7 +294,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </article>
 
         {/* Sidebar */}
-        <aside className="h-fit space-y-4 lg:sticky lg:top-28">
+        <aside className="order-2 h-fit space-y-4 lg:sticky lg:top-28 lg:order-2">
           <div className="rounded-2xl border-4 border-black bg-white p-5 shadow-[4px_4px_0px_0px_black]">
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -321,7 +324,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   On this page
                 </p>
               </div>
-              <nav className="mt-4">
+              <nav className="mt-4 max-h-80 overflow-auto pr-1">
                 <ul className="space-y-2">
                   {toc.map((item) => (
                     <li
