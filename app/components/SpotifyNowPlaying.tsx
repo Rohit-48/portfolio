@@ -43,7 +43,7 @@ function SoundBars({ seed }: { seed: number }) {
         <span
           // eslint-disable-next-line react/no-array-index-key
           key={i}
-          className="animate-soundwave w-[3px] rounded-full bg-[#7BA05B]"
+          className="animate-soundwave w-[3px] rounded-full bg-[#F2C94C]"
           style={{
             height: `${h}%`,
             animationDelay: `${i * 120}ms`,
@@ -114,25 +114,25 @@ export default function SpotifyNowPlaying() {
   const wrapperClass = 'block'
   const inner = (
     <RetroCard
-      bgColor="bg-[#FDF6EE]"
+      bgColor="bg-[#FFF9E6]"
       noShadow
-      className="border-2 border-[#2B2118] p-6 shadow-[3px_3px_0px_0px_#2B2118] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_#2B2118]"
+      className="border-2 border-[#1F1B16] p-6 shadow-[3px_3px_0px_0px_#1F1B16] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_#1F1B16]"
     >
       {/* Top bar */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
-          <div className="rounded-full border border-[#2B2118]/20 bg-[#EADCCB] p-2">
-            <SiSpotify className="h-4 w-4 text-[#2B2118]" />
+          <div className="rounded-full border border-[#1F1B16]/30 bg-[#FFE89A] p-2">
+            <SiSpotify className="h-4 w-4 text-[#1F1B16]" />
           </div>
           <div>
-            <p className="text-[11px] leading-none font-semibold tracking-[0.2em] text-[#2B2118]/70 uppercase">
+            <p className="text-[11px] leading-none font-semibold tracking-[0.2em] text-[#1F1B16]/70 uppercase">
               Spotify
             </p>
             <div className="mt-1 flex items-center gap-2">
               {data?.isPlaying ? (
                 <>
-                  <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wide text-[#2B2118]/70">
-                    <span className="h-2 w-2 rounded-full bg-[#7BA05B]" />
+                  <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wide text-[#1F1B16]/70">
+                    <span className="h-2 w-2 rounded-full bg-[#F2C94C]" />
                     Now Playing
                   </span>
                   <SoundBars
@@ -143,7 +143,7 @@ export default function SpotifyNowPlaying() {
                   />
                 </>
               ) : (
-                <span className="text-[10px] font-semibold uppercase tracking-wide text-[#2B2118]/60">
+                <span className="text-[10px] font-semibold uppercase tracking-wide text-[#1F1B16]/60">
                   Last played
                 </span>
               )}
@@ -161,29 +161,29 @@ export default function SpotifyNowPlaying() {
               alt={data.album || 'Album'}
               width={88}
               height={88}
-              className="rounded-2xl border border-[#2B2118]/20 shadow-sm"
+              className="rounded-2xl border border-[#1F1B16]/20 shadow-sm"
             />
             {data?.isPlaying && (
-              <div className="absolute -right-2 -bottom-2 flex h-6 w-6 items-center justify-center rounded-full border border-[#2B2118]/20 bg-[#F4E9DB] shadow-sm">
-                <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#7BA05B]" />
+              <div className="absolute -right-2 -bottom-2 flex h-6 w-6 items-center justify-center rounded-full border border-[#1F1B16]/20 bg-[#FFE89A] shadow-sm">
+                <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#F2C94C]" />
               </div>
             )}
           </div>
         ) : (
-          <div className="flex h-[88px] w-[88px] items-center justify-center rounded-2xl border border-[#2B2118]/20 bg-[#F4E9DB] shadow-sm">
-            <SiSpotify className="h-8 w-8 text-[#2B2118]/30" />
+          <div className="flex h-[88px] w-[88px] items-center justify-center rounded-2xl border border-[#1F1B16]/20 bg-[#FFF1B8] shadow-sm">
+            <SiSpotify className="h-8 w-8 text-[#1F1B16]/30" />
           </div>
         )}
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm leading-tight font-semibold text-[#2B2118] md:text-base">
+          <p className="truncate text-sm leading-tight font-semibold text-[#1F1B16] md:text-base">
             {data?.title ?? 'Not Playing'}
           </p>
-          <p className="mt-1.5 truncate text-xs font-medium text-[#2B2118]/70 md:text-sm">
+          <p className="mt-1.5 truncate text-xs font-medium text-[#1F1B16]/70 md:text-sm">
             {data?.artist ?? 'Spotify is offline'}
           </p>
           {data?.album && (
-            <p className="mt-2 truncate text-[10px] font-medium uppercase tracking-wide text-[#2B2118]/60 md:text-xs">
+            <p className="mt-2 truncate text-[10px] font-medium uppercase tracking-wide text-[#1F1B16]/60 md:text-xs">
               Album · {data.album}
             </p>
           )}
@@ -192,8 +192,8 @@ export default function SpotifyNowPlaying() {
 
       {/* Progress */}
       {data?.isPlaying && data.duration_ms ? (
-        <div className="mt-4 border-t border-[#2B2118]/15 pt-4">
-          <div className="mb-2 flex justify-between font-mono text-[10px] font-semibold text-[#2B2118]/70">
+        <div className="mt-4 border-t border-[#1F1B16]/15 pt-4">
+          <div className="mb-2 flex justify-between font-mono text-[10px] font-semibold text-[#1F1B16]/70">
             <span>
               {formatTime(currentProgress)}
             </span>
@@ -201,9 +201,9 @@ export default function SpotifyNowPlaying() {
               {formatTime(data.duration_ms)}
             </span>
           </div>
-          <div className="relative h-2 overflow-hidden rounded-full border border-[#2B2118]/20 bg-[#F4E9DB]">
+          <div className="relative h-2 overflow-hidden rounded-full border border-[#1F1B16]/20 bg-[#FFF1B8]">
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-[#C58B59] transition-[width] duration-150"
+              className="absolute inset-y-0 left-0 rounded-full bg-[#E0A800] transition-[width] duration-150"
               style={{
                 width: `${Math.min((currentProgress / data.duration_ms) * 100, 100)}%`,
               }}
@@ -217,17 +217,17 @@ export default function SpotifyNowPlaying() {
   if (!mounted) {
     return (
       <RetroCard
-        bgColor="bg-[#FDF6EE]"
+        bgColor="bg-[#FFF9E6]"
         noShadow
-        className="border-2 border-[#2B2118] p-6 shadow-[3px_3px_0px_0px_#2B2118]"
+        className="border-2 border-[#1F1B16] p-6 shadow-[3px_3px_0px_0px_#1F1B16]"
       >
         <div className="flex items-center gap-3">
-          <div className="rounded-full border border-[#2B2118]/20 bg-[#EADCCB] p-2.5">
-            <SiSpotify className="h-4 w-4 text-[#2B2118]" />
+          <div className="rounded-full border border-[#1F1B16]/30 bg-[#FFE89A] p-2.5">
+            <SiSpotify className="h-4 w-4 text-[#1F1B16]" />
           </div>
           <div className="flex flex-1 flex-col gap-2">
-            <div className="h-4 w-40 animate-pulse rounded bg-[#2B2118]/10" />
-            <div className="h-3 w-28 animate-pulse rounded bg-[#2B2118]/5" />
+            <div className="h-4 w-40 animate-pulse rounded bg-[#1F1B16]/10" />
+            <div className="h-3 w-28 animate-pulse rounded bg-[#1F1B16]/5" />
           </div>
         </div>
       </RetroCard>
