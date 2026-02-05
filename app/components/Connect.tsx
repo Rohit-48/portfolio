@@ -3,7 +3,7 @@ import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
-import { SiX, SiDiscord, SiCaldotcom, SiBuymeacoffee, SiPinterest } from 'react-icons/si'
+import { SiX, SiDiscord, SiCaldotcom, SiBuymeacoffee, SiPinterest, SiLeetcode, SiKaggle, SiCocos } from 'react-icons/si'
 
 const hoverBounce = {
   y: [0, -8, -5],
@@ -66,6 +66,20 @@ const connectItems = [
     icon: SiPinterest,
     tone: 'bg-[#E60023] text-white',
     tag: 'Inspiration',
+  },
+  {
+    label: "Leetcode",
+    href: 'https://leetcode.com/u/rohit-48/',
+    icon: SiLeetcode,
+    tone: 'bg-[#212529] text-white',
+    tag: 'self-aware'
+  },
+  {
+    label: 'Kaggle',
+    href: 'https://www.kaggle.com/rohitmandavkar48',
+    icon: SiKaggle,
+    tone: 'bg-[#20BEFF] text-white',
+    tag: 'self-enlightment'
   },
 ]
 
