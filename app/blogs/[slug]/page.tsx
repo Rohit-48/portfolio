@@ -104,7 +104,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-3 py-1.5 shadow-[3px_3px_0px_0px_black]">
               <Calendar size={16} />
-              <time dateTime={post.date} className="text-xs font-black uppercase">
+              <time
+                dateTime={post.date}
+                className="text-xs font-black uppercase"
+              >
                 {formatDate(post.date)}
               </time>
             </div>
@@ -147,7 +150,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </header>
 
       {/* Content + Sidebar */}
-      <div className="mt-8 grid grid-cols-1 items-start gap-6 lg:gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="mt-8 grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-8">
         {/* Article */}
         <article className="order-1 overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] shadow-[5px_5px_0px_0px_black] lg:order-1">
           <div className="px-5 py-6 sm:px-6 sm:py-7 md:px-10 md:py-10">
@@ -196,7 +199,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   p: (props: ComponentPropsWithoutRef<'p'>) => (
                     <p
                       {...props}
-                      className={`my-4 text-zinc-800 leading-7 md:leading-8 ${props.className ?? ''}`}
+                      className={`my-4 leading-7 text-zinc-800 md:leading-8 ${props.className ?? ''}`}
                     />
                   ),
                   a: (props: ComponentPropsWithoutRef<'a'>) => (

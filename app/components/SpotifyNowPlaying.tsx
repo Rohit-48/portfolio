@@ -131,7 +131,7 @@ export default function SpotifyNowPlaying() {
             <div className="mt-1 flex items-center gap-2">
               {data?.isPlaying ? (
                 <>
-                  <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wide text-[#1F1B16]/70">
+                  <span className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-wide text-[#1F1B16]/70 uppercase">
                     <span className="h-2 w-2 rounded-full bg-[#F2C94C]" />
                     Now Playing
                   </span>
@@ -143,7 +143,7 @@ export default function SpotifyNowPlaying() {
                   />
                 </>
               ) : (
-                <span className="text-[10px] font-semibold uppercase tracking-wide text-[#1F1B16]/60">
+                <span className="text-[10px] font-semibold tracking-wide text-[#1F1B16]/60 uppercase">
                   Last played
                 </span>
               )}
@@ -183,7 +183,7 @@ export default function SpotifyNowPlaying() {
             {data?.artist ?? 'Spotify is offline'}
           </p>
           {data?.album && (
-            <p className="mt-2 truncate text-[10px] font-medium uppercase tracking-wide text-[#1F1B16]/60 md:text-xs">
+            <p className="mt-2 truncate text-[10px] font-medium tracking-wide text-[#1F1B16]/60 uppercase md:text-xs">
               Album · {data.album}
             </p>
           )}
@@ -194,12 +194,8 @@ export default function SpotifyNowPlaying() {
       {data?.isPlaying && data.duration_ms ? (
         <div className="mt-4 border-t border-[#1F1B16]/15 pt-4">
           <div className="mb-2 flex justify-between font-mono text-[10px] font-semibold text-[#1F1B16]/70">
-            <span>
-              {formatTime(currentProgress)}
-            </span>
-            <span>
-              {formatTime(data.duration_ms)}
-            </span>
+            <span>{formatTime(currentProgress)}</span>
+            <span>{formatTime(data.duration_ms)}</span>
           </div>
           <div className="relative h-2 overflow-hidden rounded-full border border-[#1F1B16]/20 bg-[#FFF1B8]">
             <div
