@@ -1,7 +1,69 @@
 'use client'
-{/* Connect Section */}
 
- export const Connect = () =>{
+import { BlurFade } from '@/components/ui/blur-fade'
+import { motion } from 'motion/react'
+import Link from 'next/link'
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
+import { SiX, SiDiscord, SiCaldotcom, SiBuymeacoffee, SiPinterest, SiLeetcode, SiKaggle, SiCocos } from 'react-icons/si'
+
+const hoverBounce = {
+  y: [0, -8, -5],
+  transition: { duration: 0.35 },
+}
+
+const connectItems = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/Rohit-48',
+    icon: Github,
+    tone: 'bg-[#0B0F19] text-white',
+    tag: 'Open source',
+  },
+  {
+    label: 'X',
+    href: 'https://twitter.com/rohitcpp',
+    icon: SiX,
+    tone: 'bg-black text-white',
+    tag: 'Short thoughts',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/rohit48',
+    icon: Linkedin,
+    tone: 'bg-[#0A66C2] text-white',
+    tag: 'Career',
+  },
+  {
+    label: 'Email',
+    href: 'mailto:rohitmandavkar3477@gmail.com',
+    icon: Mail,
+    tone: 'bg-[#F25F4C] text-white',
+    tag: 'Say hello',
+  },
+  {
+    label: 'Discord',
+    href: 'https://discord.com/users/rohitvince0',
+    icon: SiDiscord,
+    tone: 'bg-[#5865F2] text-white',
+    tag: 'Chat',
+  },
+  {
+    label: 'Book a Call',
+    href: 'https://cal.com/rohit48',
+    icon: SiCaldotcom,
+    tone: 'bg-black text-white',
+    tag: 'Schedule',
+  },
+  {
+    label: 'Buy Me a Coffee',
+    href: 'https://buymeacoffee.com/rohit48',
+    icon: SiBuymeacoffee,
+    tone: 'bg-[#FFDD00] text-black',
+    tag: 'Support',
+  },
+]
+
+export const Connect = () => {
    return(
          <div className="relative overflow-hidden rounded-3xl border-4 border-black bg-white p-5 shadow-[4px_4px_0px_0px_black] md:p-7">
           <div className="mb-6 flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
