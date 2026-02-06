@@ -8,7 +8,8 @@ import {
   Github,
   Hammer,
 } from 'lucide-react'
-import { projects, Project } from '@/lib/projects'
+import { projects } from '@/data/project'
+import { Project } from '@/types/project'
 import FloatingWindow from '../components/FloatingWindow'
 import { useState } from 'react'
 
@@ -34,7 +35,7 @@ export default function Projects() {
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-        {projects.map((project) => (
+        {projects.map((project: Project) => (
           <div
             key={project.slug}
             className="cursor-pointer overflow-hidden rounded-xl border-4 border-black bg-[#fffdf7] shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_black]"
@@ -110,7 +111,7 @@ export default function Projects() {
             <div className="p-4">
               <div className="mb-2 h-1 w-10 rounded-full bg-amber-300" />
               <div className="mb-2 flex gap-2">
-                {project.tech.slice(0, 2).map((tech, i) => (
+                {project.tech.slice(0, 2).map((tech: string, i: number) => (
                   <span
                     key={i}
                     className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold text-black"
@@ -126,7 +127,7 @@ export default function Projects() {
 
               {/* Tags */}
               <div className="mt-3 flex flex-wrap gap-2">
-                {project.tags.slice(0, 3).map((tag) => (
+                {project.tags.slice(0, 3).map((tag: string) => (
                   <span
                     key={tag}
                     className="rounded-full border-2 border-black bg-amber-100 px-2 py-1 text-[10px] font-bold"

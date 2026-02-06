@@ -24,11 +24,12 @@ import { TypewriterEffect } from './components/ui/typewriter-effect'
 import { FlipWords } from './components/ui/flip-word'
 import { useState } from 'react'
 import FloatingWindow from './components/FloatingWindow'
-import { projects, Project } from '@/lib/projects'
-import { skillshowcase } from '@/lib/skillshowcase'
+import { projects } from '@/data/project'
+import { skillshowcase } from '@/data/skills'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
 import { Connect } from "./components/Connect"
+import { Project } from '@/types/project'
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
@@ -40,64 +41,7 @@ export default function Home() {
     y: [0, -8, -5],
     transition: { duration: 0.35 },
   }
-  const connectItems = [
-    {
-      label: 'GitHub',
-      href: 'https://github.com/Rohit-48',
-      icon: Github,
-      tone: 'bg-[#0B0F19] text-white',
-      tag: 'Open source',
-    },
-    {
-      label: 'X',
-      href: 'https://twitter.com/rohitcpp',
-      icon: SiX,
-      tone: 'bg-black text-white',
-      tag: 'Short thoughts',
-    },
-    {
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/rohit48',
-      icon: Linkedin,
-      tone: 'bg-[#0A66C2] text-white',
-      tag: 'Career',
-    },
-    {
-      label: 'Email',
-      href: 'mailto:rohitmandavkar3477@gmail.com',
-      icon: Mail,
-      tone: 'bg-[#F25F4C] text-white',
-      tag: 'Say hello',
-    },
-    {
-      label: 'Discord',
-      href: 'https://discord.com/users/rohitvince0',
-      icon: SiDiscord,
-      tone: 'bg-[#5865F2] text-white',
-      tag: 'Chat',
-    },
-    {
-      label: 'Book a Call',
-      href: 'https://cal.com/rohitvince0',
-      icon: SiCaldotcom,
-      tone: 'bg-[#1F2937] text-white',
-      tag: 'Schedule',
-    },
-    {
-      label: 'Coffee',
-      href: 'https://buymeacoffee.com/rohit77',
-      icon: SiBuymeacoffee,
-      tone: 'bg-[#FFDD00] text-black',
-      tag: 'Support',
-    },
-    {
-      label: 'Pinterest',
-      href: 'https://pin.it/6H1ZDBaie',
-      icon: SiPinterest,
-      tone: 'bg-[#E60023] text-white',
-      tag: 'Inspiration',
-    },
-  ]
+
 
   return (
     <div className="font-inter mx-auto w-full max-w-5xl px-4 selection:bg-yellow-300 md:px-0">
@@ -310,7 +254,7 @@ export default function Home() {
       {/* Skills Section */}
       <section className="mt-8">
         <div className="flex flex-wrap justify-center gap-2">
-          {skillshowcase.map(({ icon: Icon, label }, i) => (
+          {skillshowcase.map(({ icon: Icon, label }: { icon: import('react-icons').IconType, label: string }, i: number) => (
             <a
               key={label || `skill-${i}`}
               href={`https://www.google.com/search?q=${encodeURIComponent(label + ' programming')}`}

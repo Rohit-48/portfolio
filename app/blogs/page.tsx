@@ -2,26 +2,8 @@
 
 import Link from 'next/link'
 import { BookOpen, Calendar, ArrowUpRight } from 'lucide-react'
-
-const BlogPosts = [
-  {
-    slug: 'nixos-distro',
-    title: 'Why I Think NixOS Is OG for Production and Development',
-    date: '2025-12-08',
-    excerpt:
-      'In meme lang: The ultimate boss of distro fight. A deep dive into why Nix is changing the game.',
-    tags: ['Nix', 'NixOS', 'Linux'],
-  },
-  {
-    slug: 'cloudflared-tunnel',
-    title:
-      'Cloudflare Tunnel: A Secure Way to Connect Your Resources to Cloudflare',
-    date: '2026-01-30',
-    excerpt:
-      'A deep dive into how Cloudflare Tunnel works and how you can use it to secure your resources.',
-    tags: ['Cloudflare', 'Tunnel', 'NixOS'],
-  },
-]
+import { BlogPost } from '@/types/blog'
+import { blogPosts } from '@/data/blog'
 export default function Blogs() {
   return (
     <div className="font-inter mx-auto mt-8 w-full max-w-5xl px-4 pb-12 md:mt-12 md:px-0">
@@ -40,7 +22,7 @@ export default function Blogs() {
 
       {/* Blog Posts */}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-        {BlogPosts.map((post) => (
+        {blogPosts.map((post: BlogPost) => (
           <Link
             key={post.slug}
             href={`/blogs/${post.slug}`}
@@ -85,7 +67,7 @@ export default function Blogs() {
       </div>
 
       {/* Empty State */}
-      {BlogPosts.length === 1 && (
+      {blogPosts.length === 1 && (
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-500">More posts coming soon...</p>
         </div>

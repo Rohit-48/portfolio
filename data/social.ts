@@ -1,0 +1,84 @@
+import type { Social } from '@/types/social'
+import { Github, Linkedin, Mail, Calendar } from 'lucide-react'
+import {
+  SiX,
+  SiGmail,
+  SiDiscord,
+  SiBuymeacoffee,
+  SiPinterest,
+  SiLeetcode,
+  SiKaggle,
+} from 'react-icons/si'
+
+export const social: Social[] = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/Rohit-48',
+    icon: Github,
+    tone: 'bg-[#0B0F19] text-white',
+    tag: 'Open source',
+  },
+  {
+    label: 'X',
+    href: 'https://x.com/rohitcpp',
+    icon: SiX,
+    tone: 'bg-black text-white',
+    tag: 'Short thoughts',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/rohit48',
+    icon: Linkedin,
+    tone: 'bg-[#0A66C2] text-white',
+    tag: 'Career',
+  },
+  {
+    label: 'Email',
+    href: 'mailto:rohitmandavkar3477@gmail.com',
+    icon: SiGmail,
+    tone: 'bg-[#F25F4C] text-white',
+    tag: 'Say hello',
+  },
+  {
+    label: 'Discord',
+    href: 'https://discord.com/users/rohitvince0',
+    icon: SiDiscord,
+    tone: 'bg-[#5865F2] text-white',
+    tag: 'Chat',
+  },
+  {
+    label: 'Book a Call',
+    href: 'https://cal.com/rohitvince0',
+    icon: Calendar,
+    tone: 'bg-[#1F2937] text-white',
+    tag: 'Schedule',
+  },
+  {
+    label: 'Coffee',
+    href: 'https://buymeacoffee.com/rohit77',
+    icon: SiBuymeacoffee,
+    tone: 'bg-[#FFDD00] text-black',
+    tag: 'Support',
+  },
+  {
+    label: 'Pinterest',
+    href: 'https://pin.it/6H1ZDBaie',
+    icon: SiPinterest,
+    tone: 'bg-[#E60023] text-white',
+    tag: 'Inspiration',
+  },
+  {
+    label: 'Leetcode',
+    href: 'https://leetcode.com/u/rohit-48/',
+    icon: SiLeetcode,
+    tone: 'bg-[#212529] text-white',
+    tag: 'self-aware',
+  },
+  {
+    label: 'Kaggle',
+    href: 'https://www.kaggle.com/rohitmandavkar48',
+    icon: SiKaggle,
+    tone: 'bg-[#20BEFF] text-white',
+    tag: 'self-enlightment',
+  },
+]
