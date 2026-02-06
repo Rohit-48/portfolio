@@ -242,8 +242,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     />
                   ),
                   img: (props: ComponentPropsWithoutRef<'img'>) => (
+                    // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
                     <img
                       {...props}
+                      alt={props.alt || ''}
                       className={`my-6 h-auto w-full rounded-2xl border-4 border-black ${props.className ?? ''}`}
                     />
                   ),

@@ -1,5 +1,5 @@
 import type { Social } from '@/types/social'
-import { Github, Linkedin, Mail, Calendar } from 'lucide-react'
+import { Github, Linkedin, Calendar } from 'lucide-react'
 import {
   SiX,
   SiGmail,

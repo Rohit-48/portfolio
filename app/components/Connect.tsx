@@ -1,4 +1,5 @@
-{/* Connect Section */ }
+'use client'
+
 import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
 import Link from 'next/link'

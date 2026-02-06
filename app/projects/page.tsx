@@ -28,7 +28,7 @@ export default function Projects() {
             Projects
           </h1>
           <p className="mt-1 text-sm text-gray-600">
-            Things I've built and shipped
+            Things I&apos;ve built and shipped
           </p>
         </div>
       </div>

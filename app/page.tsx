@@ -1,15 +1,7 @@
 'use client'
-import { SpeedInsights } from '@vercel/speed-insights/next'
+
 import Image from 'next/image'
-import {
-  ArrowUpRight,
-  Target,
-  Github,
-  Linkedin,
-  Mail,
-  Hammer,
-  Sparkles,
-} from 'lucide-react'
+import { ArrowUpRight, Target, Hammer } from 'lucide-react'
 import Link from 'next/link'
 import {
   SiX,

@@ -37,7 +37,7 @@ export const projects: Project[] = [
         'A project and task management web app inspired by the Cyberpunk aesthetic.',
       extraInfo:
         'A project and task management web app inspired by the Cyberpunk aesthetic. Features include task creation, project organization, and a sleek neon-infused UI. Built with modern web technologies for optimal performance and user experience.',
-      imageUrl: '/Projects/Cyberdeck.png ',
+      imageUrl: '/Projects/Cyberdeck.png',
       githubUrl: 'https://github.com/Rohit-48/CYBERDECK',
       demoUrl: 'https://cyberchoom.netlify.app/',
       tags: [
