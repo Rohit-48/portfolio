@@ -1,87 +1,17 @@
-{/* Connect Section */ }
+'use client'
+
 import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
-import { SiX, SiDiscord, SiCaldotcom, SiBuymeacoffee, SiPinterest, SiLeetcode, SiKaggle, SiCocos } from 'react-icons/si'
-
+  import { ArrowUpRight } from 'lucide-react'
+import { social } from '@/data/social'
+import type { Social } from '@/types/social'
+import React from 'react'
 const hoverBounce = {
   y: [0, -8, -5],
   transition: { duration: 0.35 },
 }
 
-const connectItems = [
-  {
-    label: 'GitHub',
-    href: 'https://github.com/Rohit-48',
-    icon: Github,
-    tone: 'bg-[#0B0F19] text-white',
-    tag: 'Open source',
-  },
-  {
-    label: 'X',
-    href: 'https://twitter.com/rohitcpp',
-    icon: SiX,
-    tone: 'bg-black text-white',
-    tag: 'Short thoughts',
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://linkedin.com/in/rohit48',
-    icon: Linkedin,
-    tone: 'bg-[#0A66C2] text-white',
-    tag: 'Career',
-  },
-  {
-    label: 'Email',
-    href: 'mailto:rohitmandavkar3477@gmail.com',
-    icon: Mail,
-    tone: 'bg-[#F25F4C] text-white',
-    tag: 'Say hello',
-  },
-  {
-    label: 'Discord',
-    href: 'https://discord.com/users/rohitvince0',
-    icon: SiDiscord,
-    tone: 'bg-[#5865F2] text-white',
-    tag: 'Chat',
-  },
-  {
-    label: 'Book a Call',
-    href: 'https://cal.com/rohitvince0',
-    icon: SiCaldotcom,
-    tone: 'bg-[#1F2937] text-white',
-    tag: 'Schedule',
-  },
-  {
-    label: 'Coffee',
-    href: 'https://buymeacoffee.com/rohit77',
-    icon: SiBuymeacoffee,
-    tone: 'bg-[#FFDD00] text-black',
-    tag: 'Support',
-  },
-  {
-    label: 'Pinterest',
-    href: 'https://pin.it/6H1ZDBaie',
-    icon: SiPinterest,
-    tone: 'bg-[#E60023] text-white',
-    tag: 'Inspiration',
-  },
-  {
-    label: "Leetcode",
-    href: 'https://leetcode.com/u/rohit-48/',
-    icon: SiLeetcode,
-    tone: 'bg-[#212529] text-white',
-    tag: 'self-aware'
-  },
-  {
-    label: 'Kaggle',
-    href: 'https://www.kaggle.com/rohitmandavkar48',
-    icon: SiKaggle,
-    tone: 'bg-[#20BEFF] text-white',
-    tag: 'self-enlightment'
-  },
-]
 
 export const Connect = () => {
   return (
@@ -130,7 +60,7 @@ export const Connect = () => {
           </motion.div>
         </BlurFade>
 
-        {connectItems.map((item, index) => {
+        {social.map((item: Social, index: number) => {
           const Icon = item.icon
           const delay = 0.1 + index * 0.04
           return (
@@ -149,7 +79,7 @@ export const Connect = () => {
                   <span className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-white/20 blur-2xl transition-transform duration-300 group-hover:scale-110" />
                   <div className="flex items-center justify-between">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-black/30 bg-white/20 transition-transform duration-200 group-hover:-rotate-6 group-hover:scale-105">
-                      <Icon className="h-5 w-5 transition-transform duration-200 group-hover:rotate-6 group-hover:scale-110" />
+                      {React.createElement(Icon as unknown as React.FC<{ className: string }>, { className: "h-5 w-5 transition-transform duration-200 group-hover:rotate-6 group-hover:scale-110" })}
                     </span>
                     <ArrowUpRight
                       size={16}

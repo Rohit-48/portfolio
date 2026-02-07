@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, MotionProps } from 'motion/react'
 
 import { cn } from '@/lib/utils'
@@ -43,9 +43,10 @@ export function HyperText({
   characterSet = DEFAULT_CHARACTER_SET,
   ...props
 }: HyperTextProps) {
-  const MotionComponent = motion.create(Component, {
-    forwardMotionProps: true,
-  })
+  const MotionComponent = useMemo(
+    () => motion.create(Component, { forwardMotionProps: true }),
+    [Component],
+  )
 
   const [displayText, setDisplayText] = useState<string[]>(() =>
     children.split(''),

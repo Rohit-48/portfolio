@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Project } from '@/lib/projects'
+import { Project } from '@/types/project'
 import { CheckCircle2, ExternalLink, Github, Hammer, X } from 'lucide-react'
 
 interface FloatingWindowProps {

@@ -48,12 +48,19 @@ export function ShareButton({ title }: { title: string }) {
     }
   }
 
+  const ariaLabel =
+    status === 'copied'
+      ? 'Link copied'
+      : status === 'error'
+        ? 'Copy failed'
+        : 'Share this post'
+
   return (
     <button
       type="button"
       onClick={shareOrCopy}
       className="inline-flex w-full items-center justify-center gap-2 rounded-xl border-4 border-black bg-black px-4 py-3 font-black text-white uppercase shadow-[3px_3px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_black] active:translate-y-0 active:shadow-[2px_2px_0px_0px_black]"
-      aria-label="Share this post"
+      aria-label={ariaLabel}
     >
       {status === 'copied' ? (
         <Check size={16} />

@@ -25,7 +25,7 @@ const googlesans = Google_Sans({
   subsets: ['latin'],
 })
 
-
+const geistpixel = GeistPixelSquare
 
 export const metadata: Metadata = {
   title: {

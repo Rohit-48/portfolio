@@ -1,15 +1,7 @@
 'use client'
-import { SpeedInsights } from '@vercel/speed-insights/next'
+
 import Image from 'next/image'
-import {
-  ArrowUpRight,
-  Target,
-  Github,
-  Linkedin,
-  Mail,
-  Hammer,
-  Sparkles,
-} from 'lucide-react'
+import { ArrowUpRight, Target, Hammer } from 'lucide-react'
 import Link from 'next/link'
 import {
   SiX,
@@ -24,11 +16,12 @@ import { TypewriterEffect } from './components/ui/typewriter-effect'
 import { FlipWords } from './components/ui/flip-word'
 import { useState } from 'react'
 import FloatingWindow from './components/FloatingWindow'
-import { projects, Project } from '@/lib/projects'
-import { skillshowcase } from '@/lib/skillshowcase'
+import { projects } from '@/data/project'
+import { skillshowcase } from '@/data/skills'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
 import { Connect } from "./components/Connect"
+import { Project } from '@/types/project'
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
@@ -253,7 +246,7 @@ export default function Home() {
       {/* Skills Section */}
       <section className="mt-8">
         <div className="flex flex-wrap justify-center gap-2">
-          {skillshowcase.map(({ icon: Icon, label }, i) => (
+          {skillshowcase.map(({ icon: Icon, label }: { icon: import('react-icons').IconType, label: string }, i: number) => (
             <a
               key={label || `skill-${i}`}
               href={`https://www.google.com/search?q=${encodeURIComponent(label + ' programming')}`}
