@@ -40,64 +40,7 @@ export default function Home() {
     y: [0, -8, -5],
     transition: { duration: 0.35 },
   }
-  const connectItems = [
-    {
-      label: 'GitHub',
-      href: 'https://github.com/Rohit-48',
-      icon: Github,
-      tone: 'bg-[#0B0F19] text-white',
-      tag: 'Open source',
-    },
-    {
-      label: 'X',
-      href: 'https://twitter.com/rohitcpp',
-      icon: SiX,
-      tone: 'bg-black text-white',
-      tag: 'Short thoughts',
-    },
-    {
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/rohit48',
-      icon: Linkedin,
-      tone: 'bg-[#0A66C2] text-white',
-      tag: 'Career',
-    },
-    {
-      label: 'Email',
-      href: 'mailto:rohitmandavkar3477@gmail.com',
-      icon: Mail,
-      tone: 'bg-[#F25F4C] text-white',
-      tag: 'Say hello',
-    },
-    {
-      label: 'Discord',
-      href: 'https://discord.com/users/rohitvince0',
-      icon: SiDiscord,
-      tone: 'bg-[#5865F2] text-white',
-      tag: 'Chat',
-    },
-    {
-      label: 'Book a Call',
-      href: 'https://cal.com/rohitvince0',
-      icon: SiCaldotcom,
-      tone: 'bg-[#1F2937] text-white',
-      tag: 'Schedule',
-    },
-    {
-      label: 'Coffee',
-      href: 'https://buymeacoffee.com/rohit77',
-      icon: SiBuymeacoffee,
-      tone: 'bg-[#FFDD00] text-black',
-      tag: 'Support',
-    },
-    {
-      label: 'Pinterest',
-      href: 'https://pin.it/6H1ZDBaie',
-      icon: SiPinterest,
-      tone: 'bg-[#E60023] text-white',
-      tag: 'Inspiration',
-    },
-  ]
+
 
   return (
     <div className="font-inter mx-auto w-full max-w-5xl px-4 selection:bg-yellow-300 md:px-0">
@@ -140,7 +83,7 @@ export default function Home() {
               Web Engineer & CS Student
             </h2>
 
-            <p className="mt-4 text-sm leading-relaxed text-gray-600">
+            <p className="mt-4 text-sm leading-relaxed text-gray-600 font-geistpixel">
               Full-stack developer focused on web engineering, modern JavaScript
               frameworks, and backend systems. Building clean, scalable products
               with great DX.
