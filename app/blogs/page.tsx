@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { BookOpen, Calendar, ArrowUpRight } from 'lucide-react'
 import { BlogPost } from '@/types/blog'
 import { blogPosts } from '@/data/blog'
+
 export default function Blogs() {
   return (
     <div className="font-inter mx-auto mt-8 w-full max-w-5xl px-4 pb-12 md:mt-12 md:px-0">

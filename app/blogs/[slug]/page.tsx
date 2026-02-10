@@ -2,7 +2,7 @@ import { getPostBySlug } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
-import { ArrowLeft, Calendar, Clock, Tag, Share2, List } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, Calendar, Clock, Share2, List } from 'lucide-react'
 import { ShareButton } from '@/app/components/ShareButton'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { isValidElement } from 'react'
@@ -92,54 +92,43 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Back */}
       <Link
         href="/blogs"
-        className="inline-flex items-center gap-2 rounded-full border-4 border-black bg-amber-200 px-4 py-2 text-xs font-black uppercase shadow-[3px_3px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
+        className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-amber-300 px-4 py-2 text-xs font-bold uppercase shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_black]"
       >
-        <ArrowLeft size={18} />
+        <ArrowLeft size={14} />
         Back to posts
       </Link>
 
       {/* Header */}
       <header className="mt-6">
-        <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black] md:p-6">
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-3 py-1.5 shadow-[3px_3px_0px_0px_black]">
-              <Calendar size={16} />
-              <time
-                dateTime={post.date}
-                className="text-xs font-black uppercase"
-              >
-                {formatDate(post.date)}
-              </time>
-            </div>
-            <div className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-[#fffdf7] px-3 py-1.5 shadow-[3px_3px_0px_0px_black]">
-              <Clock size={16} />
-              <span className="text-xs font-black uppercase">
-                {readingTime} min read
-              </span>
-            </div>
+        <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black] md:p-8">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-black/50 uppercase">
+              <Calendar size={14} />
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+            </span>
+            <span className="text-black/20">·</span>
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-black/50 uppercase">
+              <Clock size={14} />
+              {readingTime} min read
+            </span>
           </div>
 
-          <h1 className="mt-5 text-3xl leading-tight font-black tracking-tight md:text-5xl">
+          <h1 className="mt-4 text-2xl leading-tight font-black tracking-tight md:text-4xl lg:text-5xl">
             {post.title}
           </h1>
-          <div className="mt-3 h-1 w-12 rounded-full bg-amber-300" />
 
           {post.excerpt && (
-            <p className="mt-3 max-w-3xl text-sm text-gray-700 md:text-base">
+            <p className="mt-3 max-w-3xl text-sm text-gray-600 md:text-base">
               {post.excerpt}
             </p>
           )}
 
           {post.tags.length > 0 && (
-            <div className="mt-5 flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 text-gray-700">
-                <Tag size={16} />
-                <span className="text-xs font-black uppercase">Tags</span>
-              </div>
+            <div className="mt-4 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border-2 border-black bg-amber-200 px-2 py-1 text-[10px] font-black uppercase"
+                  className="rounded-full border-2 border-black bg-amber-200 px-2.5 py-0.5 text-[10px] font-bold uppercase"
                 >
                   {tag}
                 </span>
@@ -150,9 +139,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </header>
 
       {/* Content + Sidebar */}
-      <div className="mt-8 grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-8">
+      <div className="mt-6 grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_260px]">
         {/* Article */}
-        <article className="order-1 overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] shadow-[5px_5px_0px_0px_black] lg:order-1">
+        <article className="overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] shadow-[4px_4px_0px_0px_black]">
           <div className="px-5 py-6 sm:px-6 sm:py-7 md:px-10 md:py-10">
             <div className="text-[15px] leading-7 text-zinc-900 md:text-base">
               <MDXRemote
@@ -171,7 +160,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       <h2
                         id={id}
                         {...props}
-                        className={`mt-10 mb-4 scroll-mt-28 border-b border-black/15 pb-2 text-2xl font-black tracking-tight md:text-3xl ${props.className ?? ''}`}
+                        className={`mt-10 mb-4 scroll-mt-28 border-b border-black/10 pb-2 text-2xl font-black tracking-tight md:text-3xl ${props.className ?? ''}`}
                       >
                         {props.children}
                       </h2>
@@ -205,7 +194,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   a: (props: ComponentPropsWithoutRef<'a'>) => (
                     <a
                       {...props}
-                      className={`font-black text-amber-700 underline decoration-2 underline-offset-2 hover:text-amber-800 ${props.className ?? ''}`}
+                      className={`font-bold text-amber-700 underline decoration-2 underline-offset-2 hover:text-amber-800 ${props.className ?? ''}`}
                       rel={props.target === '_blank' ? 'noreferrer' : undefined}
                     />
                   ),
@@ -232,13 +221,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   ) => (
                     <blockquote
                       {...props}
-                      className={`my-6 rounded-r-xl border-l-4 border-black bg-amber-100 px-4 py-3 ${props.className ?? ''}`}
+                      className={`my-6 rounded-r-xl border-l-4 border-amber-300 bg-amber-50 px-4 py-3 ${props.className ?? ''}`}
                     />
                   ),
                   hr: (props: ComponentPropsWithoutRef<'hr'>) => (
                     <hr
                       {...props}
-                      className={`my-10 border-black/15 ${props.className ?? ''}`}
+                      className={`my-10 border-black/10 ${props.className ?? ''}`}
                     />
                   ),
                   img: (props: ComponentPropsWithoutRef<'img'>) => (
@@ -265,7 +254,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     return (
                       <code
                         {...props}
-                        className={`rounded-md border border-black bg-amber-200 px-1.5 py-0.5 font-mono text-[0.85em] font-black ${className ?? ''}`}
+                        className={`rounded-md border border-black/20 bg-amber-100 px-1.5 py-0.5 font-mono text-[0.85em] font-bold ${className ?? ''}`}
                       />
                     )
                   },
@@ -299,19 +288,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </article>
 
         {/* Sidebar */}
-        <aside className="order-2 h-fit space-y-4 lg:sticky lg:top-28 lg:order-2">
-          <div className="rounded-2xl border-4 border-black bg-white p-5 shadow-[4px_4px_0px_0px_black]">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <p className="text-xs font-black text-gray-600 uppercase">
-                  Share
-                </p>
-                <p className="mt-1 text-sm font-bold text-black">
-                  Send this post to a friend
-                </p>
-              </div>
+        <aside className="space-y-4 lg:sticky lg:top-24">
+          {/* Share */}
+          <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black]">
+            <div className="flex items-center gap-3">
               <div className="rounded-xl border-2 border-black bg-amber-300 p-2">
                 <Share2 size={16} />
+              </div>
+              <div>
+                <p className="text-sm font-black">Share</p>
+                <p className="text-xs font-bold text-black/50">
+                  Send to a friend
+                </p>
               </div>
             </div>
             <div className="mt-4">
@@ -319,17 +307,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
 
+          {/* TOC */}
           {toc.length > 0 && (
-            <div className="rounded-2xl border-4 border-black bg-white p-5 shadow-[4px_4px_0px_0px_black]">
-              <div className="flex items-center gap-2">
+            <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[4px_4px_0px_0px_black]">
+              <div className="flex items-center gap-3">
                 <div className="rounded-xl border-2 border-black bg-amber-300 p-2">
                   <List size={16} />
                 </div>
-                <p className="text-xs font-black text-gray-600 uppercase">
-                  On this page
-                </p>
+                <p className="text-sm font-black">On this page</p>
               </div>
-              <nav className="mt-4 max-h-80 overflow-auto pr-1">
+              <nav className="mt-4 max-h-72 overflow-y-auto pr-1">
                 <ul className="space-y-2">
                   {toc.map((item) => (
                     <li
@@ -338,7 +325,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     >
                       <a
                         href={`#${item.id}`}
-                        className="block text-sm font-bold text-black/80 decoration-2 underline-offset-4 hover:text-black hover:underline"
+                        className="block text-sm font-bold text-black/60 decoration-2 underline-offset-4 transition-colors hover:text-black hover:underline"
                       >
                         {item.text}
                       </a>
@@ -353,17 +340,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Footer */}
       <footer className="mt-8">
-        <div className="flex flex-col items-start justify-between gap-4 rounded-2xl border-4 border-black bg-amber-300 p-6 shadow-[6px_6px_0px_0px_black] sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start justify-between gap-4 rounded-2xl border-4 border-black bg-amber-300 p-6 shadow-[4px_4px_0px_0px_black] sm:flex-row sm:items-center">
           <div>
-            <p className="text-xs font-black text-black/70 uppercase">Next</p>
+            <p className="text-xs font-bold uppercase opacity-50">Next</p>
             <p className="text-lg font-black">Want more posts like this?</p>
           </div>
           <Link
             href="/blogs"
-            className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-black px-5 py-3 font-black text-white uppercase shadow-[3px_3px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_black]"
+            className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-black px-5 py-3 text-sm font-black text-white uppercase shadow-[3px_3px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
           >
             View all posts
-            <ArrowLeft size={16} className="rotate-180" />
+            <ArrowUpRight size={16} />
           </Link>
         </div>
       </footer>
