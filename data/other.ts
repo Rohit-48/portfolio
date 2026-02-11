@@ -2,43 +2,27 @@ import type { Other } from '@/types/other'
 
 export const otherImages: Other[] = [
   {
-    src: '/images/gallery/nixos.png',
-    alt: 'NixOS Setup',
-    title: 'NixOS',
-    description: 'My daily driver Linux distro',
-    span: 'col-span-2 row-span-2',
-    category: 'Desktop',
-  },
-  {
-    src: '/images/gallery/btop.png',
-    alt: 'Btop System Monitor',
-    title: 'Btop++',
-    description: 'Terminal system monitor',
-    span: 'col-span-1 row-span-1',
+    src: '/images/gallery/fastfetch-ss.png',
+    alt: 'Fastfetch System Information',
+    title: 'Fastfetch',
+    description: 'A fast and minimal system information tool',
+    span: 'col-span-2 row-span-2', // 4x4 grid
     category: 'Terminal',
   },
   {
-    src: '/images/gallery/arasaka-parade.png',
-    alt: 'Arasaka Parade',
-    title: 'Arasaka Parade',
-    description: 'Cyberpunk Parade of Arasaka photo',
-    span: 'col-span-1 row-span-2',
-    category: 'Wallpaper',
+    src: '/images/gallery/nvim.png',
+    alt: 'Neovim Configuration',
+    title: 'Neovim',
+    description: 'A modern text editor',
+    span: 'col-span-2 row-span-2', // 4x4 grid
+    category: 'Editor',
   },
   {
-    src: '/images/gallery/zeneistu.png',
-    alt: 'Zeneistu Anime Artwork',
-    title: 'Zeneistu',
-    description: 'Anime inspired art of Zeneistu',
-    span: 'col-span-2 row-span-1',
-    category: 'Art',
-  },
-  {
-    src: '/images/gallery/blacksphere.png',
-    alt: 'Black_Sapphire_Artwork',
-    title: 'Black Sapphire',
-    description: 'Cyberpunk photo of Black Sapphire',
-    span: 'col-span-4 row-span-2',
-    category: 'Art',
-  },
+    src: '/images/gallery/ss-3apps.png',
+    alt: '3 Apps in 1',
+    title: '3 Apps in 1',
+    description: 'A screenshot of 3 apps in 1',
+    span: 'col-span-2 row-span-2', // 4x4 grid
+    category: 'Desktop',
+  }
 ]
