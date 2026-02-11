@@ -8,6 +8,9 @@ import {
   SiPinterest,
   SiLeetcode,
   SiKaggle,
+  SiCodeberg,
+  SiGitlab,
+  SiBehance,
 } from 'react-icons/si'
 
 export const social: Social[] = [
@@ -81,4 +84,25 @@ export const social: Social[] = [
     tone: 'bg-[#20BEFF] text-white',
     tag: 'self-enlightment',
   },
+  {
+    label: 'Codeberg',
+    href: 'https://codeberg.org/giyucode',
+    icon: SiCodeberg,
+    tone: 'bg-[#2185d0] text-white',
+    tag: 'Open source',
+  },
+  {
+    label: 'GitLab',
+    href: 'https://gitlab.com/giyucode',
+    icon: SiGitlab,
+    tone: 'bg-[#FC6D26] text-white',
+    tag: 'Open source',
+  },
+  {
+    label: 'Behance',
+    href: 'https://www.behance.net/rohitmandavkar',
+    icon: SiBehance,
+    tone: 'bg-[#1769FF] text-white',
+    tag: 'Design',
+  }
 ]
