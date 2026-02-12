@@ -104,5 +104,5 @@ export const social: Social[] = [
     icon: SiBehance,
     tone: 'bg-[#1769FF] text-white',
     tag: 'Design',
-  }
+  },
 ]

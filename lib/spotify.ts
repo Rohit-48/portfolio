@@ -52,7 +52,9 @@ export async function getNowPlaying() {
   return {
     isPlaying: song.is_playing,
     title: song.item.name,
-    artist: song.item.artists.map((artist: SpotifyArtist) => artist.name).join(', '),
+    artist: song.item.artists
+      .map((artist: SpotifyArtist) => artist.name)
+      .join(', '),
     album: song.item.album.name,
     albumImageUrl: song.item.album.images[0]?.url,
     songUrl: song.item.external_urls.spotify,
@@ -82,7 +84,9 @@ export async function getRecentlyPlayed() {
 
   return {
     title: track.name,
-    artist: track.artists.map((artist: SpotifyArtist) => artist.name).join(', '),
+    artist: track.artists
+      .map((artist: SpotifyArtist) => artist.name)
+      .join(', '),
     album: track.album.name,
     albumImageUrl: track.album.images[0]?.url,
     songUrl: track.external_urls.spotify,

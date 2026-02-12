@@ -24,5 +24,5 @@ export const otherImages: Other[] = [
     description: 'A screenshot of 3 apps in 1',
     span: 'col-span-2 row-span-2', // 4x4 grid
     category: 'Desktop',
-  }
+  },
 ]

@@ -12,7 +12,7 @@ import { projects } from '@/data/project'
 import { skillshowcase } from '@/data/skills'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
-import { Connect } from "./components/Connect"
+import { Connect } from './components/Connect'
 import { Project } from '@/types/project'
 
 export default function Home() {
@@ -25,7 +25,6 @@ export default function Home() {
     y: [0, -8, -5],
     transition: { duration: 0.35 },
   }
-
 
   return (
     <div className="font-inter mx-auto w-full max-w-5xl px-4 selection:bg-yellow-300 md:px-0">
@@ -58,8 +57,7 @@ export default function Home() {
                   words={[
                     {
                       text: 'ROHIT',
-                      className:
-                        'text-4xl md:text-6xl font-black text-black',
+                      className: 'text-4xl md:text-6xl font-black text-black',
                     },
                   ]}
                   className="mt-6 justify-start text-left"
@@ -134,7 +132,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 md:gap-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
             {allHomeProjects.map((project: Project, index: number) => (
               <BlurFade key={project.slug} inView delay={0.05 + index * 0.04}>
                 <motion.div whileHover={hoverBounce}>
@@ -154,7 +152,9 @@ export default function Home() {
                       {project.status === 'building' && (
                         <div className="absolute top-2.5 right-2.5 flex items-center gap-1 rounded-full border-2 border-black bg-amber-300 px-2 py-0.5">
                           <Hammer size={10} className="animate-pulse" />
-                          <span className="text-[10px] font-bold">Building</span>
+                          <span className="text-[10px] font-bold">
+                            Building
+                          </span>
                         </div>
                       )}
                     </div>
@@ -196,15 +196,23 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            {skillshowcase.map(({ icon: Icon, label }: { icon: import('react-icons').IconType, label: string }, i: number) => (
-              <span
-                key={label || `skill-${i}`}
-                className="inline-flex items-center gap-1.5 rounded-full border-2 border-black bg-[#fffdf7] px-3 py-1.5 text-xs font-bold shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-100 hover:shadow-[3px_3px_0px_0px_black]"
-              >
-                <Icon className="h-3.5 w-3.5" />
-                {label}
-              </span>
-            ))}
+            {skillshowcase.map(
+              (
+                {
+                  icon: Icon,
+                  label,
+                }: { icon: import('react-icons').IconType; label: string },
+                i: number,
+              ) => (
+                <span
+                  key={label || `skill-${i}`}
+                  className="inline-flex items-center gap-1.5 rounded-full border-2 border-black bg-[#fffdf7] px-3 py-1.5 text-xs font-bold shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-100 hover:shadow-[3px_3px_0px_0px_black]"
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {label}
+                </span>
+              ),
+            )}
           </div>
         </div>
       </section>

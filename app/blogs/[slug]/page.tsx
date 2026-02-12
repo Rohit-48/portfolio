@@ -2,7 +2,14 @@ import { getPostBySlug } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
-import { ArrowLeft, ArrowUpRight, Calendar, Clock, Share2, List } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Calendar,
+  Clock,
+  Share2,
+  List,
+} from 'lucide-react'
 import { ShareButton } from '@/app/components/ShareButton'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { isValidElement } from 'react'

@@ -3,7 +3,7 @@
 import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-  import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { social } from '@/data/social'
 import type { Social } from '@/types/social'
 import React from 'react'
@@ -12,15 +12,12 @@ const hoverBounce = {
   transition: { duration: 0.35 },
 }
 
-
 export const Connect = () => {
   return (
     <div className="relative overflow-hidden rounded-3xl border-4 border-black bg-white p-5 shadow-[4px_4px_0px_0px_black] md:p-7">
       <div className="mb-6 flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
         <div>
-          <h2 className="text-xl font-black uppercase md:text-2xl">
-            Connect
-          </h2>
+          <h2 className="text-xl font-black uppercase md:text-2xl">Connect</h2>
           <p className="mt-1 text-sm font-medium text-gray-700">
             Collaborate, chat, or follow along wherever you hang out.
           </p>
@@ -28,11 +25,7 @@ export const Connect = () => {
       </div>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-        <BlurFade
-          inView
-          delay={0.05}
-          className="col-span-2 row-span-2"
-        >
+        <BlurFade inView delay={0.05} className="col-span-2 row-span-2">
           <motion.div whileHover={hoverBounce}>
             <Link
               href="/blogs"
@@ -53,7 +46,7 @@ export const Connect = () => {
                 Explore
                 <ArrowUpRight
                   size={16}
-                  className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </div>
             </Link>
@@ -76,19 +69,25 @@ export const Connect = () => {
                   }
                   className={`group relative flex min-h-[110px] flex-col justify-between overflow-hidden rounded-2xl border-4 border-black p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:shadow-[6px_6px_0px_0px_black] ${item.tone}`}
                 >
-                  <span className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-white/20 blur-2xl transition-transform duration-300 group-hover:scale-110" />
+                  <span className="pointer-events-none absolute -top-8 -right-8 h-20 w-20 rounded-full bg-white/20 blur-2xl transition-transform duration-300 group-hover:scale-110" />
                   <div className="flex items-center justify-between">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-black/30 bg-white/20 transition-transform duration-200 group-hover:-rotate-6 group-hover:scale-105">
-                      {React.createElement(Icon as unknown as React.FC<{ className: string }>, { className: "h-5 w-5 transition-transform duration-200 group-hover:rotate-6 group-hover:scale-110" })}
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-black/30 bg-white/20 transition-transform duration-200 group-hover:scale-105 group-hover:-rotate-6">
+                      {React.createElement(
+                        Icon as unknown as React.FC<{ className: string }>,
+                        {
+                          className:
+                            'h-5 w-5 transition-transform duration-200 group-hover:rotate-6 group-hover:scale-110',
+                        },
+                      )}
                     </span>
                     <ArrowUpRight
                       size={16}
-                      className="opacity-80 transition-transform duration-200 group-hover:-translate-y-1 group-hover:translate-x-1"
+                      className="opacity-80 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1"
                     />
                   </div>
                   <div>
                     <p className="text-sm font-black">{item.label}</p>
-                    <p className="text-xs font-bold uppercase tracking-wide opacity-70">
+                    <p className="text-xs font-bold tracking-wide uppercase opacity-70">
                       {item.tag}
                     </p>
                   </div>

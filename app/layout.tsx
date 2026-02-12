@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import { Inter, Electrolize, Google_Sans } from 'next/font/google'
-import { GeistPixelSquare } from "geist/font/pixel";
+import { GeistPixelSquare } from 'geist/font/pixel'
 import './globals.css'
 import { Container } from './components/Container'
 import { Navbar } from './components/Navbar'

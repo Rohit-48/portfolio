@@ -119,17 +119,17 @@ export default function SpotifyNowPlaying() {
   const card = (
     <div className="group relative flex flex-col overflow-hidden rounded-2xl border-4 border-black bg-[#1ED760] p-5 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:shadow-[6px_6px_0px_0px_black] md:p-6">
       {/* Decorative glow — matches Connect social cards */}
-      <span className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-white/20 blur-2xl transition-transform duration-300 group-hover:scale-110" />
+      <span className="pointer-events-none absolute -top-8 -right-8 h-24 w-24 rounded-full bg-white/20 blur-2xl transition-transform duration-300 group-hover:scale-110" />
 
       {/* ── Header ── */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-black/30 bg-white/20 transition-transform duration-200 group-hover:-rotate-6 group-hover:scale-105">
-            <SiSpotify className="h-5 w-5 transition-transform duration-200 group-hover:rotate-6 group-hover:scale-110" />
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-black/30 bg-white/20 transition-transform duration-200 group-hover:scale-105 group-hover:-rotate-6">
+            <SiSpotify className="h-5 w-5 transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6" />
           </span>
           <div>
             <p className="text-sm font-black">Spotify</p>
-            <p className="text-xs font-bold uppercase tracking-wide opacity-70">
+            <p className="text-xs font-bold tracking-wide uppercase opacity-70">
               {data?.isPlaying ? 'Now Playing' : 'Last Played'}
             </p>
           </div>
@@ -138,15 +138,12 @@ export default function SpotifyNowPlaying() {
         <div className="flex items-center gap-2">
           {data?.isPlaying && (
             <SoundBars
-              seed={
-                (data.title?.length ?? 1) * 31 +
-                (data.artist?.length ?? 1)
-              }
+              seed={(data.title?.length ?? 1) * 31 + (data.artist?.length ?? 1)}
             />
           )}
           <ArrowUpRight
             size={16}
-            className="opacity-80 transition-transform duration-200 group-hover:-translate-y-1 group-hover:translate-x-1"
+            className="opacity-80 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1"
           />
         </div>
       </div>
@@ -175,14 +172,14 @@ export default function SpotifyNowPlaying() {
         )}
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-base font-black leading-tight">
+          <p className="truncate text-base leading-tight font-black">
             {data?.title ?? 'Not Playing'}
           </p>
           <p className="mt-1 truncate text-sm font-bold opacity-70">
             {data?.artist ?? 'Spotify is offline'}
           </p>
           {data?.album && (
-            <p className="mt-1.5 truncate text-[10px] font-bold uppercase tracking-wide opacity-50">
+            <p className="mt-1.5 truncate text-[10px] font-bold tracking-wide uppercase opacity-50">
               {data.album}
             </p>
           )}
@@ -241,9 +238,5 @@ export default function SpotifyNowPlaying() {
     )
   }
 
-  return (
-    <motion.div whileHover={hoverBounce}>
-      {card}
-    </motion.div>
-  )
+  return <motion.div whileHover={hoverBounce}>{card}</motion.div>
 }

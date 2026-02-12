@@ -6,9 +6,7 @@ import { X, Camera, ImageIcon } from 'lucide-react'
 import { otherImages } from '@/data/other'
 import type { Other } from '@/types/other'
 export default function Other() {
-  const [selectedOther, setSelectedOther] = useState<
-    Other | null
-  >(null)
+  const [selectedOther, setSelectedOther] = useState<Other | null>(null)
 
   return (
     <div className="font-inter mx-auto mt-8 w-full max-w-5xl px-4 pb-12 md:mt-12 md:px-0">
@@ -18,7 +16,7 @@ export default function Other() {
           <Camera size={24} />
         </div>
         <div>
-            <h1 className="text-3xl font-black uppercase md:text-4xl">Others</h1>
+          <h1 className="text-3xl font-black uppercase md:text-4xl">Others</h1>
           <p className="mt-1 text-sm text-gray-600">
             My collection, life & other stuff
           </p>
@@ -29,7 +27,7 @@ export default function Other() {
       <div className="mb-8 flex flex-wrap gap-3">
         <div className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-[#fffdf7] px-4 py-2 text-sm font-bold">
           <ImageIcon size={16} />
-            {otherImages.length} Other
+          {otherImages.length} Other
         </div>
       </div>
 

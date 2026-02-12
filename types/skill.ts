@@ -5,4 +5,3 @@ export type Skill = {
   icon: import('react-icons').IconType
   label: string
 }
-

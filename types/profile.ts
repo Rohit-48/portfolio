@@ -11,4 +11,3 @@ export type Profile = {
   zip: string
   country: string
 }
-

@@ -4,13 +4,13 @@ A simple portfolio website built with Next.js, Tailwind CSS, TypeScript, React, 
 
 ## Gallery
 
-|                                                         |                                                         |
-| ------------------------------------------------------- | ------------------------------------------------------- |
-| ![Hero & intro](./public/readmefile/header-section.png) | ![Home overview](./public/readmefile/home-section.png)  |
-| ![Projects highlight](./public/readmefile/home-project-preview.png) | ![Tech stack](./public/readmefile/stack.png)           |
-| ![Projects page](./public/readmefile/project-page.png)  | ![Blog page](./public/readmefile/blog-page.png)        |
-| ![Connect & socials](./public/readmefile/social-stuff.png) | ![Spotify & local time](./public/readmefile/spotify-localtime.png) |
-| ![Other sections](./public/readmefile/other-page.png)   |                                                         |
+|                                                                     |                                                                    |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| ![Hero & intro](./public/readmefile/header-section.png)             | ![Home overview](./public/readmefile/home-section.png)             |
+| ![Projects highlight](./public/readmefile/home-project-preview.png) | ![Tech stack](./public/readmefile/stack.png)                       |
+| ![Projects page](./public/readmefile/project-page.png)              | ![Blog page](./public/readmefile/blog-page.png)                    |
+| ![Connect & socials](./public/readmefile/social-stuff.png)          | ![Spotify & local time](./public/readmefile/spotify-localtime.png) |
+| ![Other sections](./public/readmefile/other-page.png)               |                                                                    |
 
 ## Features
 
