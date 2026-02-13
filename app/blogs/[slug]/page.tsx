@@ -153,6 +153,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="text-[15px] leading-7 text-zinc-900 md:text-base">
               <MDXRemote
                 source={post.content}
+                options={{
+                  // HCSEC-2026-01: next-mdx-remote v6 security defaults
+                  // blockJS: true  — disables JS expressions like {variable} or {func()} (default in v6)
+                  // blockDangerousJS: true — blocks eval, Function, process, require, etc. (default in v6)
+                  blockJS: true,
+                  blockDangerousJS: true,
+                }}
                 components={{
                   h1: (props: ComponentPropsWithoutRef<'h1'>) => (
                     <h1
