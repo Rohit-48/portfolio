@@ -51,7 +51,7 @@ export const Navbar = () => {
           className="min-w-0 cursor-pointer transition-transform hover:scale-105"
         >
           <h2 className="xs:text-xl truncate text-lg font-bold text-black sm:text-2xl md:text-3xl">
-            Rohit<span className="text-yellow-500">folio</span>
+            Rohit<span className="text-yellow-500">.dev</span>
           </h2>
         </Link>
       </div>
@@ -106,11 +106,10 @@ export const Navbar = () => {
                   key={link.label}
                   prefetch={true}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`flex min-h-[48px] items-center gap-3 rounded-lg px-4 py-3 text-base font-bold transition-colors duration-150 ${
-                    pathname === link.path
-                      ? 'mb-2 border-3 border-black bg-amber-300 shadow-[2px_2px_0px_0px_black]'
-                      : 'mb-2 border-3 border-transparent last:mb-0 hover:border-black hover:bg-amber-200'
-                  } `}
+                  className={`flex min-h-[48px] items-center gap-3 rounded-lg px-4 py-3 text-base font-bold transition-colors duration-150 ${pathname === link.path
+                    ? 'mb-2 border-3 border-black bg-amber-300 shadow-[2px_2px_0px_0px_black]'
+                    : 'mb-2 border-3 border-transparent last:mb-0 hover:border-black hover:bg-amber-200'
+                    } `}
                 >
                   <Icon size={20} className="sm:h-5 sm:w-5" strokeWidth={2.5} />
                   {link.label}
