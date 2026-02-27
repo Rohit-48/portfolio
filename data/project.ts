@@ -2,6 +2,21 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    slug: 'neurolink-monorepo',
+    title: 'NeuroLink Monorepo v2.0',
+    tech: ['Rust', 'Express', 'Node.js', 'Axum'],
+    description:
+      'Dual-runtime local file sharing tool for peer-to-peer transfers on your local network.',
+    extraInfo:
+      'NeuroLink is a dual-runtime local file sharing tool that runs both an Express (Node.js) and Rust (Axum) service. It lets you upload batches via a web UI or CLI, list uploads, and download individual files or ZIP archives over your local network.',
+    imageUrl: '/Projects/neurolink.png',
+    githubUrl: 'https://github.com/Rohit-48/Neurolink',
+    demoUrl: 'https://github.com/Rohit-48/Neurolink',
+    tags: ['Rust', 'Express', 'Node.js', 'Axum', 'CLI', 'P2P'],
+    color: 'bg-amber-300',
+    status: 'completed',
+  },
+  {
     slug: 'cyberpunk-Components-library',
     title: 'Cyberpunk Components Library',
     tech: ['Next.js', 'TypeScript', 'tailwindcss'],
