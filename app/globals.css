@@ -118,3 +118,41 @@
   transform-origin: bottom right;
   animation: hammer-swing 0.5s ease-in-out infinite;
 }
+
+/* Blog code highlighting theme (dark) */
+.hljs {
+  color: #e2e8f0;
+}
+.hljs-comment,
+.hljs-quote {
+  color: #94a3b8;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-name {
+  color: #fda4af;
+}
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #86efac;
+}
+.hljs-number,
+.hljs-meta,
+.hljs-type,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable {
+  color: #93c5fd;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 700;
+}

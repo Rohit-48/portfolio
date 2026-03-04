@@ -1,0 +1,15 @@
+# Rohit | Web Engineer & Developer
+
+> Web Engineer crafting pixel-perfect, retro-futuristic digital experiences. Specializing in React, Next.js, TypeScript, and modern web technologies. Based in India.
+
+## About
+
+- [Home](https://rohitvince.in): Portfolio homepage with bio and highlights
+- [Projects](https://rohitvince.in/projects): Showcase of web projects and open source work
+- [Blog](https://rohitvince.in/blogs): Technical writing on code, design & tech
+- [Other](https://rohitvince.in/other): Additional content and resources
+
+## Blog Posts
+
+- [Why I Think NixOS Is OG for Production and Development](https://rohitvince.in/blogs/nixos-distro): A deep dive into why Nix is changing the game for Linux distros
+- [Cloudflare Tunnel: A Secure Way to Connect Your Resources to Cloudflare](https://rohitvince.in/blogs/cloudflared-tunnel): How Cloudflare Tunnel works and how to use it to secure your resources
