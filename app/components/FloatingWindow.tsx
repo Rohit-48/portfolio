@@ -31,27 +31,25 @@ export default function FloatingWindow({
               <h3 className="truncate text-sm font-bold tracking-wide uppercase">
                 {selectedProject.title}
               </h3>
-              {selectedProject.status && (
-                <span
-                  className={[
-                    'inline-flex shrink-0 items-center gap-1 px-2 py-0.5',
-                    'rounded-full border-2 border-black bg-white',
-                    'text-[10px] font-black tracking-wide uppercase',
-                  ].join(' ')}
-                >
-                  {selectedProject.status === 'building' ? (
-                    <>
-                      <Hammer size={12} className="hammer-swing" />
-                      Building
-                    </>
-                  ) : (
-                    <>
-                      <CheckCircle2 size={12} />
-                      Completed
-                    </>
-                  )}
-                </span>
-              )}
+              <span
+                className={[
+                  'inline-flex shrink-0 items-center gap-1 px-2 py-0.5',
+                  'rounded-full border-2 border-black bg-white',
+                  'text-[10px] font-black tracking-wide uppercase',
+                ].join(' ')}
+              >
+                {selectedProject.status === 'wip' ? (
+                  <>
+                    <Hammer size={12} className="hammer-swing" />
+                    WIP
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle2 size={12} />
+                    Live
+                  </>
+                )}
+              </span>
             </div>
             <button
               onClick={onClose}
@@ -73,9 +71,9 @@ export default function FloatingWindow({
               />
             </div>
 
-            {/* Tech badges */}
+            {/* Stack badges */}
             <div className="mb-4 flex flex-wrap gap-2">
-              {selectedProject.tech.map((tech: string) => (
+              {selectedProject.stack.map((tech: string) => (
                 <span
                   key={tech}
                   className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold text-black"
@@ -89,8 +87,11 @@ export default function FloatingWindow({
             <h2 className="mb-2 text-2xl font-black">
               {selectedProject.title}
             </h2>
+            <p className="mb-2 text-xs font-bold text-black/50 uppercase">
+              {selectedProject.year}
+            </p>
             <p className="mb-5 text-sm leading-relaxed text-gray-600">
-              {selectedProject.extraInfo}
+              {selectedProject.description}
             </p>
 
             {/* Tags */}
@@ -123,15 +124,15 @@ export default function FloatingWindow({
                   Code
                 </a>
               )}
-              {selectedProject.demoUrl && (
+              {selectedProject.liveUrl && (
                 <a
-                  href={selectedProject.demoUrl}
+                  href={selectedProject.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-1 items-center justify-center gap-2 rounded-lg border-2 border-black bg-amber-300 px-4 py-3 text-sm font-bold text-black shadow-[2px_2px_0px_0px_black] transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_black]"
                 >
                   <ExternalLink size={18} />
-                  Live Demo
+                  Live
                 </a>
               )}
             </div>

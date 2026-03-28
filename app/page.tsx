@@ -17,10 +17,15 @@ import { Project } from '@/types/project'
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const allHomeProjects = [
-    ...projects.filter((p) => p.status === 'building'),
-    ...projects.filter((p) => p.status !== 'building'),
-  ].slice(0, 6)
+  const allHomeProjects = [...projects]
+    .sort((a, b) => {
+      if (Number(b.featured) !== Number(a.featured))
+        return Number(b.featured) - Number(a.featured)
+      if (a.status === 'wip' && b.status === 'live') return -1
+      if (a.status === 'live' && b.status === 'wip') return 1
+      return b.year - a.year
+    })
+    .slice(0, 6)
   const hoverBounce = {
     y: [0, -8, -5],
     transition: { duration: 0.35 },
@@ -78,7 +83,7 @@ export default function Home() {
               </div>
 
               <motion.a
-                href="/documents/Resume.pdf"
+                href="/documents/uResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-6 py-3 font-bold shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:shadow-[6px_6px_0px_0px_black]"
@@ -149,7 +154,7 @@ export default function Home() {
                         height={200}
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      {project.status === 'building' && (
+                      {project.status === 'wip' && (
                         <div className="absolute top-2.5 right-2.5 flex items-center gap-1 rounded-full border-2 border-black bg-amber-300 px-2 py-0.5">
                           <Hammer size={10} className="animate-pulse" />
                           <span className="text-[10px] font-bold">
@@ -168,7 +173,7 @@ export default function Home() {
                         {project.description}
                       </p>
                       <div className="mt-3 flex flex-wrap gap-1.5">
-                        {project.tech.slice(0, 3).map((tech: string) => (
+                        {project.stack.slice(0, 3).map((tech: string) => (
                           <span
                             key={tech}
                             className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold"

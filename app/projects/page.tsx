@@ -13,6 +13,14 @@ import { Project } from '@/types/project'
 import FloatingWindow from '../components/FloatingWindow'
 import { useState } from 'react'
 
+const sortedProjects = [...projects].sort((a, b) => {
+  if (Number(b.featured) !== Number(a.featured))
+    return Number(b.featured) - Number(a.featured)
+  if (a.status === 'wip' && b.status === 'live') return -1
+  if (a.status === 'live' && b.status === 'wip') return 1
+  return b.year - a.year
+})
+
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
@@ -35,7 +43,7 @@ export default function Projects() {
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-        {projects.map((project: Project) => (
+        {sortedProjects.map((project: Project) => (
           <div
             key={project.slug}
             className="cursor-pointer overflow-hidden rounded-xl border-4 border-black bg-[#fffdf7] shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_black]"
@@ -50,36 +58,34 @@ export default function Projects() {
                 className="object-cover"
               />
               {/* Status badge */}
-              {project.status && (
-                <div className="absolute top-3 left-3">
-                  <div
-                    className={[
-                      'inline-flex items-center gap-1.5 px-2.5 py-1',
-                      'rounded-full border-2 border-black',
-                      'shadow-[2px_2px_0px_0px_black]',
-                      project.status === 'building'
-                        ? 'bg-amber-300 text-black'
-                        : 'bg-emerald-200 text-black',
-                    ].join(' ')}
-                  >
-                    {project.status === 'building' ? (
-                      <>
-                        <Hammer size={14} className="hammer-swing" />
-                        <span className="text-[10px] font-black tracking-wide uppercase">
-                          Building
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        <CheckCircle2 size={14} />
-                        <span className="text-[10px] font-black tracking-wide uppercase">
-                          Completed
-                        </span>
-                      </>
-                    )}
-                  </div>
+              <div className="absolute top-3 left-3">
+                <div
+                  className={[
+                    'inline-flex items-center gap-1.5 px-2.5 py-1',
+                    'rounded-full border-2 border-black',
+                    'shadow-[2px_2px_0px_0px_black]',
+                    project.status === 'wip'
+                      ? 'bg-amber-300 text-black'
+                      : 'bg-emerald-200 text-black',
+                  ].join(' ')}
+                >
+                  {project.status === 'wip' ? (
+                    <>
+                      <Hammer size={14} className="hammer-swing" />
+                      <span className="text-[10px] font-black tracking-wide uppercase">
+                        WIP
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 size={14} />
+                      <span className="text-[10px] font-black tracking-wide uppercase">
+                        Live
+                      </span>
+                    </>
+                  )}
                 </div>
-              )}
+              </div>
               {/* Action Buttons */}
               <div className="absolute top-3 right-3 flex gap-2">
                 {project.githubUrl && (
@@ -93,9 +99,9 @@ export default function Projects() {
                     <Github size={16} />
                   </a>
                 )}
-                {project.demoUrl && (
+                {project.liveUrl && (
                   <a
-                    href={project.demoUrl}
+                    href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
@@ -111,7 +117,7 @@ export default function Projects() {
             <div className="p-4">
               <div className="mb-2 h-1 w-10 rounded-full bg-amber-300" />
               <div className="mb-2 flex gap-2">
-                {project.tech.slice(0, 2).map((tech: string, i: number) => (
+                {project.stack.slice(0, 2).map((tech: string, i: number) => (
                   <span
                     key={i}
                     className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold text-black"
