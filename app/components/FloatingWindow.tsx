@@ -24,28 +24,28 @@ export default function FloatingWindow({
         className="animate-in zoom-in-95 slide-in-from-bottom-4 w-full max-w-2xl duration-300"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex max-h-[85vh] flex-col overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] shadow-[6px_6px_0px_0px_black]">
+        <div className="flex max-h-[85vh] flex-col overflow-hidden rounded-3xl border-4 border-black bg-[#fffdf7] shadow-[8px_8px_0px_0px_black]">
           {/* Header */}
-          <div className="flex items-center justify-between border-b-4 border-black bg-amber-300 px-4 py-3">
-            <div className="flex min-w-0 items-center gap-2 pr-4">
-              <h3 className="truncate text-sm font-bold tracking-wide uppercase">
+          <div className="flex items-center justify-between border-b-4 border-black bg-amber-300 px-4 py-3 sm:px-6 sm:py-4">
+            <div className="flex min-w-0 items-center gap-3 pr-4">
+              <h3 className="truncate text-lg font-black tracking-tight uppercase">
                 {selectedProject.title}
               </h3>
               <span
                 className={[
-                  'inline-flex shrink-0 items-center gap-1 px-2 py-0.5',
-                  'rounded-full border-2 border-black bg-white',
+                  'inline-flex shrink-0 items-center gap-1.5 px-3 py-1',
+                  'rounded-full border-4 border-black bg-white',
                   'text-[10px] font-black tracking-wide uppercase',
                 ].join(' ')}
               >
                 {selectedProject.status === 'wip' ? (
                   <>
-                    <Hammer size={12} className="hammer-swing" />
+                    <Hammer size={14} className="hammer-swing" />
                     WIP
                   </>
                 ) : (
                   <>
-                    <CheckCircle2 size={12} />
+                    <CheckCircle2 size={14} />
                     Live
                   </>
                 )}
@@ -53,16 +53,16 @@ export default function FloatingWindow({
             </div>
             <button
               onClick={onClose}
-              className="rounded-lg border-2 border-black bg-white p-1.5 shadow-[2px_2px_0px_0px_black] transition-colors hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-red-400 hover:text-white hover:shadow-none"
+              className="rounded-xl border-4 border-black bg-white p-2 shadow-[2px_2px_0px_0px_black] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-red-400 hover:text-white hover:shadow-none"
             >
-              <X size={16} />
+              <X size={20} />
             </button>
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-5">
+          <div className="flex-1 overflow-y-auto p-5 md:p-8">
             {/* Image */}
-            <div className="relative mb-5 h-48 w-full overflow-hidden rounded-lg border-2 border-black bg-gray-100 md:h-56">
+            <div className="relative mb-6 h-56 w-full overflow-hidden rounded-2xl border-4 border-black bg-gray-100 md:h-72">
               <Image
                 src={selectedProject.imageUrl.trim()}
                 alt={selectedProject.title}
@@ -72,11 +72,11 @@ export default function FloatingWindow({
             </div>
 
             {/* Stack badges */}
-            <div className="mb-4 flex flex-wrap gap-2">
+            <div className="mb-6 flex flex-wrap gap-2">
               {selectedProject.stack.map((tech: string) => (
                 <span
                   key={tech}
-                  className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold text-black"
+                  className="rounded-full border-2 border-black bg-amber-200 px-3 py-1 text-xs font-bold uppercase text-black"
                 >
                   {tech}
                 </span>
@@ -84,26 +84,28 @@ export default function FloatingWindow({
             </div>
 
             {/* Title & Description */}
-            <h2 className="mb-2 text-2xl font-black">
-              {selectedProject.title}
-            </h2>
-            <p className="mb-2 text-xs font-bold text-black/50 uppercase">
-              {selectedProject.year}
-            </p>
-            <p className="mb-5 text-sm leading-relaxed text-gray-600">
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="text-3xl font-black uppercase tracking-tight">
+                {selectedProject.title}
+              </h2>
+              <span className="rounded-full border-2 border-black bg-white px-3 py-1 text-sm font-black text-black">
+                {selectedProject.year}
+              </span>
+            </div>
+            <p className="mb-8 text-base font-medium leading-relaxed text-gray-700">
               {selectedProject.description}
             </p>
 
             {/* Tags */}
-            <div className="mb-5">
-              <span className="mb-2 block text-xs font-bold text-gray-500 uppercase">
+            <div className="mb-8">
+              <span className="mb-3 block text-sm font-black uppercase tracking-wide text-black/60">
                 Tags
               </span>
               <div className="flex flex-wrap gap-2">
                 {selectedProject.tags.map((tag: string) => (
                   <span
                     key={tag}
-                    className="rounded-full border-2 border-black bg-amber-100 px-2 py-1 text-[10px] font-bold"
+                    className="rounded-full border-2 border-black bg-amber-100 px-3 py-1 text-xs font-bold uppercase"
                   >
                     {tag}
                   </span>
@@ -112,15 +114,15 @@ export default function FloatingWindow({
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {selectedProject.githubUrl && (
                 <a
                   href={selectedProject.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-black px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-gray-800"
+                  className="flex flex-1 items-center justify-center gap-3 rounded-xl border-4 border-black bg-black px-6 py-4 text-sm font-black uppercase tracking-wide text-white shadow-[4px_4px_0px_0px_black] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
                 >
-                  <Github size={18} />
+                  <Github size={20} />
                   Code
                 </a>
               )}
@@ -129,9 +131,9 @@ export default function FloatingWindow({
                   href={selectedProject.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border-2 border-black bg-amber-300 px-4 py-3 text-sm font-bold text-black shadow-[2px_2px_0px_0px_black] transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_black]"
+                  className="flex flex-1 items-center justify-center gap-3 rounded-xl border-4 border-black bg-amber-300 px-6 py-4 text-sm font-black uppercase tracking-wide text-black shadow-[4px_4px_0px_0px_black] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
                 >
-                  <ExternalLink size={18} />
+                  <ExternalLink size={20} />
                   Live
                 </a>
               )}

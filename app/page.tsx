@@ -32,7 +32,7 @@ export default function Home() {
   }
 
   return (
-    <div className="font-inter mx-auto w-full max-w-5xl px-4 selection:bg-yellow-300 md:px-0">
+    <div className="font-inter mx-auto w-full max-w-5xl selection:bg-yellow-300">
       {/* Hero */}
       <motion.section
         className="mt-8 md:mt-12"
@@ -40,7 +40,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
-        <div className="rounded-3xl border-4 border-black bg-white p-5 shadow-[4px_4px_0px_0px_black] md:p-7">
+        <div className="rounded-3xl border-4 border-black bg-white p-4 shadow-[4px_4px_0px_0px_black] sm:p-5 md:p-7">
           <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 md:gap-6">
             {/* Info */}
             <div className="flex flex-col justify-between py-1 md:py-2">
@@ -86,12 +86,12 @@ export default function Home() {
                 href="/documents/uResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-6 py-3 font-bold shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:shadow-[6px_6px_0px_0px_black]"
-                whileHover={{ y: -2 }}
+                className="mt-8 inline-flex w-fit items-center gap-3 rounded-xl border-4 border-black bg-amber-300 px-6 py-3.5 text-base font-black uppercase tracking-wide text-black shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
+                whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
                 Resume
-                <ArrowUpRight size={18} />
+                <ArrowUpRight size={20} />
               </motion.a>
             </div>
 
@@ -118,58 +118,64 @@ export default function Home() {
 
       {/* Projects */}
       <section className="mt-12">
-        <div className="rounded-3xl border-4 border-black bg-white p-5 shadow-[4px_4px_0px_0px_black] md:p-7">
-          <div className="mb-6 flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
-            <div>
-              <h2 className="text-xl font-black uppercase md:text-2xl">
-                Projects
-              </h2>
-              <p className="mt-1 text-sm font-medium text-gray-700">
-                Things I&apos;ve built and am currently building.
-              </p>
+        <div className="rounded-3xl border-4 border-black bg-white p-4 shadow-[4px_4px_0px_0px_black] sm:p-5 md:p-7">
+          <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+            <div className="flex items-center gap-4">
+              <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_black] md:p-3">
+                <Hammer size={24} className="md:h-7 md:w-7" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-black uppercase tracking-tight md:text-3xl">
+                  Projects
+                </h2>
+                <p className="mt-1 text-sm font-medium text-gray-700 md:text-base">
+                  Things I&apos;ve built and am currently building.
+                </p>
+              </div>
             </div>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-amber-300 px-4 py-2 text-xs font-bold text-black uppercase shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_black]"
+              className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-white px-5 py-2.5 text-sm font-black uppercase tracking-wide text-black shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-[6px_6px_0px_0px_black]"
             >
               View All
-              <ArrowUpRight size={14} />
+              <ArrowUpRight size={16} />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {allHomeProjects.map((project: Project, index: number) => (
               <BlurFade key={project.slug} inView delay={0.05 + index * 0.04}>
-                <motion.div whileHover={hoverBounce}>
+                <motion.div whileHover={{ y: -4 }}>
                   <div
                     onClick={() => setSelectedProject(project)}
-                    className="group cursor-pointer overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:shadow-[6px_6px_0px_0px_black]"
+                    className="group cursor-pointer rounded-2xl border-4 border-black bg-[#fffdf7] p-3 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:shadow-[6px_6px_0px_0px_black]"
                   >
                     {/* Image */}
-                    <div className="relative h-36 overflow-hidden border-b-4 border-black bg-gray-100">
+                    <div className="relative mb-3 h-36 w-full overflow-hidden rounded-xl border-4 border-black bg-gray-100">
                       <Image
                         src={project.imageUrl.trim()}
                         alt={project.title}
-                        width={400}
-                        height={200}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       {project.status === 'wip' && (
-                        <div className="absolute top-2.5 right-2.5 flex items-center gap-1 rounded-full border-2 border-black bg-amber-300 px-2 py-0.5">
-                          <Hammer size={10} className="animate-pulse" />
-                          <span className="text-[10px] font-bold">
-                            Building
+                        <div className="absolute top-2 right-2 flex items-center gap-1 rounded-full border-2 border-black bg-amber-300 px-2 py-0.5">
+                          <Hammer size={10} className="hammer-swing" />
+                          <span className="text-[10px] font-black uppercase tracking-wide">
+                            WIP
                           </span>
                         </div>
                       )}
                     </div>
 
                     {/* Info */}
-                    <div className="p-4">
-                      <h3 className="truncate text-sm font-black">
-                        {project.title}
-                      </h3>
-                      <p className="mt-1 line-clamp-2 text-xs text-gray-600">
+                    <div className="px-1">
+                      <div className="mb-2 flex items-center justify-between">
+                        <h3 className="truncate text-lg font-black uppercase tracking-tight">
+                          {project.title}
+                        </h3>
+                      </div>
+                      <p className="line-clamp-2 text-xs font-medium text-gray-600">
                         {project.description}
                       </p>
                       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -193,12 +199,31 @@ export default function Home() {
 
       {/* Skills */}
       <section className="mt-8">
-        <div className="rounded-3xl border-4 border-black bg-white p-5 shadow-[4px_4px_0px_0px_black] md:p-7">
-          <div className="mb-5">
-            <h2 className="text-xl font-black uppercase md:text-2xl">Skills</h2>
-            <p className="mt-1 text-sm font-medium text-gray-700">
-              Technologies and tools I work with.
-            </p>
+        <div className="rounded-3xl border-4 border-black bg-white p-4 shadow-[4px_4px_0px_0px_black] sm:p-5 md:p-7">
+          <div className="mb-8 flex items-center gap-4">
+            <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_black] md:p-3">
+              <div className="h-6 w-6 md:h-7 md:w-7">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-full w-full"
+                >
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-2xl font-black uppercase tracking-tight md:text-3xl">
+                Skills
+              </h2>
+              <p className="mt-1 text-sm font-medium text-gray-700 md:text-base">
+                Technologies and tools I work with.
+              </p>
+            </div>
           </div>
           <div className="flex flex-wrap gap-2">
             {skillshowcase.map(
@@ -211,9 +236,9 @@ export default function Home() {
               ) => (
                 <span
                   key={label || `skill-${i}`}
-                  className="inline-flex items-center gap-1.5 rounded-full border-2 border-black bg-[#fffdf7] px-3 py-1.5 text-xs font-bold shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-100 hover:shadow-[3px_3px_0px_0px_black]"
+                  className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-[#fffdf7] px-4 py-2 text-sm font-black uppercase tracking-wide shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[4px_4px_0px_0px_black]"
                 >
-                  <Icon className="h-3.5 w-3.5" />
+                  <Icon className="h-4 w-4" />
                   {label}
                 </span>
               ),

@@ -32,7 +32,7 @@ export const Navbar = () => {
   }, [])
 
   return (
-    <div className="fixed top-4 left-1/2 z-50 flex w-[calc(100%-1rem)] max-w-5xl -translate-x-1/2 items-center justify-between rounded-lg border-3 bg-amber-50 p-3 font-medium text-black shadow-[4px_4px_0px_0px_black] sm:top-6 sm:w-[calc(100%-1.5rem)] sm:border-3 sm:p-3 sm:shadow-[4px_4px_0px_0px_black] md:top-8 md:w-[calc(100%-2rem)] md:border-4 md:p-4 md:shadow-[6px_6px_0px_0px_black]">
+    <div className="fixed top-4 left-1/2 z-50 flex w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 items-center justify-between rounded-lg border-3 bg-amber-50 p-3 font-medium text-black shadow-[4px_4px_0px_0px_black] sm:top-6 sm:w-[calc(100%-3rem)] sm:border-3 sm:p-3 sm:shadow-[4px_4px_0px_0px_black] md:top-8 md:w-[calc(100%-4rem)] md:border-4 md:p-4 md:shadow-[6px_6px_0px_0px_black]">
       <div className="font-electrolize flex min-w-0 shrink cursor-pointer items-center gap-1 text-xl font-bold tracking-tighter transition-transform hover:scale-105 sm:gap-2">
         <Link
           href="/"
