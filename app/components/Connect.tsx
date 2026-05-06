@@ -6,11 +6,8 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { social } from '@/data/social'
 import type { Social } from '@/types/social'
+import { hoverBounce } from '@/lib/motion'
 import React from 'react'
-const hoverBounce = {
-  y: [0, -8, -5],
-  transition: { duration: 0.35 },
-}
 
 export const Connect = () => {
   return (

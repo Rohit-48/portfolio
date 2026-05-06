@@ -32,7 +32,7 @@ export const Navbar = () => {
   }, [])
 
   return (
-    <div className="fixed top-4 left-1/2 z-50 flex w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 items-center justify-between rounded-lg border-3 bg-amber-50 p-3 font-medium text-black shadow-[4px_4px_0px_0px_black] sm:top-6 sm:w-[calc(100%-3rem)] sm:border-3 sm:p-3 sm:shadow-[4px_4px_0px_0px_black] md:top-8 md:w-[calc(100%-4rem)] md:border-4 md:p-4 md:shadow-[6px_6px_0px_0px_black]">
+    <div className="fixed top-4 left-1/2 z-50 flex w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 items-center justify-between rounded-lg border-3 bg-[#fffdf7] p-3 font-medium text-black shadow-[4px_4px_0px_0px_black] sm:top-6 sm:w-[calc(100%-3rem)] sm:border-3 sm:p-3 sm:shadow-[4px_4px_0px_0px_black] md:top-8 md:w-[calc(100%-4rem)] md:border-4 md:p-4 md:shadow-[4px_4px_0px_0px_black]">
       <div className="font-electrolize flex min-w-0 shrink cursor-pointer items-center gap-1 text-xl font-bold tracking-tighter transition-transform hover:scale-105 sm:gap-2">
         <Link
           href="/"
@@ -97,7 +97,7 @@ export const Navbar = () => {
           />
 
           {/* Menu */}
-          <div className="animate-in slide-in-from-top-2 absolute top-full right-0 left-0 z-50 mt-2 rounded-lg border-3 border-black bg-amber-50 p-2 shadow-[4px_4px_0px_0px_black] duration-200 sm:mt-3 sm:border-3 sm:p-3 sm:shadow-[4px_4px_0px_0px_black] md:border-4 md:shadow-[6px_6px_0px_0px_black] lg:hidden">
+          <div className="animate-in slide-in-from-top-2 absolute top-full right-0 left-0 z-50 mt-2 rounded-lg border-3 border-black bg-[#fffdf7] p-2 shadow-[4px_4px_0px_0px_black] duration-200 sm:mt-3 sm:border-3 sm:p-3 sm:shadow-[4px_4px_0px_0px_black] md:border-4 md:shadow-[4px_4px_0px_0px_black] lg:hidden">
             {navLinks.map((link) => {
               const Icon = link.icon
               return (

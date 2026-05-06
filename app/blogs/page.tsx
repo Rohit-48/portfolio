@@ -6,6 +6,7 @@ import { BlogPost } from '@/types/blog'
 import { blogPosts } from '@/data/blog'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
+import { hoverBounce } from '@/lib/motion'
 
 function formatDate(iso: string) {
   const d = new Date(iso)
@@ -22,10 +23,6 @@ export default function Blogs() {
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
   const [featured, ...rest] = sorted
-  const hoverBounce = {
-    y: [0, -6, -4],
-    transition: { duration: 0.3 },
-  }
 
   return (
     <div className="font-inter mx-auto mt-8 w-full max-w-5xl pb-12 md:mt-12">
@@ -59,7 +56,7 @@ export default function Blogs() {
               <motion.div whileHover={hoverBounce}>
                 <Link
                   href={`/blogs/${featured.slug}`}
-                  className="group block rounded-2xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black]"
+                  className="group block rounded-2xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
                 >
                   <div className="flex flex-col p-2 md:p-4">
                     <div className="mb-4 flex items-center justify-between">
@@ -105,7 +102,7 @@ export default function Blogs() {
                   <motion.div whileHover={hoverBounce}>
                     <Link
                       href={`/blogs/${post.slug}`}
-                      className="group block rounded-2xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black]"
+                      className="group block rounded-2xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
                     >
                       <div className="p-2">
                         <div className="mb-4 flex items-center justify-between">
@@ -145,14 +142,14 @@ export default function Blogs() {
 
           {/* Empty state when no posts or only 1 */}
           {blogPosts.length === 0 && (
-            <div className="mt-8 rounded-3xl border-4 border-dashed border-black/30 bg-amber-50/50 p-12 text-center">
+            <div className="mt-8 rounded-3xl border-4 border-dashed border-black/30 bg-[#fffdf7] p-12 text-center">
               <p className="text-lg font-black uppercase tracking-tight text-gray-600">
                 No posts yet. Check back soon!
               </p>
             </div>
           )}
           {blogPosts.length === 1 && (
-            <div className="mt-8 rounded-3xl border-4 border-dashed border-black/30 bg-amber-50/50 p-12 text-center">
+            <div className="mt-8 rounded-3xl border-4 border-dashed border-black/30 bg-[#fffdf7] p-12 text-center">
               <p className="text-lg font-black uppercase tracking-tight text-gray-600">
                 More posts coming soon...
               </p>

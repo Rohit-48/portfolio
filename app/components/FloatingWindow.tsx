@@ -24,7 +24,7 @@ export default function FloatingWindow({
         className="animate-in zoom-in-95 slide-in-from-bottom-4 w-full max-w-2xl duration-300"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex max-h-[85vh] flex-col overflow-hidden rounded-3xl border-4 border-black bg-[#fffdf7] shadow-[8px_8px_0px_0px_black]">
+        <div className="flex max-h-[85vh] flex-col overflow-hidden rounded-3xl border-4 border-black bg-[#fffdf7] shadow-[6px_6px_0px_0px_black]">
           {/* Header */}
           <div className="flex items-center justify-between border-b-4 border-black bg-amber-300 px-4 py-3 sm:px-6 sm:py-4">
             <div className="flex min-w-0 items-center gap-3 pr-4">

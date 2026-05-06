@@ -12,7 +12,7 @@ export default function Other() {
     <div className="font-inter mx-auto mt-8 w-full max-w-5xl px-4 pb-12 md:mt-12 md:px-0">
       {/* Header */}
       <div className="mb-8 flex items-center gap-3">
-        <div className="rounded-xl border-4 border-black bg-amber-300 p-2 shadow-[3px_3px_0px_0px_black]">
+        <div className="rounded-xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_black]">
           <Camera size={24} />
         </div>
         <div>

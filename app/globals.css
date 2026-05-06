@@ -7,12 +7,6 @@
   --black: #0f1108;
 }
 
-/* Dark Mode */
-.dark {
-  --background: #001219;
-  --foreground: #edf2f4;
-}
-
 @theme inline {
 }
 
@@ -22,14 +16,6 @@
 
 .font-inter {
   font-family: var(--font-inter), 'Inter', sans-serif;
-}
-
-.font-googlesans {
-  font-family: var(--font-Google_Sans), 'Google_Sans', sans-serif;
-}
-
-.font-geistpixel {
-  font-family: var(--font-geistpixel), 'GeistPixel', sans-serif;
 }
 
 .myshadow {

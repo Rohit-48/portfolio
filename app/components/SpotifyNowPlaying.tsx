@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { SiSpotify } from 'react-icons/si'
 import { ArrowUpRight } from 'lucide-react'
 import { motion } from 'motion/react'
+import { hoverBounce } from '@/lib/motion'
 
 interface SpotifyData {
   isPlaying: boolean
@@ -52,11 +53,6 @@ function SoundBars({ seed }: { seed: number }) {
       ))}
     </div>
   )
-}
-
-const hoverBounce = {
-  y: [0, -8, -5],
-  transition: { duration: 0.35 },
 }
 
 export default function SpotifyNowPlaying() {

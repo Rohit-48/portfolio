@@ -49,7 +49,7 @@ export default function Projects() {
         {sortedProjects.map((project: Project, index: number) => (
           <BlurFade key={project.slug} inView delay={0.05 + index * 0.05}>
             <div
-              className="group cursor-pointer rounded-2xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black]"
+              className="group cursor-pointer rounded-2xl border-4 border-black bg-[#fffdf7] p-4 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
               onClick={() => setSelectedProject(project)}
             >
               {/* Image */}
@@ -145,7 +145,7 @@ export default function Projects() {
                   {project.tags.slice(0, 3).map((tag: string) => (
                     <span
                       key={tag}
-                      className="rounded-full border-2 border-black bg-amber-100 px-2 py-1 text-[10px] font-bold"
+                      className="rounded-full border-2 border-black bg-amber-200 px-2 py-1 text-[10px] font-bold"
                     >
                       {tag}
                     </span>

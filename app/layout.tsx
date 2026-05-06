@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import localFont from 'next/font/local'
-import { Inter, Electrolize, Google_Sans } from 'next/font/google'
-import { GeistPixelSquare } from 'geist/font/pixel'
+import { Inter, Electrolize } from 'next/font/google'
 import './globals.css'
 import { Container } from './components/Container'
 import { Navbar } from './components/Navbar'
@@ -18,14 +16,6 @@ const inter = Inter({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
 })
-
-const googlesans = Google_Sans({
-  variable: '--font-googlesans',
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-})
-
-const geistpixel = GeistPixelSquare
 
 export const metadata: Metadata = {
   title: {
@@ -99,7 +89,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${electrolize.variable} ${GeistPixelSquare.variable} antialiased`}
+        className={`${inter.variable} ${electrolize.variable} antialiased`}
         suppressHydrationWarning
       >
         <BackgroundPattern />
