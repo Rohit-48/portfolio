@@ -2,6 +2,50 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    slug: 'hubeee',
+    title: 'DEVHUB',
+    description:
+      'A terminal-based workspace manager that scans your project root, tracks git state, scores project health, and gives you a keyboard-driven dashboard for active work.',
+    tags: ['RUST', 'RATATUI', 'CLI', 'GIT2', 'SERDE'],
+    status: 'wip',
+    year: 2026,
+    githubUrl: 'https://github.com/Rohit-48/HUBEEE',
+    featured: true,
+    stack: ['Rust', 'Ratatui', 'Crossterm', 'Clap', 'Git2'],
+    imageUrl: '/images/projects/hubeee.svg',
+    content: `## What It Is
+
+DevHub is a terminal-first workspace manager for developers. It scans a real project root like \`~/Dev\`, detects project types, persists metadata, and surfaces git and task context through a keyboard-driven TUI.
+
+## Core Features
+
+- **Workspace Scanning** - detect direct-child projects across Rust, Node.js, React, Next.js, Python, Go, C/C++, Git, and unknown folders
+- **TUI Dashboard** - browse projects with status badges, git branch details, changed-file counts, tasks, and recent files
+- **Live Search** - filter by project name, type, tags, status, starred, stale, and archived states
+- **Git Integration** - inspect status, pull, add all changes, and create commits from inside the dashboard
+- **Health Scoring** - compute project health and inspect the factors behind the score
+- **Idea Vault + Sessions** - capture ideas, convert them into projects, and save or restore workspace sessions
+
+## Stack
+
+- **Rust** - core application and CLI runtime
+- **Ratatui** - terminal user interface rendering
+- **Crossterm** - terminal events and screen management
+- **Clap** - command parsing for CLI flows
+- **Git2** - repository inspection and git actions
+- **Serde / Serde JSON** - persisted metadata, sessions, and config
+
+## Run Commands
+
+\`\`\`bash
+cargo build --release
+./target/release/devhub
+
+# Optional custom root
+./target/release/devhub --path ~/Projects
+\`\`\``,
+  },
+  {
     slug: 'My-Crate',
     title: 'My-Crate',
     description:
