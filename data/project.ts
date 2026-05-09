@@ -7,7 +7,7 @@ export const projects: Project[] = [
     description:
       'A terminal-based workspace manager that scans your project root, tracks git state, scores project health, and gives you a keyboard-driven dashboard for active work.',
     tags: ['RUST', 'RATATUI', 'CLI', 'GIT2', 'SERDE'],
-    status: 'wip',
+    status: 'completed',
     year: 2026,
     githubUrl: 'https://github.com/Rohit-48/HUBEEE',
     featured: true,
