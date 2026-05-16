@@ -22,6 +22,13 @@ export const social: Social[] = [
     tag: 'Open source',
   },
   {
+    label: 'Codeberg',
+    href: 'https://codeberg.org/giyucode',
+    icon: SiCodeberg,
+    tone: 'bg-[#2185d0] text-white',
+    tag: 'Slowly migrating to Codeberg',
+  },
+  {
     label: 'X',
     href: 'https://x.com/rohitcpp',
     icon: SiX,
@@ -83,13 +90,6 @@ export const social: Social[] = [
     icon: SiKaggle,
     tone: 'bg-[#20BEFF] text-white',
     tag: 'self-enlightment',
-  },
-  {
-    label: 'Codeberg',
-    href: 'https://codeberg.org/giyucode',
-    icon: SiCodeberg,
-    tone: 'bg-[#2185d0] text-white',
-    tag: 'Open source',
   },
   {
     label: 'GitLab',
