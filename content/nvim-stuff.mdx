@@ -1,0 +1,462 @@
+---
+title: 'My Neovim Config: No Autocomplete, No Mercy'
+date: '2026-05-01'
+excerpt: 'A practical tour of my NvChad-based Neovim setup for LSP, formatting, debugging, navigation, and daily terminal-first development.'
+tags: ['Neovim', 'NvChad', 'LSP', 'Developer Tools']
+---
+
+## Why I'm Even Writing This
+
+I code in Neovim with no AI autocomplete. No Copilot, no Codeium, no Supermaven whispering answers into my ear. Deliberate hard mode. The idea is that if I can't write it myself, I shouldn't be writing it yet.
+
+That constraint means my editor setup has to be _good_. Not flashy, good. The LSP needs to work reliably across every language I touch. Formatting has to be automatic and opinionated. Navigation has to be fast enough that I'm never thinking about the editor, only the code.
+
+I've been running this config daily across web dev (TypeScript, React, Hono), Rust, Go, Python, and C/C++. It's built on NvChad v2.5 as the base, uses Neovim 0.11's new LSP APIs, and has exactly zero plugins I added just because someone on Reddit said they were cool.
+
+You can find the source at [codeberg.org/Spaceeeeeh/NVIM](https://codeberg.org/Spaceeeeeh/NVIM).
+
+---
+
+## The Foundation: NvChad + Neovim 0.11
+
+NvChad gives you a sane starting point: Catppuccin theme through Base46, a dashboard, Telescope wired up, and lazy.nvim for plugin management. It handles the boilerplate so I don't have to.
+
+The important thing here is the Neovim version requirement. This config uses `vim.lsp.config` and `vim.lsp.enable`, the _new_ LSP API that landed in 0.11. If you're on 0.10 or older, none of the LSP setup will work. Check your version before you do anything else.
+
+```lua
+-- init.lua
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+vim.g.mapleader = " "
+
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system {
+        "git", "clone", "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", lazypath,
+    }
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+    { "NvChad/NvChad", lazy = false, branch = "v2.5", import = "nvchad.plugins" },
+    { import = "plugins" },
+}, require "configs.lazy")
+```
+
+After lazy bootstraps, it loads NvChad, imports my custom plugins, loads the cached Base46 theme, then runs `options.lua`, `autocmds.lua`, and `mappings.lua` in order.
+
+The theme is Catppuccin via NvChad's Base46 system, configured in `chadrc.lua`. It just looks right. Dark, readable, not trying too hard.
+
+---
+
+## How the Config Is Laid Out
+
+The project structure is intentionally flat. No deep nesting, no "configs/lsp/servers/rust/init.lua" type nonsense.
+
+```text
+.
+├── init.lua
+├── lazy-lock.json
+├── lua
+│   ├── autocmds.lua
+│   ├── chadrc.lua
+│   ├── mappings.lua
+│   ├── options.lua
+│   ├── configs
+│   │   ├── conform.lua
+│   │   ├── dap.lua
+│   │   ├── lazy.lua
+│   │   └── lspconfig.lua
+│   └── plugins
+│       └── init.lua
+└── .stylua.toml
+```
+
+Five files worth paying attention to:
+
+- `options.lua`: editor behavior. Relative numbers, four-space tabs, cursorline, scroll padding.
+- `plugins/init.lua`: the full plugin list. Everything lazy-loaded where it makes sense.
+- `configs/lspconfig.lua`: language server setup, using the new `vim.lsp.config` API.
+- `configs/conform.lua`: formatters by filetype, format-on-save with a five-second timeout.
+- `configs/dap.lua`: debug adapter setup, auto-opens dap-ui when a session starts.
+
+---
+
+## LSP: The New API (and Why It Matters)
+
+Neovim 0.11 shipped a new way to configure LSPs. Instead of the old `require("lspconfig").server.setup({})` pattern, you now use `vim.lsp.config` and `vim.lsp.enable`. It's cleaner and it integrates better with the rest of the editor.
+
+Simple servers get enabled with almost no config:
+
+```lua
+-- configs/lspconfig.lua
+vim.lsp.enable {
+    "html",
+    "cssls",
+    "ts_ls",
+    "jsonls",
+    "bashls",
+    "lua_ls",
+}
+```
+
+That's it for those. They work out of the box with sensible defaults. Languages that need more attention, Rust, Go, Python, C/C++, get explicit `vim.lsp.config` blocks with custom settings. More on those below.
+
+One thing I do for all servers: disable document formatting through the LSP. Conform handles that, and having two formatting systems fight over your file on save is not a good time.
+
+---
+
+## Web Dev: HTML, CSS, Tailwind, TypeScript
+
+This is where most of my daily work lives. The stack is typically Hono.js or Next.js, Tailwind, TypeScript, sometimes React.
+
+TypeScript gets `ts_ls` (the built-in TypeScript language server). It handles both JS and TS, gives you go-to-definition, find references, rename symbol, the works. No special configuration needed; it just works.
+
+Tailwind gets `tailwindcss-language-server` with the default config. Class completions, hover previews for what the class actually does in CSS, flagging unknown classes. If you use Tailwind and you don't have the LSP running, you're working in the dark.
+
+For HTML I added `nvim-ts-autotag`, which auto-closes and auto-renames HTML and JSX tags. You type `<div>`, it writes `</div>`. You rename the opening tag, the closing tag follows. It's such a small thing that once you have it, removing it feels like losing a limb.
+
+Formatting for web files all goes through `prettierd`. Not prettier, `prettierd`: the daemon version that stays running between invocations so the first format of the session isn't slow. HTML also gets `djlint` for template-specific cleanup.
+
+---
+
+## Rust: Where Things Get Interesting
+
+Rust is where this config earns its keep. `rust-analyzer` has a genuinely good implementation in Neovim if you configure it properly.
+
+```lua
+-- configs/lspconfig.lua
+vim.lsp.config("rust_analyzer", {
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                allFeatures = true,
+            },
+            procMacro = {
+                enable = true,
+            },
+            checkOnSave = {
+                command = "clippy",
+            },
+            inlayHints = {
+                bindingModeHints = { enable = true },
+                chainingHints = { enable = true },
+                closureCaptureHints = { enable = true },
+                closureReturnTypeHints = { enable = true },
+                implicitDrops = { enable = true },
+                lifetimeElisionHints = { enable = true },
+                rangeExclusiveHints = { enable = true },
+            },
+        },
+    },
+})
+vim.lsp.enable("rust_analyzer")
+```
+
+Let me break down what each setting actually does, because this is the part most configs get lazy about:
+
+**`allFeatures = true`** enables all Cargo features when analyzing your code. Without this, rust-analyzer only sees the default feature set and misses code that's behind a feature flag. If you've ever been confused why a struct isn't showing up in completions, this is probably why.
+
+**`procMacro.enable = true`** makes proc macros (`#[derive(Debug)]`, `#[tokio::main]`, your Serde macros, basically everything you actually use) get analyzed correctly. The default is off because proc macros can be slow. Turn it on anyway. The slowdown is worth it for correct completions.
+
+**`checkOnSave.command = "clippy"`** runs `cargo clippy` on save instead of just `cargo check`. Clippy catches a lot more than the compiler alone. You get lints, suggestions, and idiomatic-Rust nudges right in the editor as diagnostics. Code as a human would review it, not just as the compiler would.
+
+**`inlayHints`** has almost everything enabled here. The killer ones are `chainingHints` (shows you the type at each step of a method chain) and `closureReturnTypeHints` (shows what your closure returns when you don't annotate it explicitly). `lifetimeElisionHints` shows the lifetimes that Rust elides for you, which is incredibly useful when you're learning the borrow checker. And `implicitDrops` shows where values are being dropped, which matters a lot when you're thinking about resource management.
+
+For Rust formatting, `rustfmt` runs through Conform on save. No options, no config; `rustfmt` is opinionated and that's the point. You write the code, rustfmt makes it look right.
+
+I also have `crates.nvim` in the plugin list for `Cargo.toml` support. It shows you the latest version of each dependency inline, lets you quickly upgrade, and flags crates that have newer versions available. Indispensable for dependency management without leaving the editor.
+
+---
+
+## Go: gopls and the Three-Formatter Stack
+
+Go was a pleasant setup after the Rust config. `gopls` is excellent and barely needs configuration, but a few settings are worth being deliberate about:
+
+```lua
+vim.lsp.config("gopls", {
+    settings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+                unusedparams = true,
+            },
+            gofumpt = true,
+        },
+    },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+})
+vim.lsp.enable("gopls")
+```
+
+**`completeUnimported = true`** means you type `json.Marshal` and gopls completes it, then automatically adds `"encoding/json"` to your imports. This is the single best feature of gopls and I cannot imagine writing Go without it.
+
+**`usePlaceholders = true`** fills in parameter names as snippet placeholders when you accept a function completion, so you can Tab through them. Not just an empty `()` that you have to figure out.
+
+**`gofumpt = true`** uses gofumpt instead of gofmt. Stricter, more opinionated. Groups imports properly, enforces more consistent spacing. Once you've used it you'll notice the difference immediately in codebases that don't use it.
+
+The filetypes include `gomod`, `gowork`, and `gotmpl`, so your go.mod file, workspace files, and templates all get LSP intelligence, not just `.go` files.
+
+For formatting, Go gets three formatters stacked in sequence through Conform:
+
+```lua
+-- configs/conform.lua
+go = { "gofumpt", "goimports_reviser", "golines" },
+```
+
+`gofumpt` for formatting, `goimports_reviser` for organizing imports into sections (stdlib / external / internal), and `golines` for wrapping long lines. All three run on save in that order. It sounds like overkill. It isn't.
+
+---
+
+## Python: Dual LSP with Pyright + Ruff
+
+Python gets two language servers running simultaneously: `pyright` for type checking and `ruff` for linting. They do different things and don't conflict.
+
+```lua
+vim.lsp.config("pyright", {
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "basic",
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
+            },
+        },
+    },
+    filetypes = { "python" },
+})
+vim.lsp.enable("pyright")
+vim.lsp.enable("ruff")
+```
+
+**`typeCheckingMode = "basic"`** is the middle ground between `"off"` (useless) and `"strict"` (will make you question your life choices). `"basic"` catches real bugs without flooding you with type errors on perfectly fine code.
+
+**`diagnosticMode = "workspace"`** analyzes your entire project, not just the currently open file. Catches cross-file import issues and type mismatches that you'd otherwise only see at runtime.
+
+**`useLibraryCodeForTypes = true`** makes Pyright use the actual library source code when type stubs aren't available. Means you get real completions for third-party packages even when they're not fully typed.
+
+Formatting goes through `black`. Opinionated, no config, non-negotiable. Same deal as `rustfmt`: you stop arguing about formatting and start writing code.
+
+For debugging, `nvim-dap-python` connects to `debugpy`. Configure it once, and you get proper Python debugging with breakpoints, variable inspection, and step-through from inside Neovim. Better than print statements. Marginally.
+
+---
+
+## C/C++: clangd, Keep It Simple
+
+```lua
+vim.lsp.config("clangd", {
+    on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+})
+vim.lsp.enable("clangd")
+```
+
+The only thing worth noting: both formatting capabilities are disabled on `clangd` explicitly. That's because `clang-format` handles formatting through Conform, and if you leave clangd's formatter enabled you get two systems fighting over your code on every save. Disable it here, let Conform win.
+
+Everything else, from completions and go-to-definition to find references and diagnostics, just works with `clangd` out of the box. It's one of the better language servers in the ecosystem.
+
+---
+
+## Formatting: Conform Does the Arguing For You
+
+All formatting runs through `conform.nvim` and fires on save. Five-second timeout with LSP fallback if no formatter is configured for the filetype.
+
+```lua
+-- configs/conform.lua
+local conform = require "conform"
+
+conform.setup {
+    formatters_by_ft = {
+        javascript      = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        typescript      = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        css             = { "prettierd" },
+        html            = { "prettierd", "djlint" },
+        markdown        = { "prettierd" },
+        json            = { "prettierd" },
+        go              = { "gofumpt", "goimports_reviser", "golines" },
+        python          = { "black" },
+        rust            = { "rustfmt" },
+        c               = { "clang-format" },
+        cpp             = { "clang-format" },
+        lua             = { "stylua" },
+    },
+    format_on_save = {
+        timeout_ms = 5000,
+        lsp_fallback = true,
+    },
+}
+```
+
+The pattern is: one formatter per language where possible, no debates, format on save always. The only exception is HTML which gets `prettierd` and `djlint` in sequence.
+
+Lua formatting uses `stylua` with config from `.stylua.toml` at the project root. Four-space indentation, call parentheses always preserved, sorted requires. It's in the repo, so if you clone this config, stylua will just pick it up.
+
+---
+
+## Debugging: DAP + dap-ui That Doesn't Get in Your Way
+
+The debug setup in `configs/dap.lua` does one thing beyond the defaults: it auto-manages the dap-ui sidebar.
+
+```lua
+-- configs/dap.lua
+local dap = require "dap"
+local dapui = require "dapui"
+
+dapui.setup()
+dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+end
+
+require("nvim-dap-python").setup "python"
+```
+
+When a debug session starts, dap-ui opens automatically. When the session ends (either by finishing or by you stopping it), it closes. You don't manage the sidebar manually. You set a breakpoint, hit `<F5>`, and the debug panel appears. When you're done, it disappears.
+
+Python debugging is configured through `nvim-dap-python` pointing at `python` in your PATH. If you're using virtual environments, make sure the right Python is active before launching Neovim or adjust the path accordingly.
+
+For other languages, DAP adapters need to be configured per-project or globally. The framework is wired up; you just need to point it at the right debugger binary.
+
+The debug keybinds follow the standard F-key convention:
+
+| Key         | Action            |
+| ----------- | ----------------- |
+| `<F5>`      | Start / continue  |
+| `<F10>`     | Step over         |
+| `<F11>`     | Step into         |
+| `<F12>`     | Step out          |
+| `<leader>b` | Toggle breakpoint |
+
+---
+
+## Navigation: Harpoon + Telescope + Oil.nvim
+
+Three tools for three different navigation needs. They don't overlap.
+
+**Telescope** is for finding things you don't know the location of: searching by filename, grepping across the project, browsing buffers. `<leader>ff` for files, `<leader>fg` for live grep, `<leader>fb` for buffers, `<leader>fh` for help tags. It needs `ripgrep` installed for live grep to work.
+
+**Harpoon** is for the files you're actively working in right now. You mark them, jump between them with `<leader>1` through `<leader>4`. No file picker, no fuzzy search; just direct jumps to exactly the file you need. When you're deep in a feature touching three or four files repeatedly, this is faster than anything else.
+
+**Oil.nvim** is for file system operations. Hit `-` from any buffer and you get a directory listing that you can edit like a text file. Rename a file by changing the text. Delete by deleting the line. Move by cutting and pasting between Oil buffers. Create a file by adding a new line. It treats the filesystem as a buffer, which is the right abstraction.
+
+The three together cover every navigation scenario: large-scale search (Telescope), focused work navigation (Harpoon), filesystem operations (Oil). You rarely reach for anything else.
+
+---
+
+## Git: LazyGit in One Keybind
+
+```lua
+-- mappings.lua
+map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
+```
+
+That's the whole git setup. `<leader>gg` opens LazyGit in a floating window. Stage hunks, commit, push, pull, view diff, manage branches: all from there. If you've used LazyGit you know. If you haven't, install it and use this keybind for a week. You won't go back to running git in a separate terminal.
+
+The only requirement is having `lazygit` installed on your system.
+
+---
+
+## Sessions, Presence, and the Other Stuff
+
+**auto-session** handles project sessions. It saves your open buffers, window layout, and working directory automatically when you leave. When you come back to a project directory, your session is restored. Loaded eagerly so it can capture the session before any buffers open.
+
+**WakaTime** runs in the background tracking how long you're actually coding. The numbers are humbling. Also loaded eagerly so it catches all activity from the moment you open the editor.
+
+**Discord presence (presence.nvim)** shows what you're editing in Discord. Also loaded eagerly. Optional, but if you're going to spend this much time in Neovim you might as well let people know.
+
+**crates.nvim** loads lazily on `BufRead` for `Cargo.toml` files. Shows current versions, latest available versions, flags outdated dependencies, lets you update from inside the editor. If you write Rust, this is not optional.
+
+---
+
+## The Keybindings I Actually Use
+
+The leader key is Space. `;` maps to `:` for entering command mode, removing the Shift press from every command.
+
+| Key           | Action                              |
+| ------------- | ----------------------------------- |
+| `;`           | Enter command mode                  |
+| `jk`          | Leave insert mode                   |
+| `<leader>ff`  | Find files (Telescope)              |
+| `<leader>fg`  | Live grep across project            |
+| `<leader>fb`  | Show open buffers                   |
+| `<leader>fh`  | Search help tags                    |
+| `<leader>gg`  | Open LazyGit                        |
+| `<leader>a`   | Add file to Harpoon                 |
+| `<leader>h`   | Open Harpoon quick menu             |
+| `<leader>1-4` | Jump to Harpoon files 1 through 4   |
+| `-`           | Open Oil.nvim                       |
+| `<F5>`        | Debug: continue/start               |
+| `<F10>`       | Debug: step over                    |
+| `<F11>`       | Debug: step into                    |
+| `<F12>`       | Debug: step out                     |
+| `<leader>b`   | Toggle breakpoint                   |
+| `<C-h/j/k/l>` | Navigate tmux panes / Neovim splits |
+
+The tmux navigation bindings deserve a mention. With `vim-tmux-navigator` loaded, `<C-h/j/k/l>` moves you between Neovim splits and tmux panes without any distinction. You don't need to think about whether you're crossing a Vim split or a tmux boundary. It just moves you in the direction you pressed. If you live in tmux (and you should), this plugin is non-negotiable.
+
+NvChad also ships its own default mappings on top of these, including Telescope, NvimTree, and buffer management. The table above only covers what I've added in `lua/mappings.lua`.
+
+---
+
+## Steal It
+
+The config is opinionated but it's not precious. It's tuned for the way I work: terminal-first, tmux-heavy, no AI autocomplete, and it covers the languages I actually use daily.
+
+```bash
+# back up whatever you have
+mv ~/.config/nvim ~/.config/nvim.bak
+
+# clone it
+git clone https://codeberg.org/Spaceeeeeh/NVIM.git ~/.config/nvim
+
+# start neovim; lazy bootstraps on first launch
+nvim
+```
+
+You'll also need the external tools. The ones that matter most:
+
+```bash
+# web
+npm install -g prettierd typescript-language-server
+
+# rust
+rustup component add rust-analyzer rustfmt clippy
+
+# go
+go install golang.org/x/tools/gopls@latest
+go install mvdan.cc/gofumpt@latest
+go install github.com/incu6us/goimports-reviser/v3@latest
+go install github.com/segmentio/golines@latest
+
+# python
+pip install black debugpy pyright ruff
+
+# c/c++
+sudo pacman -S clang   # or your distro's equivalent
+
+# misc
+npm install -g bash-language-server
+cargo install stylua
+```
+
+Install Neovim 0.11 or newer. Install a Nerd Font or icons will look broken. Install tmux and lazygit if you want those integrations.
+
+If something opens but a language feature isn't working, the first check is always whether the matching language server or formatter is installed. `:checkhealth` will usually tell you what's missing.
+
+This is a living config. It changes when something breaks, when I pick up a new language, or when I find a better tool. The repo is the source of truth.
+
+---
+
+_Source: [codeberg.org/Spaceeeeeh/NVIM](https://codeberg.org/Spaceeeeeh/NVIM)_

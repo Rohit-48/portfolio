@@ -20,4 +20,13 @@ export const blogPosts: BlogPost[] = [
     tags: ['Cloudflare', 'Tunnel', 'NixOS'],
     content: '',
   },
+  {
+    slug: 'nvim-stuff',
+    title: 'My Neovim Config: No Autocomplete, No Mercy',
+    date: '2026-05-01',
+    excerpt:
+      'A practical tour of my NvChad-based Neovim setup for LSP, formatting, debugging, navigation, and daily terminal-first development.',
+    tags: ['Neovim', 'NvChad', 'LSP', 'Developer Tools'],
+    content: '',
+  },
 ]
