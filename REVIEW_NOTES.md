@@ -40,5 +40,5 @@ A few `eslint-disable` directives are no longer needed and can be removed.
 
 ## Current status
 
-- Lint result: **failed** (8 errors, 6 warnings).
-- App health: likely functionally usable, but code quality gates are not passing due to hook/compiler rules.
+- Lint result: **passed** after remediation (May 19, 2026).
+- App health: code quality gates are passing; React hook/compiler issues listed above have been addressed.

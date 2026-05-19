@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, MotionProps } from 'motion/react'
 
 import { cn } from '@/lib/utils'
@@ -30,6 +30,15 @@ const DEFAULT_CHARACTER_SET = Object.freeze(
   'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
 ) as readonly string[]
 
+const MOTION_COMPONENTS = {
+  div: motion.div,
+  h1: motion.h1,
+  h2: motion.h2,
+  h3: motion.h3,
+  p: motion.p,
+  span: motion.span,
+} as const
+
 const getRandomInt = (max: number): number => Math.floor(Math.random() * max)
 
 export function HyperText({
@@ -43,10 +52,8 @@ export function HyperText({
   characterSet = DEFAULT_CHARACTER_SET,
   ...props
 }: HyperTextProps) {
-  const MotionComponent = useMemo(
-    () => motion.create(Component, { forwardMotionProps: true }),
-    [Component],
-  )
+  const MotionComponent =
+    MOTION_COMPONENTS[Component as keyof typeof MOTION_COMPONENTS] ?? motion.div
 
   const [displayText, setDisplayText] = useState<string[]>(() =>
     children.split(''),

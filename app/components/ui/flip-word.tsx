@@ -14,11 +14,6 @@ export const FlipWords = ({
 }) => {
   const [currentWord, setCurrentWord] = useState(words[0])
   const [isAnimating, setIsAnimating] = useState<boolean>(false)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const startAnimation = useCallback(() => {
     const word = words[words.indexOf(currentWord) + 1] || words[0]
@@ -27,23 +22,13 @@ export const FlipWords = ({
   }, [currentWord, words])
 
   useEffect(() => {
-    if (!mounted) return
     if (!isAnimating) {
       const timeout = setTimeout(() => {
         startAnimation()
       }, duration)
       return () => clearTimeout(timeout)
     }
-  }, [isAnimating, duration, startAnimation, mounted])
-
-  // Render static content on server and initial client render to avoid hydration mismatch
-  if (!mounted) {
-    return (
-      <span className={cn('inline-block px-2 text-left text-black', className)}>
-        {words[0]}
-      </span>
-    )
-  }
+  }, [isAnimating, duration, startAnimation])
 
   return (
     <AnimatePresence

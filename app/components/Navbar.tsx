@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Home, FolderOpenDot, Logs, Menu, X, FolderArchive } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 
 export const Navbar = () => {
   const navLinks = [
@@ -12,12 +12,16 @@ export const Navbar = () => {
     { label: 'Blogs', path: '/blogs', icon: Logs },
     { label: 'Others', path: '/other', icon: FolderArchive },
   ]
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
+  const [menuState, setMenuState] = useState({
+    pathname,
+    isOpen: false,
+  })
+  const isMenuOpen =
+    menuState.pathname === pathname ? menuState.isOpen : false
 
-  // Close menu when route changes
-  useEffect(() => {
-    setIsMenuOpen(false)
+  const setIsMenuOpen = useCallback((isOpen: boolean) => {
+    setMenuState({ pathname, isOpen })
   }, [pathname])
 
   // Close menu when clicking outside
@@ -29,7 +33,7 @@ export const Navbar = () => {
     }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  }, [setIsMenuOpen])
 
   return (
     <div className="fixed top-4 left-1/2 z-50 flex w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 items-center justify-between rounded-lg border-3 bg-[#fffdf7] p-3 font-medium text-black shadow-[4px_4px_0px_0px_black] sm:top-6 sm:w-[calc(100%-3rem)] sm:border-3 sm:p-3 sm:shadow-[4px_4px_0px_0px_black] md:top-8 md:w-[calc(100%-4rem)] md:border-4 md:p-4 md:shadow-[4px_4px_0px_0px_black]">

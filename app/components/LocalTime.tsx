@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 import { Clock } from 'lucide-react'
 
 const TimeSegment = ({ value, label }: { value: string; label: string }) => (
@@ -21,68 +21,67 @@ const Separator = () => (
   </div>
 )
 
+const subscribeToClock = (callback: () => void) => {
+  const interval = setInterval(callback, 1000)
+  return () => clearInterval(interval)
+}
+
+const getClientClockSnapshot = () => Math.floor(Date.now() / 1000)
+const getServerClockSnapshot = () => 0
+
+const placeholderTime = {
+  hours: '--',
+  minutes: '--',
+  seconds: '--',
+  period: '--',
+}
+
+const getTimeParts = (now: Date) => {
+  const timeStr = now.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  })
+  const [timePart, period] = timeStr.split(' ')
+  const [hours, minutes, seconds] = timePart.split(':')
+  return { hours, minutes, seconds, period }
+}
+
+const getTimezoneInfo = (now: Date) => {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+  const offsetMinutes = -now.getTimezoneOffset()
+  const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60)
+  const offsetMins = Math.abs(offsetMinutes) % 60
+  const sign = offsetMinutes >= 0 ? '+' : '-'
+  const offset =
+    offsetMins > 0
+      ? `UTC${sign}${offsetHours}:${offsetMins.toString().padStart(2, '0')}`
+      : `UTC${sign}${offsetHours}`
+
+  const name =
+    now
+      .toLocaleTimeString('en-US', { timeZoneName: 'short' })
+      .split(' ')
+      .pop() || timezone
+
+  return { name, offset }
+}
+
 export default function LocalTime() {
-  const [time, setTime] = useState<{
-    hours: string
-    minutes: string
-    seconds: string
-    period: string
-  }>({
-    hours: '--',
-    minutes: '--',
-    seconds: '--',
-    period: '--',
-  })
-  const [, setMounted] = useState(false)
-  const [timezoneInfo, setTimezoneInfo] = useState<{
-    name: string
-    offset: string
-  }>({
-    name: '',
-    offset: '',
-  })
-
-  useEffect(() => {
-    setMounted(true)
-
-    // Get timezone info
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    const now = new Date()
-    const offsetMinutes = -now.getTimezoneOffset()
-    const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60)
-    const offsetMins = Math.abs(offsetMinutes) % 60
-    const sign = offsetMinutes >= 0 ? '+' : '-'
-    const offsetStr =
-      offsetMins > 0
-        ? `UTC${sign}${offsetHours}:${offsetMins.toString().padStart(2, '0')}`
-        : `UTC${sign}${offsetHours}`
-
-    // Get short timezone abbreviation
-    const tzAbbr =
-      now
-        .toLocaleTimeString('en-US', { timeZoneName: 'short' })
-        .split(' ')
-        .pop() || timezone
-
-    setTimezoneInfo({ name: tzAbbr, offset: offsetStr })
-
-    const updateTime = () => {
-      const now = new Date()
-      const timeStr = now.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
-      })
-      const [timePart, period] = timeStr.split(' ')
-      const [hours, minutes, seconds] = timePart.split(':')
-      setTime({ hours, minutes, seconds, period })
-    }
-
-    updateTime()
-    const interval = setInterval(updateTime, 1000)
-    return () => clearInterval(interval)
-  }, [])
+  const clockSnapshot = useSyncExternalStore(
+    subscribeToClock,
+    getClientClockSnapshot,
+    getServerClockSnapshot,
+  )
+  const now = clockSnapshot === 0 ? null : new Date(clockSnapshot * 1000)
+  const time = now ? getTimeParts(now) : placeholderTime
+  const timezoneInfo = now
+    ? getTimezoneInfo(now)
+    : {
+        name: '',
+        offset: '',
+      }
 
   return (
     <div className="group cursor-pointer rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_black] transition-all duration-300 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black] sm:p-4 md:p-5">

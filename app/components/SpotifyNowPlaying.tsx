@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { SiSpotify } from 'react-icons/si'
 import { ArrowUpRight } from 'lucide-react'
@@ -28,21 +28,17 @@ const formatTime = (ms: number) => {
 
 function SoundBars({ seed }: { seed: number }) {
   const heights = useMemo(() => {
-    let x = seed || 1
-    const next = () => {
-      x ^= x << 13
-      x ^= x >> 17
-      x ^= x << 5
-      return Math.abs(x)
-    }
-    return Array.from({ length: 5 }, () => 40 + (next() % 60))
+    const baseSeed = seed || 1
+    return Array.from({ length: 5 }, (_, index) => {
+      const value = Math.sin(baseSeed * (index + 1) * 999) * 10000
+      return 40 + (Math.abs(Math.floor(value)) % 60)
+    })
   }, [seed])
 
   return (
     <div className="flex h-3.5 items-end gap-[2px]">
       {heights.map((h, i) => (
         <span
-          // eslint-disable-next-line react/no-array-index-key
           key={i}
           className="animate-soundwave w-[3px] rounded-full bg-black/60"
           style={{
@@ -57,13 +53,13 @@ function SoundBars({ seed }: { seed: number }) {
 
 export default function SpotifyNowPlaying() {
   const [data, setData] = useState<SpotifyData | null>(null)
-  const [mounted, setMounted] = useState(false)
+  const [hasFetched, setHasFetched] = useState(false)
   const [currentProgress, setCurrentProgress] = useState(0)
   const lastFetchTime = useRef<number>(0)
   const animationRef = useRef<number | null>(null)
   const rafTickRef = useRef<number>(0)
 
-  async function fetchNowPlaying() {
+  const fetchNowPlaying = useCallback(async () => {
     try {
       const res = await fetch('/api/spotify')
       const json = await res.json()
@@ -74,17 +70,17 @@ export default function SpotifyNowPlaying() {
       }
     } catch (error) {
       console.error('Failed to fetch Spotify data:', error)
+    } finally {
+      setHasFetched(true)
     }
-  }
+  }, [])
 
   // Fetch data on mount and interval
   useEffect(() => {
-    setMounted(true)
     fetchNowPlaying()
     const interval = setInterval(fetchNowPlaying, 10000)
     return () => clearInterval(interval)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [fetchNowPlaying])
 
   // Smooth progress interpolation
   useEffect(() => {
@@ -203,7 +199,7 @@ export default function SpotifyNowPlaying() {
   )
 
   /* ── Loading skeleton ── */
-  if (!mounted) {
+  if (!hasFetched) {
     return (
       <div className="relative flex flex-col overflow-hidden rounded-2xl border-4 border-black bg-[#1ED760] p-5 shadow-[4px_4px_0px_0px_black] md:p-6">
         <div className="flex items-center gap-3">

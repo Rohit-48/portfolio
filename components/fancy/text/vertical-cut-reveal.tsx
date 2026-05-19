@@ -40,6 +40,16 @@ interface WordObject {
   needsSpace: boolean
 }
 
+// Handy function to split text into characters with support for unicode and emojis.
+const splitIntoCharacters = (text: string): string[] => {
+  if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
+    const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' })
+    return Array.from(segmenter.segment(text), ({ segment }) => segment)
+  }
+  // Fallback for browsers that don't support Intl.Segmenter.
+  return Array.from(text)
+}
+
 const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
   (
     {
@@ -68,16 +78,6 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
     const text =
       typeof children === 'string' ? children : children?.toString() || ''
     const [isAnimating, setIsAnimating] = useState(false)
-
-    // handy function to split text into characters with support for unicode and emojis
-    const splitIntoCharacters = (text: string): string[] => {
-      if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
-        const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' })
-        return Array.from(segmenter.segment(text), ({ segment }) => segment)
-      }
-      // Fallback for browsers that don't support Intl.Segmenter
-      return Array.from(text)
-    }
 
     // Split text based on splitBy parameter
     const elements = useMemo(() => {
@@ -121,7 +121,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
         }
         return Math.abs(staggerFrom - index) * staggerDuration
       },
-      [elements.length, staggerFrom, staggerDuration],
+      [elements, splitBy, staggerFrom, staggerDuration],
     )
 
     const startAnimation = useCallback(() => {
@@ -138,9 +138,10 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
     // Auto start animation
     useEffect(() => {
       if (autoStart) {
-        startAnimation()
+        const timeout = setTimeout(startAnimation, 0)
+        return () => clearTimeout(timeout)
       }
-    }, [autoStart])
+    }, [autoStart, startAnimation])
 
     const variants = {
       hidden: { y: reverse ? '-100%' : '100%' },
