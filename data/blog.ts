@@ -22,7 +22,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'nvim-stuff',
-    title: 'My Neovim Config: No Autocomplete, No Mercy',
+    title: 'My Neovim Config: I am slowly becoming vim guy.',
     date: '2026-05-01',
     excerpt:
       'A practical tour of my NvChad-based Neovim setup for LSP, formatting, debugging, navigation, and daily terminal-first development.',
