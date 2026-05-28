@@ -11,6 +11,7 @@ import {
   SiCodeberg,
   SiGitlab,
   SiBehance,
+  SiMastodon,
 } from 'react-icons/si'
 
 export const social: Social[] = [
@@ -104,5 +105,12 @@ export const social: Social[] = [
     icon: SiBehance,
     tone: 'bg-[#1769FF] text-white',
     tag: 'Design',
+  },
+  {
+    label: 'Defcon.social',
+    href: 'https://defcon.social/@rohitzeeenx',
+    icon: SiMastodon,
+    tone: 'bg-[#6364FF] text-white',
+    tag: 'Fediverse',
   },
 ]
