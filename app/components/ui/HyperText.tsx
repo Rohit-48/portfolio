@@ -60,7 +60,7 @@ export function HyperText({
   )
   const [isAnimating, setIsAnimating] = useState(false)
   const iterationCount = useRef(0)
-  const elementRef = useRef<HTMLElement>(null)
+  const elementRef = useRef<HTMLDivElement>(null)
 
   const handleAnimationTrigger = () => {
     if (animateOnHover && !isAnimating) {
