@@ -1,5 +1,5 @@
 import type { Social } from '@/types/social'
-import { Github, Linkedin, Calendar } from 'lucide-react'
+import { Github, Linkedin, Calendar, NotebookText } from 'lucide-react'
 import {
   SiX,
   SiGmail,
@@ -63,6 +63,13 @@ export const social: Social[] = [
     icon: Calendar,
     tone: 'bg-[#1F2937] text-white',
     tag: 'Schedule',
+  },
+  {
+    label: 'Notes',
+    href: 'https://notes.rohitxyz.me/',
+    icon: NotebookText,
+    tone: 'bg-[#2F2A5F] text-white',
+    tag: 'Innerverse',
   },
   {
     label: 'Coffee',

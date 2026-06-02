@@ -33,7 +33,7 @@ export const skillshowcase: Skill[] = [
   { icon: SiExpress, label: 'Express' },
   { icon: SiHono, label: 'Hono.js' },
   { icon: SiPython, label: 'Python' },
-  { icon: SiFramer, label: 'Framer' },
+  { icon: SiFramer, label: 'Motion' },
   { icon: SiFigma, label: 'Figma' },
   { icon: SiDjango, label: 'Django' },
   { icon: SiCplusplus, label: 'C++' },

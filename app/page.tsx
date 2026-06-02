@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { ArrowUpRight, Hammer } from 'lucide-react'
+import { ArrowUpRight, Hammer, Wrench } from 'lucide-react'
 import Link from 'next/link'
 import SpotifyNowPlaying from './components/SpotifyNowPlaying'
 import LocalTime from './components/LocalTime'
@@ -14,6 +14,27 @@ import { BlurFade } from '@/components/ui/blur-fade'
 import { motion } from 'motion/react'
 import { Connect } from './components/Connect'
 import { Project } from '@/types/project'
+
+const skillColors: Record<string, string> = {
+  React: 'bg-[#00D8FF] text-black hover:bg-[#4DE7FF]',
+  JavaScript: 'bg-[#F7DF1E] text-black hover:bg-[#FFE95C]',
+  TypeScript: 'bg-[#3178C6] text-white hover:bg-[#3F8DE6]',
+  Rust: 'bg-[#CE6B2C] text-white hover:bg-[#E47A35]',
+  Nix: 'bg-[#5277C3] text-white hover:bg-[#6B90D8]',
+  'Next.js': 'bg-[#111111] text-white hover:bg-[#2B2B2B]',
+  CSS: 'bg-[#2965F1] text-white hover:bg-[#4B7CFF]',
+  Tailwind: 'bg-[#38BDF8] text-black hover:bg-[#67D5FF]',
+  C: 'bg-[#5C6BC0] text-white hover:bg-[#7482D5]',
+  Node: 'bg-[#539E43] text-white hover:bg-[#68B957]',
+  Express: 'bg-[#4B5563] text-white hover:bg-[#64748B]',
+  'Hono.js': 'bg-[#E36002] text-white hover:bg-[#FF7A1A]',
+  Python: 'bg-[#FFD43B] text-black hover:bg-[#FFE071]',
+  Motion: 'bg-[#BB5CFF] text-white hover:bg-[#CB82FF]',
+  Figma: 'bg-[#A259FF] text-white hover:bg-[#B877FF]',
+  Django: 'bg-[#0C8F5A] text-white hover:bg-[#10A86A]',
+  'C++': 'bg-[#659AD2] text-black hover:bg-[#7FB3EC]',
+  Bun: 'bg-[#F6D6A8] text-black hover:bg-[#FFE0B4]',
+}
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
@@ -213,19 +234,7 @@ export default function Home() {
       <section className="mt-12">
         <div className="mb-6 flex items-center gap-4">
           <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_black] md:p-3">
-            <div className="h-6 w-6 md:h-7 md:w-7">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-full w-full"
-              >
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-              </svg>
-            </div>
+            <Wrench size={24} className="md:h-7 md:w-7" />
           </div>
           <div>
             <h2 className="text-2xl font-black uppercase tracking-tight md:text-3xl">
@@ -236,24 +245,21 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {skillshowcase.map(
-            (
-              {
-                icon: Icon,
-                label,
-              }: { icon: import('react-icons').IconType; label: string },
-              i: number,
-            ) => (
+
+        <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-3 shadow-[4px_4px_0px_0px_black] md:p-4">
+          <div className="flex flex-wrap gap-2.5">
+            {skillshowcase.map(({ icon: Icon, label }, i: number) => (
               <span
                 key={label || `skill-${i}`}
-                className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-[#fffdf7] px-4 py-2 text-sm font-black uppercase tracking-wide shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[4px_4px_0px_0px_black]"
+                className={`inline-flex items-center gap-2 rounded-xl border-4 border-black px-4 py-2 text-sm font-black uppercase tracking-wide shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_black] ${
+                  skillColors[label] ?? 'bg-white hover:bg-amber-300'
+                }`}
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-4 w-4 shrink-0" />
                 {label}
               </span>
-            ),
-          )}
+            ))}
+          </div>
         </div>
       </section>
 
