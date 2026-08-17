@@ -3,24 +3,6 @@
 import { useSyncExternalStore } from 'react'
 import { Clock } from 'lucide-react'
 
-const TimeSegment = ({ value, label }: { value: string; label: string }) => (
-  <div className="flex flex-col items-center">
-    <div className="min-w-[44px] rounded-lg border-3 border-black bg-[#fffdf7] px-2 py-1.5 text-center font-mono text-xl font-black tracking-wider text-black shadow-[2px_2px_0px_0px_black] sm:min-w-[48px] sm:px-3 sm:py-2 sm:text-2xl md:min-w-[52px] md:text-3xl">
-      {value}
-    </div>
-    <span className="mt-1 text-[9px] font-bold tracking-widest text-zinc-500 uppercase sm:mt-1.5 sm:text-[10px]">
-      {label}
-    </span>
-  </div>
-)
-
-const Separator = () => (
-  <div className="flex flex-col items-center gap-1 px-0.5 pt-1 sm:gap-1.5">
-    <div className="h-1.5 w-1.5 rounded-full bg-black sm:h-2 sm:w-2" />
-    <div className="h-1.5 w-1.5 rounded-full bg-black sm:h-2 sm:w-2" />
-  </div>
-)
-
 const subscribeToClock = (callback: () => void) => {
   const interval = setInterval(callback, 1000)
   return () => clearInterval(interval)
@@ -84,43 +66,41 @@ export default function LocalTime() {
       }
 
   return (
-    <div className="group cursor-pointer rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_black] transition-all duration-300 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black] sm:p-4 md:p-5">
+    <div className="group flex h-full flex-col rounded-2xl border-4 border-black bg-amber-300 p-5 shadow-[5px_5px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black] md:p-6">
       {/* Header */}
-      <div className="mb-3 flex items-center justify-between sm:mb-4">
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          <div className="rounded-lg bg-black p-1 sm:p-1.5">
-            <Clock className="h-3.5 w-3.5 text-amber-300 sm:h-4 sm:w-4" />
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="grid h-10 w-10 place-items-center rounded-xl border-4 border-black bg-white shadow-[2px_2px_0px_0px_black] transition-transform duration-200 group-hover:-rotate-6">
+            <Clock className="h-5 w-5 text-black" />
+          </span>
+          <div>
+            <p className="text-sm font-black uppercase"> Local Time </p>
+            <p className="flex items-center gap-1.5 text-[10px] font-bold tracking-[0.15em] text-black/50 uppercase">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-700" />
+              Live
+            </p>
           </div>
-          <span className="text-[10px] font-bold tracking-widest text-black uppercase sm:text-xs">
-            Local Time
-          </span>
         </div>
-        <div className="flex items-center gap-1 sm:gap-1.5">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] sm:h-2.5 sm:w-2.5" />
-          <span className="text-[9px] font-bold tracking-wide text-black/60 uppercase sm:text-[10px]">
-            Live
-          </span>
-        </div>
+        <span className="rounded-full border-2 border-black bg-white px-2.5 py-1 font-mono text-[11px] font-black">
+          {time.period}
+        </span>
       </div>
 
-      {/* Time Display */}
-      <div className="flex items-start justify-center gap-1 sm:gap-1.5">
-        <TimeSegment value={time.hours} label="hrs" />
-        <Separator />
-        <TimeSegment value={time.minutes} label="min" />
-        <Separator />
-        <TimeSegment value={time.seconds} label="sec" />
-        <div className="ml-1 flex flex-col items-center sm:ml-2">
-          <div className="rounded-lg border-2 border-black bg-black px-2 py-2 font-mono text-xs font-bold text-amber-300 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)] sm:px-2.5 sm:py-2.5 sm:text-sm md:py-3">
-            {time.period}
-          </div>
+      {/* Clock display */}
+      <div className="mt-5 flex flex-1 items-center justify-center rounded-xl border-4 border-black bg-[#0f1108] px-4 py-5 shadow-[inset_0_0_0_4px_rgba(255,255,255,0.08)]">
+        <div className="flex items-baseline font-mono text-4xl font-black tracking-wider text-amber-300 tabular-nums sm:text-5xl">
+          <span>{time.hours}</span>
+          <span className="animate-pulse px-1">:</span>
+          <span>{time.minutes}</span>
+          <span className="ml-2 text-lg text-amber-300/60 sm:text-xl">
+            {time.seconds}
+          </span>
         </div>
       </div>
 
       {/* Timezone Footer */}
-      <div className="mt-3 flex items-center justify-center gap-1.5 border-t-2 border-black/20 pt-2 sm:mt-4 sm:gap-2 sm:pt-3">
-        <span className="text-xs sm:text-sm">🌍</span>
-        <span className="rounded-full border-2 border-black bg-[#fffdf7] px-2 py-0.5 text-[10px] font-bold text-black sm:px-3 sm:py-1 sm:text-xs">
+      <div className="mt-4 flex justify-center">
+        <span className="rounded-full border-2 border-black bg-[#fffdf7] px-3 py-1 text-[10px] font-black tracking-wide text-black uppercase">
           {timezoneInfo.name
             ? `${timezoneInfo.name} (${timezoneInfo.offset})`
             : 'Local'}

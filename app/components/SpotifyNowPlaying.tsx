@@ -4,8 +4,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { SiSpotify } from 'react-icons/si'
 import { ArrowUpRight } from 'lucide-react'
-import { motion } from 'motion/react'
-import { hoverBounce } from '@/lib/motion'
 
 interface SpotifyData {
   isPlaying: boolean
@@ -109,19 +107,19 @@ export default function SpotifyNowPlaying() {
   }, [data])
 
   const card = (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border-4 border-black bg-[#1ED760] p-5 shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:shadow-[6px_6px_0px_0px_black] md:p-6">
-      {/* Decorative glow — matches Connect social cards */}
-      <span className="pointer-events-none absolute -top-8 -right-8 h-24 w-24 rounded-full bg-white/20 blur-2xl transition-transform duration-300 group-hover:scale-110" />
-
+    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[5px_5px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black] md:p-6">
       {/* ── Header ── */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-black/30 bg-white/20 transition-transform duration-200 group-hover:scale-105 group-hover:-rotate-6">
-            <SiSpotify className="h-5 w-5 transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6" />
+          <span className="grid h-10 w-10 place-items-center rounded-xl border-4 border-black bg-[#1ED760] shadow-[2px_2px_0px_0px_black] transition-transform duration-200 group-hover:-rotate-6">
+            <SiSpotify className="h-5 w-5 text-black" />
           </span>
           <div>
-            <p className="text-sm font-black">Spotify</p>
-            <p className="text-xs font-bold tracking-wide uppercase opacity-70">
+            <p className="text-sm font-black uppercase"> Spotify </p>
+            <p className="flex items-center gap-1.5 text-[10px] font-bold tracking-[0.15em] text-black/45 uppercase">
+              <span
+                className={`h-1.5 w-1.5 rounded-full ${data?.isPlaying ? 'bg-green-500' : 'bg-black/25'}`}
+              />
               {data?.isPlaying ? 'Now Playing' : 'Last Played'}
             </p>
           </div>
@@ -135,43 +133,43 @@ export default function SpotifyNowPlaying() {
           )}
           <ArrowUpRight
             size={16}
-            className="opacity-80 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1"
+            className="text-black/30 transition-all duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-black"
           />
         </div>
       </div>
 
       {/* ── Song info ── */}
-      <div className="mt-4 flex items-center gap-4">
+      <div className="mt-5 flex flex-1 items-center gap-4">
         {data?.albumImageUrl ? (
           <div className="relative shrink-0">
             <Image
               src={data.albumImageUrl}
               alt={data.album || 'Album'}
-              width={72}
-              height={72}
-              className="rounded-xl border-2 border-black/20"
+              width={80}
+              height={80}
+              className="rounded-xl border-4 border-black bg-white shadow-[3px_3px_0px_0px_black]"
             />
             {data?.isPlaying && (
-              <div className="absolute -right-1.5 -bottom-1.5 flex h-5 w-5 items-center justify-center rounded-full border-2 border-black/20 bg-white/30">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-black/60" />
-              </div>
+              <span className="absolute -right-2 -bottom-2 grid h-6 w-6 place-items-center rounded-full border-2 border-black bg-[#1ED760]">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-black" />
+              </span>
             )}
           </div>
         ) : (
-          <div className="flex h-[72px] w-[72px] items-center justify-center rounded-xl border-2 border-black/20 bg-white/15">
-            <SiSpotify className="h-7 w-7 opacity-30" />
+          <div className="grid h-[80px] w-[80px] place-items-center rounded-xl border-4 border-black bg-white shadow-[3px_3px_0px_0px_black]">
+            <SiSpotify className="h-7 w-7 text-black/20" />
           </div>
         )}
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-base leading-tight font-black">
+          <p className="truncate text-base leading-tight font-black uppercase">
             {data?.title ?? 'Not Playing'}
           </p>
-          <p className="mt-1 truncate text-sm font-bold opacity-70">
+          <p className="mt-1 truncate text-sm font-bold text-black/50">
             {data?.artist ?? 'Spotify is offline'}
           </p>
           {data?.album && (
-            <p className="mt-1.5 truncate text-[10px] font-bold tracking-wide uppercase opacity-50">
+            <p className="mt-1.5 truncate text-[10px] font-bold tracking-[0.15em] text-black/30 uppercase">
               {data.album}
             </p>
           )}
@@ -180,14 +178,14 @@ export default function SpotifyNowPlaying() {
 
       {/* ── Progress bar ── */}
       {data?.isPlaying && data.duration_ms ? (
-        <div className="mt-4 border-t border-black/10 pt-3">
-          <div className="mb-1.5 flex justify-between font-mono text-[10px] font-bold opacity-60">
+        <div className="mt-5 border-t-2 border-dashed border-black/15 pt-3">
+          <div className="mb-1.5 flex justify-between font-mono text-[10px] font-bold text-black/40">
             <span>{formatTime(currentProgress)}</span>
             <span>{formatTime(data.duration_ms)}</span>
           </div>
-          <div className="relative h-2 overflow-hidden rounded-full border-2 border-black/15 bg-black/10">
+          <div className="relative h-3 overflow-hidden rounded-full border-2 border-black bg-white">
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-white/40 transition-[width] duration-150"
+              className="absolute inset-y-0 left-0 rounded-full bg-[#1ED760] transition-[width] duration-150"
               style={{
                 width: `${Math.min((currentProgress / data.duration_ms) * 100, 100)}%`,
               }}
@@ -201,14 +199,12 @@ export default function SpotifyNowPlaying() {
   /* ── Loading skeleton ── */
   if (!hasFetched) {
     return (
-      <div className="relative flex flex-col overflow-hidden rounded-2xl border-4 border-black bg-[#1ED760] p-5 shadow-[4px_4px_0px_0px_black] md:p-6">
+      <div className="flex h-full flex-col rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[5px_5px_0px_0px_black] md:p-6">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-black/30 bg-white/20">
-            <SiSpotify className="h-5 w-5" />
-          </span>
+          <span className="h-10 w-10 animate-pulse rounded-xl border-4 border-black bg-white/50" />
           <div className="flex flex-1 flex-col gap-2">
-            <div className="h-4 w-40 animate-pulse rounded bg-black/10" />
-            <div className="h-3 w-28 animate-pulse rounded bg-black/5" />
+            <div className="h-4 w-32 animate-pulse rounded bg-black/10" />
+            <div className="h-3 w-24 animate-pulse rounded bg-black/5" />
           </div>
         </div>
       </div>
@@ -217,18 +213,16 @@ export default function SpotifyNowPlaying() {
 
   if (data?.songUrl) {
     return (
-      <motion.div whileHover={hoverBounce}>
-        <a
-          href={data.songUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block"
-        >
-          {card}
-        </a>
-      </motion.div>
+      <a
+        href={data.songUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block h-full"
+      >
+        {card}
+      </a>
     )
   }
 
-  return <motion.div whileHover={hoverBounce}>{card}</motion.div>
+  return card
 }
