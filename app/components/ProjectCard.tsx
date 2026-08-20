@@ -22,14 +22,14 @@ export default function ProjectCard({
   return (
     <div
       onClick={onClick}
-      className={`group relative flex h-full cursor-pointer flex-col rounded-2xl border-4 border-black bg-[#fffdf7] p-4 pt-6 shadow-[5px_5px_0px_0px_black] transition-all duration-300 hover:z-20 hover:-translate-y-2 hover:rotate-0 hover:shadow-[9px_9px_0px_0px_black] ${tilt}`}
+      className={`group relative flex h-full cursor-pointer flex-col rounded-2xl border-4 border-black bg-paper p-4 pt-6 shadow-[5px_5px_0px_0px_var(--shadow-ink)] transition-all duration-300 hover:z-20 hover:-translate-y-2 hover:rotate-0 hover:shadow-[9px_9px_0px_0px_var(--shadow-ink)] ${tilt}`}
     >
       {/* masking tape seal — photo slides out from under it */}
       <div className="absolute -top-3 left-1/2 z-30 h-6 w-28 -translate-x-1/2 -rotate-2 border-y-2 border-black/20 bg-amber-300/80 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.15)]" />
 
       {/* polaroid photo — tucked into the envelope, pops out on hover */}
       <div
-        className={`relative z-10 mx-2 -mb-12 rounded-md border-4 border-black bg-white p-1.5 shadow-[4px_4px_0px_0px_black] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:z-40 group-hover:-translate-y-14 group-hover:-rotate-2 group-hover:scale-[1.04] group-hover:shadow-[10px_14px_0px_0px_rgba(15,17,8,0.3)] ${
+        className={`relative z-10 mx-2 -mb-12 rounded-md border-4 border-black bg-white p-1.5 shadow-[4px_4px_0px_0px_var(--shadow-ink)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:z-40 group-hover:-translate-y-14 group-hover:-rotate-2 group-hover:scale-[1.04] group-hover:shadow-[10px_14px_0px_0px_rgba(15,17,8,0.3)] ${
           isHero ? 'h-56 md:h-64' : 'h-44'
         }`}
       >
@@ -47,7 +47,7 @@ export default function ProjectCard({
             <div
               className={[
                 'inline-flex items-center gap-1.5 rounded-full border-2 border-black px-2.5 py-1',
-                'shadow-[2px_2px_0px_0px_black]',
+                'shadow-[2px_2px_0px_0px_var(--shadow-ink)]',
                 project.status === 'wip'
                   ? 'bg-amber-300 text-black'
                   : 'bg-emerald-200 text-black',
@@ -79,7 +79,7 @@ export default function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="rounded-lg border-2 border-black bg-white p-1.5 shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[3px_3px_0px_0px_black]"
+                className="rounded-lg border-2 border-black bg-white p-1.5 shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[3px_3px_0px_0px_var(--shadow-ink)]"
               >
                 <Github size={14} />
               </a>
@@ -90,7 +90,7 @@ export default function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="rounded-lg border-2 border-black bg-white p-1.5 shadow-[2px_2px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[3px_3px_0px_0px_black]"
+                className="rounded-lg border-2 border-black bg-white p-1.5 shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[3px_3px_0px_0px_var(--shadow-ink)]"
               >
                 <ExternalLink size={14} />
               </a>
@@ -100,7 +100,7 @@ export default function ProjectCard({
       </div>
 
       {/* envelope pocket holding the content */}
-      <div className="relative z-20 flex-1 rounded-xl border-4 border-black bg-[#f6ecd4]">
+      <div className="relative z-20 flex-1 rounded-xl border-4 border-black bg-envelope">
         {/* V fold lines of the envelope mouth */}
         <svg
           className="pointer-events-none absolute inset-x-0 top-0 h-7 w-full text-black"

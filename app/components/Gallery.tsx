@@ -14,7 +14,7 @@ export default function Gallery({ items }: { items: GalleryItem[] }) {
       {/* Header — matches site pattern */}
       <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div className="flex items-center gap-4">
-          <div className="rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_black]">
+          <div className="rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_var(--shadow-ink)]">
             <Camera size={28} />
           </div>
           <div>
@@ -56,7 +56,7 @@ export default function Gallery({ items }: { items: GalleryItem[] }) {
               className={`${colSpan} ${rowSpan}`}
             >
               <div
-                className={`group relative h-full w-full cursor-pointer rounded-md border-4 border-black bg-white p-1.5 shadow-[4px_4px_0px_0px_black] transition-all duration-300 hover:z-10 hover:rotate-0 hover:scale-[1.03] hover:shadow-[8px_8px_0px_0px_rgba(15,17,8,0.35)] ${tilt}`}
+                className={`group relative h-full w-full cursor-pointer rounded-md border-4 border-black bg-white p-1.5 shadow-[4px_4px_0px_0px_var(--shadow-ink)] transition-all duration-300 hover:z-10 hover:rotate-0 hover:scale-[1.03] hover:shadow-[8px_8px_0px_0px_rgba(15,17,8,0.35)] ${tilt}`}
                 onClick={() => setSelected(item)}
               >
                 <div className="relative h-full w-full overflow-hidden rounded-[4px] border-2 border-black/15 bg-gray-100">
@@ -78,7 +78,7 @@ export default function Gallery({ items }: { items: GalleryItem[] }) {
                   </div>
                 </div>
                 {/* pin */}
-                <span className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-black bg-red-400 shadow-[1px_1px_0px_0px_black] transition-transform duration-200 group-hover:scale-125" />
+                <span className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-black bg-red-400 shadow-[1px_1px_0px_0px_var(--shadow-ink)] transition-transform duration-200 group-hover:scale-125" />
               </div>
             </BlurFade>
           )
@@ -88,11 +88,11 @@ export default function Gallery({ items }: { items: GalleryItem[] }) {
       {/* Lightbox */}
       {selected && (
         <div
-          className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm duration-200"
+          className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-overlay p-4 backdrop-blur-sm duration-200"
           onClick={() => setSelected(null)}
         >
           <div
-            className="animate-in zoom-in-95 w-full max-w-3xl rounded-2xl border-4 border-black bg-[#fffdf7] shadow-[6px_6px_0px_0px_black] duration-300"
+            className="animate-in zoom-in-95 w-full max-w-3xl rounded-2xl border-4 border-black bg-paper shadow-[6px_6px_0px_0px_var(--shadow-ink)] duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b-4 border-black bg-amber-300 p-4">

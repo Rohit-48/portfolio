@@ -1,7 +1,7 @@
 export default function BlogsLoading() {
   return (
     <div className="mt-20 flex items-center justify-center">
-      <div className="group font-electrolize relative w-full max-w-[860px] animate-pulse rounded-xl border-4 border-black bg-amber-50 shadow-[6px_6px_0px_0px_black]">
+      <div className="group font-electrolize relative w-full max-w-[860px] animate-pulse rounded-xl border-4 border-black bg-amber-50 shadow-[6px_6px_0px_0px_var(--shadow-ink)]">
         <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full border-2 border-black bg-amber-400" />
         <div className="block p-6">
           {/* Header skeleton */}

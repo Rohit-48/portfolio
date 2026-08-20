@@ -93,7 +93,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="mb-6">
         <Link
           href="/blogs"
-          className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-white px-4 py-2 text-xs font-black tracking-wide text-black uppercase shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-[6px_6px_0px_0px_black]"
+          className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-white px-4 py-2 text-xs font-black tracking-wide text-black uppercase shadow-[4px_4px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-[6px_6px_0px_0px_var(--shadow-ink)]"
         >
           <ArrowLeft size={14} />
           All posts
@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
 
       {/* Header — plain paper sheet */}
-      <header className="rounded-2xl border-4 border-black bg-[#fffdf7] px-5 py-6 shadow-[5px_5px_0px_0px_black] sm:px-8 md:px-12 md:py-10">
+      <header className="rounded-2xl border-4 border-black bg-paper px-5 py-6 shadow-[5px_5px_0px_0px_var(--shadow-ink)] sm:px-8 md:px-12 md:py-10">
         {/* Meta row */}
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="inline-flex items-center gap-1.5 text-[11px] font-black tracking-[0.15em] text-black/45 uppercase">
@@ -142,7 +142,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Content + Sidebar */}
       <div className="mt-6 grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_250px]">
         {/* Article */}
-        <article className="overflow-hidden rounded-2xl border-4 border-black bg-white shadow-[5px_5px_0px_0px_black]">
+        <article className="overflow-hidden rounded-2xl border-4 border-black bg-white shadow-[5px_5px_0px_0px_var(--shadow-ink)]">
           <div className="px-5 py-6 sm:px-8 sm:py-8 md:px-12 md:py-10">
             <div className="text-[15px] leading-7 text-zinc-900 md:text-base">
               <MDXRemote
@@ -243,13 +243,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     <img
                       {...props}
                       alt={props.alt || ''}
-                      className={`my-8 h-auto w-full rounded-xl border-4 border-black shadow-[4px_4px_0px_0px_black] ${props.className ?? ''}`}
+                      className={`my-8 h-auto w-full rounded-xl border-4 border-black shadow-[4px_4px_0px_0px_var(--shadow-ink)] ${props.className ?? ''}`}
                     />
                   ),
                   pre: (props: ComponentPropsWithoutRef<'pre'>) => (
                     <pre
                       {...props}
-                      className={`my-8 overflow-x-auto rounded-xl border-4 border-black bg-black p-4 text-xs leading-relaxed text-white shadow-[4px_4px_0px_0px_black] md:p-5 md:text-sm ${props.className ?? ''}`}
+                      className={`my-8 overflow-x-auto rounded-xl border-4 border-black bg-[#0f1108] p-4 text-xs leading-relaxed text-[#e2e8f0] shadow-[4px_4px_0px_0px_var(--shadow-ink)] md:p-5 md:text-sm ${props.className ?? ''}`}
                     />
                   ),
                   code: ({
@@ -298,7 +298,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Sidebar */}
         <aside className="space-y-4 lg:sticky lg:top-24">
           {/* Share */}
-          <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-4 shadow-[5px_5px_0px_0px_black]">
+          <div className="rounded-2xl border-4 border-black bg-paper p-4 shadow-[5px_5px_0px_0px_var(--shadow-ink)]">
             <p className="text-[10px] font-black tracking-[0.2em] text-black/40 uppercase">
               Share this post
             </p>
@@ -309,7 +309,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* TOC */}
           {toc.length > 0 && (
-            <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-4 shadow-[5px_5px_0px_0px_black]">
+            <div className="rounded-2xl border-4 border-black bg-paper p-4 shadow-[5px_5px_0px_0px_var(--shadow-ink)]">
               <p className="text-[10px] font-black tracking-[0.2em] text-black/40 uppercase">
                 On this page
               </p>
@@ -339,7 +339,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <footer className="mt-8">
         <Link
           href="/blogs"
-          className="group flex items-center justify-between rounded-2xl border-4 border-dashed border-black/40 px-5 py-4 transition-all duration-200 hover:border-black hover:bg-white hover:shadow-[5px_5px_0px_0px_black]"
+          className="group flex items-center justify-between rounded-2xl border-4 border-dashed border-black/40 px-5 py-4 transition-all duration-200 hover:border-black hover:bg-white hover:shadow-[5px_5px_0px_0px_var(--shadow-ink)]"
         >
           <div>
             <p className="text-[10px] font-black tracking-[0.2em] text-black/40 uppercase">

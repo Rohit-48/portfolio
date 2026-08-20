@@ -107,12 +107,12 @@ export default function SpotifyNowPlaying() {
   }, [data])
 
   const card = (
-    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[5px_5px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black] md:p-6">
+    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border-4 border-black bg-paper p-5 shadow-[5px_5px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_var(--shadow-ink)] md:p-6">
       {/* ── Header ── */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl border-4 border-black bg-[#1ED760] shadow-[2px_2px_0px_0px_black] transition-transform duration-200 group-hover:-rotate-6">
-            <SiSpotify className="h-5 w-5 text-black" />
+          <span className="grid h-10 w-10 place-items-center rounded-xl border-4 border-black bg-[#1ED760] shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-transform duration-200 group-hover:-rotate-6">
+            <SiSpotify className="h-5 w-5 text-[#111]" />
           </span>
           <div>
             <p className="text-sm font-black uppercase"> Spotify </p>
@@ -147,7 +147,7 @@ export default function SpotifyNowPlaying() {
               alt={data.album || 'Album'}
               width={80}
               height={80}
-              className="rounded-xl border-4 border-black bg-white shadow-[3px_3px_0px_0px_black]"
+              className="rounded-xl border-4 border-black bg-white shadow-[3px_3px_0px_0px_var(--shadow-ink)]"
             />
             {data?.isPlaying && (
               <span className="absolute -right-2 -bottom-2 grid h-6 w-6 place-items-center rounded-full border-2 border-black bg-[#1ED760]">
@@ -156,7 +156,7 @@ export default function SpotifyNowPlaying() {
             )}
           </div>
         ) : (
-          <div className="grid h-[80px] w-[80px] place-items-center rounded-xl border-4 border-black bg-white shadow-[3px_3px_0px_0px_black]">
+          <div className="grid h-[80px] w-[80px] place-items-center rounded-xl border-4 border-black bg-white shadow-[3px_3px_0px_0px_var(--shadow-ink)]">
             <SiSpotify className="h-7 w-7 text-black/20" />
           </div>
         )}
@@ -199,7 +199,7 @@ export default function SpotifyNowPlaying() {
   /* ── Loading skeleton ── */
   if (!hasFetched) {
     return (
-      <div className="flex h-full flex-col rounded-2xl border-4 border-black bg-[#fffdf7] p-5 shadow-[5px_5px_0px_0px_black] md:p-6">
+      <div className="flex h-full flex-col rounded-2xl border-4 border-black bg-paper p-5 shadow-[5px_5px_0px_0px_var(--shadow-ink)] md:p-6">
         <div className="flex items-center gap-3">
           <span className="h-10 w-10 animate-pulse rounded-xl border-4 border-black bg-white/50" />
           <div className="flex flex-1 flex-col gap-2">

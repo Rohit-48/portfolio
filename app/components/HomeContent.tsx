@@ -16,24 +16,24 @@ import { Project } from '@/types/project'
 import ProjectCard from './ProjectCard'
 
 const skillColors: Record<string, string> = {
-  React: 'bg-[#00D8FF] text-black',
-  JavaScript: 'bg-[#F7DF1E] text-black',
-  TypeScript: 'bg-[#3178C6] text-white',
-  Rust: 'bg-[#CE6B2C] text-white',
-  Nix: 'bg-[#5277C3] text-white',
-  'Next.js': 'bg-[#111111] text-white',
-  CSS: 'bg-[#2965F1] text-white',
-  Tailwind: 'bg-[#38BDF8] text-black',
-  C: 'bg-[#5C6BC0] text-white',
-  Node: 'bg-[#539E43] text-white',
-  Express: 'bg-[#4B5563] text-white',
-  'Hono.js': 'bg-[#E36002] text-white',
-  Python: 'bg-[#FFD43B] text-black',
-  Motion: 'bg-[#BB5CFF] text-white',
-  Figma: 'bg-[#A259FF] text-white',
-  Django: 'bg-[#0C8F5A] text-white',
-  'C++': 'bg-[#659AD2] text-black',
-  Bun: 'bg-[#F6D6A8] text-black',
+  React: 'bg-[#00D8FF] text-[#111]',
+  JavaScript: 'bg-[#F7DF1E] text-[#111]',
+  TypeScript: 'bg-[#3178C6] text-[#fff]',
+  Rust: 'bg-[#CE6B2C] text-[#fff]',
+  Nix: 'bg-[#5277C3] text-[#fff]',
+  'Next.js': 'bg-[#111111] text-[#fff]',
+  CSS: 'bg-[#2965F1] text-[#fff]',
+  Tailwind: 'bg-[#38BDF8] text-[#111]',
+  C: 'bg-[#5C6BC0] text-[#fff]',
+  Node: 'bg-[#539E43] text-[#fff]',
+  Express: 'bg-[#4B5563] text-[#fff]',
+  'Hono.js': 'bg-[#E36002] text-[#fff]',
+  Python: 'bg-[#FFD43B] text-[#111]',
+  Motion: 'bg-[#BB5CFF] text-[#fff]',
+  Figma: 'bg-[#A259FF] text-[#fff]',
+  Django: 'bg-[#0C8F5A] text-[#fff]',
+  'C++': 'bg-[#659AD2] text-[#111]',
+  Bun: 'bg-[#F6D6A8] text-[#111]',
 }
 
 export default function HomeContent() {
@@ -58,7 +58,7 @@ export default function HomeContent() {
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
         {/* Info */}
-        <div className="rounded-3xl border-4 border-black bg-white p-6 shadow-[5px_5px_0px_0px_black] md:p-8">
+        <div className="rounded-3xl border-4 border-black bg-white p-6 shadow-[5px_5px_0px_0px_var(--shadow-ink)] md:p-8">
           <div className="flex flex-wrap items-center gap-2">
             <motion.span
               className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-green-400 px-3 py-1 text-[11px] font-black tracking-wide uppercase"
@@ -102,7 +102,7 @@ export default function HomeContent() {
               href="/documents/uResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-5 py-3 text-sm font-black tracking-wide text-black uppercase shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_black]"
+              className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-amber-300 px-5 py-3 text-sm font-black tracking-wide text-black uppercase shadow-[4px_4px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--shadow-ink)]"
               whileHover={{ y: -4 }}
               transition={{ duration: 0.2 }}
             >
@@ -113,7 +113,7 @@ export default function HomeContent() {
         </div>
 
         {/* Profile Image — simple polaroid */}
-        <div className="relative mx-auto w-full max-w-sm rotate-1 rounded-2xl border-4 border-black bg-white p-3 pb-5 shadow-[6px_6px_0px_0px_black] transition-transform duration-300 hover:rotate-0 md:mx-0 md:w-auto">
+        <div className="relative mx-auto w-full max-w-sm rotate-1 rounded-2xl border-4 border-black bg-white p-3 pb-5 shadow-[6px_6px_0px_0px_var(--shadow-ink)] transition-transform duration-300 hover:rotate-0 md:mx-0 md:w-auto">
           <div className="relative h-64 w-full overflow-hidden rounded-lg border-4 border-black bg-gray-100 md:h-80">
             <Image
               src="/images/profile/avatar.png"
@@ -141,7 +141,7 @@ export default function HomeContent() {
       <section className="mt-12">
         <div className="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
           <div className="flex items-center gap-4">
-            <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_black] md:p-3">
+            <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_var(--shadow-ink)] md:p-3">
               <Hammer size={24} className="md:h-7 md:w-7" />
             </div>
             <div>
@@ -155,7 +155,7 @@ export default function HomeContent() {
           </div>
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-white px-5 py-2.5 text-sm font-black tracking-wide text-black uppercase shadow-[4px_4px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-200 hover:shadow-[6px_6px_0px_0px_black]"
+            className="inline-flex items-center gap-2 rounded-xl border-4 border-black bg-white px-5 py-2.5 text-sm font-black tracking-wide text-black uppercase shadow-[4px_4px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-200 hover:shadow-[6px_6px_0px_0px_var(--shadow-ink)]"
           >
             View All
             <ArrowUpRight size={16} />
@@ -187,7 +187,7 @@ export default function HomeContent() {
       {/* Skills */}
       <section className="mt-12">
         <div className="mb-6 flex items-center gap-4">
-          <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_black] md:p-3">
+          <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_var(--shadow-ink)] md:p-3">
             <Wrench size={24} className="md:h-7 md:w-7" />
           </div>
           <div>
@@ -200,12 +200,12 @@ export default function HomeContent() {
           </div>
         </div>
 
-        <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-3 shadow-[5px_5px_0px_0px_black]">
+        <div className="rounded-2xl border-4 border-black bg-paper p-3 shadow-[5px_5px_0px_0px_var(--shadow-ink)]">
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {skillshowcase.map(({ icon: Icon, label }, i: number) => (
               <span
                 key={label || `skill-${i}`}
-                className="group inline-flex items-center gap-1.5 rounded-lg border-2 border-black/15 bg-white px-2.5 py-1.5 text-[11px] font-black tracking-tight uppercase transition-all duration-200 hover:-translate-y-0.5 hover:border-black hover:shadow-[2px_2px_0px_0px_black] sm:px-3 sm:text-xs"
+                className="group inline-flex items-center gap-1.5 rounded-lg border-2 border-black/15 bg-white px-2.5 py-1.5 text-[11px] font-black tracking-tight uppercase transition-all duration-200 hover:-translate-y-0.5 hover:border-black hover:shadow-[2px_2px_0px_0px_var(--shadow-ink)] sm:px-3 sm:text-xs"
               >
                 <span
                   className={`grid h-5 w-5 place-items-center rounded-md border-2 border-black transition-transform duration-200 group-hover:-rotate-6 ${skillColors[label] ?? 'bg-amber-200'}`}

@@ -24,7 +24,7 @@ export default function Projects() {
       {/* Header */}
       <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div className="flex items-center gap-4">
-          <div className="rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_black]">
+          <div className="rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_var(--shadow-ink)]">
             <FolderOpen size={28} />
           </div>
           <div>

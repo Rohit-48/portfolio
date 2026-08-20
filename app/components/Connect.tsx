@@ -33,7 +33,7 @@ export const Connect = () => {
     <div>
       {/* Header */}
       <div className="mb-6 flex items-center gap-4">
-        <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_black] md:p-3">
+        <div className="rounded-2xl border-4 border-black bg-amber-300 p-2 shadow-[4px_4px_0px_0px_var(--shadow-ink)] md:p-3">
           <Radio size={24} className="md:h-7 md:w-7" />
         </div>
         <div>
@@ -56,10 +56,10 @@ export const Connect = () => {
               rel={
                 f.href.startsWith('http') ? 'noopener noreferrer' : undefined
               }
-              className={`group flex h-full items-center justify-between gap-4 rounded-2xl border-4 border-black p-5 shadow-[5px_5px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black] ${f.bg}`}
+              className={`group flex h-full items-center justify-between gap-4 rounded-2xl border-4 border-black p-5 shadow-[5px_5px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_var(--shadow-ink)] ${f.bg}`}
             >
               <div className="flex items-center gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border-4 border-black bg-white shadow-[2px_2px_0px_0px_black] transition-transform duration-200 group-hover:-rotate-6">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border-4 border-black bg-white shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-transform duration-200 group-hover:-rotate-6">
                   <f.icon size={20} />
                 </span>
                 <div>
@@ -81,7 +81,7 @@ export const Connect = () => {
 
         {/* Everything else — one simple list card */}
         <BlurFade inView delay={0.15} className="md:col-span-2">
-          <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-3 shadow-[5px_5px_0px_0px_black] md:p-4">
+          <div className="rounded-2xl border-4 border-black bg-paper p-3 shadow-[5px_5px_0px_0px_var(--shadow-ink)] md:p-4">
             <p className="px-2 pt-1 pb-3 text-[11px] font-black tracking-[0.2em] text-black/40 uppercase">
               Elsewhere
             </p>
@@ -98,7 +98,7 @@ export const Connect = () => {
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    className="group flex items-center gap-3 rounded-xl border-2 border-black/15 bg-white px-3 py-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-black hover:shadow-[3px_3px_0px_0px_black]"
+                    className="group flex items-center gap-3 rounded-xl border-2 border-black/15 bg-white px-3 py-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-black hover:shadow-[3px_3px_0px_0px_var(--shadow-ink)]"
                   >
                     <span
                       className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg border-2 border-black text-white ${item.tone}`}
@@ -131,7 +131,7 @@ export const Connect = () => {
         <BlurFade inView delay={0.2} className="md:col-span-2">
           <Link
             href="/blogs"
-            className="group flex items-center justify-between rounded-2xl border-4 border-dashed border-black/40 px-5 py-4 transition-all duration-200 hover:border-black hover:bg-white hover:shadow-[5px_5px_0px_0px_black]"
+            className="group flex items-center justify-between rounded-2xl border-4 border-dashed border-black/40 px-5 py-4 transition-all duration-200 hover:border-black hover:bg-white hover:shadow-[5px_5px_0px_0px_var(--shadow-ink)]"
           >
             <p className="text-sm font-black uppercase">
               Prefer reading?{' '}

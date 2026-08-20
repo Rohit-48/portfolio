@@ -32,7 +32,7 @@ export function BlogsList({ posts }: BlogsListProps) {
       {/* Header — matches site pattern */}
       <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div className="flex items-center gap-4">
-          <div className="rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_black]">
+          <div className="rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_var(--shadow-ink)]">
             <NotebookText size={28} />
           </div>
           <div>
@@ -44,13 +44,13 @@ export function BlogsList({ posts }: BlogsListProps) {
             </p>
           </div>
         </div>
-        <div className="rounded-xl border-4 border-black bg-[#fffdf7] px-4 py-2.5 text-sm font-black tracking-wide uppercase shadow-[4px_4px_0px_0px_black]">
+        <div className="rounded-xl border-4 border-black bg-paper px-4 py-2.5 text-sm font-black tracking-wide uppercase shadow-[4px_4px_0px_0px_var(--shadow-ink)]">
           {posts.length} post{posts.length !== 1 ? 's' : ''}
         </div>
       </div>
 
       {posts.length > 0 ? (
-        <div className="rounded-2xl border-4 border-black bg-[#fffdf7] p-3 shadow-[5px_5px_0px_0px_black] md:p-4">
+        <div className="rounded-2xl border-4 border-black bg-paper p-3 shadow-[5px_5px_0px_0px_var(--shadow-ink)] md:p-4">
           <div className="divide-y-4 divide-black">
             {posts.map((post: BlogSummary, index: number) => (
               <BlurFade key={post.slug} inView delay={0.04 + index * 0.04}>
@@ -82,7 +82,7 @@ export function BlogsList({ posts }: BlogsListProps) {
                     </div>
                   </div>
 
-                  <div className="hidden h-10 w-10 place-items-center rounded-xl border-4 border-black bg-amber-300 shadow-[2px_2px_0px_0px_black] transition-all duration-200 group-hover:-translate-y-1 group-hover:rotate-6 group-hover:shadow-[4px_4px_0px_0px_black] md:grid">
+                  <div className="hidden h-10 w-10 place-items-center rounded-xl border-4 border-black bg-amber-300 shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-all duration-200 group-hover:-translate-y-1 group-hover:rotate-6 group-hover:shadow-[4px_4px_0px_0px_var(--shadow-ink)] md:grid">
                     <ArrowUpRight size={16} />
                   </div>
                 </Link>

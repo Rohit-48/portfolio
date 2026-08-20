@@ -17,7 +17,7 @@ export default function BlogCard({
   tags,
 }: BlogCardProps) {
   return (
-    <div className="group font-electrolize relative w-full max-w-[860px] rounded-xl border-4 border-black bg-amber-50 shadow-[6px_6px_0px_0px_black] transition-all duration-300 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0px_0px_black]">
+    <div className="group font-electrolize relative w-full max-w-[860px] rounded-xl border-4 border-black bg-amber-50 shadow-[6px_6px_0px_0px_var(--shadow-ink)] transition-all duration-300 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0px_0px_var(--shadow-ink)]">
       {/* Decorative corner accent */}
       <div className="absolute -top-2 -right-2 h-4 w-4 rounded-full border-2 border-black bg-amber-400 sm:h-5 sm:w-5 md:h-6 md:w-6" />
 
@@ -53,7 +53,7 @@ export default function BlogCard({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-semibold shadow-[2px_2px_0px_0px_black] transition-all duration-150 selection:bg-yellow-400 selection:text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_black] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none sm:px-3 sm:py-1 sm:text-xs"
+              className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-semibold shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-all duration-150 selection:bg-yellow-400 selection:text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_var(--shadow-ink)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none sm:px-3 sm:py-1 sm:text-xs"
             >
               {tag}
             </span>

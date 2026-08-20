@@ -66,11 +66,11 @@ export default function LocalTime() {
       }
 
   return (
-    <div className="group flex h-full flex-col rounded-2xl border-4 border-black bg-amber-300 p-5 shadow-[5px_5px_0px_0px_black] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_black] md:p-6">
+    <div className="group flex h-full flex-col rounded-2xl border-4 border-black bg-amber-300 p-5 shadow-[5px_5px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_var(--shadow-ink)] md:p-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl border-4 border-black bg-white shadow-[2px_2px_0px_0px_black] transition-transform duration-200 group-hover:-rotate-6">
+          <span className="grid h-10 w-10 place-items-center rounded-xl border-4 border-black bg-white shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-transform duration-200 group-hover:-rotate-6">
             <Clock className="h-5 w-5 text-black" />
           </span>
           <div>
@@ -88,11 +88,11 @@ export default function LocalTime() {
 
       {/* Clock display */}
       <div className="mt-5 flex flex-1 items-center justify-center rounded-xl border-4 border-black bg-[#0f1108] px-4 py-5 shadow-[inset_0_0_0_4px_rgba(255,255,255,0.08)]">
-        <div className="flex items-baseline font-mono text-4xl font-black tracking-wider text-amber-300 tabular-nums sm:text-5xl">
+        <div className="flex items-baseline font-mono text-4xl font-black tracking-wider text-[#fcd34d] tabular-nums sm:text-5xl">
           <span>{time.hours}</span>
           <span className="animate-pulse px-1">:</span>
           <span>{time.minutes}</span>
-          <span className="ml-2 text-lg text-amber-300/60 sm:text-xl">
+          <span className="ml-2 text-lg text-[#fcd34d] sm:text-xl">
             {time.seconds}
           </span>
         </div>
@@ -100,7 +100,7 @@ export default function LocalTime() {
 
       {/* Timezone Footer */}
       <div className="mt-4 flex justify-center">
-        <span className="rounded-full border-2 border-black bg-[#fffdf7] px-3 py-1 text-[10px] font-black tracking-wide text-black uppercase">
+        <span className="rounded-full border-2 border-black bg-paper px-3 py-1 text-[10px] font-black tracking-wide text-black uppercase">
           {timezoneInfo.name
             ? `${timezoneInfo.name} (${timezoneInfo.offset})`
             : 'Local'}

@@ -1,7 +1,7 @@
 export default function ProjectsLoading() {
   return (
     <div className="flex flex-col items-center px-4 py-8 md:px-0">
-      <div className="font-electrolize rounded-full border-4 bg-amber-300 px-6 py-2 text-6xl font-bold tracking-tighter uppercase shadow-[2px_4px_0px_0px_black]">
+      <div className="font-electrolize rounded-full border-4 bg-amber-300 px-6 py-2 text-6xl font-bold tracking-tighter uppercase shadow-[2px_4px_0px_0px_var(--shadow-ink)]">
         Projects
       </div>
       <p className="font-electrolize mt-4 text-center text-sm font-medium opacity-60">
@@ -15,7 +15,7 @@ export default function ProjectsLoading() {
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            className="flex w-full max-w-sm animate-pulse flex-col overflow-hidden rounded-2xl border-4 border-black bg-amber-50 shadow-[4px_4px_0px_0px_black]"
+            className="flex w-full max-w-sm animate-pulse flex-col overflow-hidden rounded-2xl border-4 border-black bg-amber-50 shadow-[4px_4px_0px_0px_var(--shadow-ink)]"
           >
             {/* Image skeleton */}
             <div className="h-48 bg-gray-200" />
