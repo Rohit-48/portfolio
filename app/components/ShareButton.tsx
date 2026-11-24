@@ -43,7 +43,9 @@ export function ShareButton({ title }: { title: string }) {
       } else {
         setStatus('error')
       }
-    } catch {
+    } catch (err) {
+      // user dismissed the native share sheet — not an error
+      if (err instanceof DOMException && err.name === 'AbortError') return
       setStatus('error')
     }
   }
@@ -59,7 +61,7 @@ export function ShareButton({ title }: { title: string }) {
     <button
       type="button"
       onClick={shareOrCopy}
-      className="inline-flex w-full items-center justify-center gap-2 rounded-xl border-4 border-black bg-black px-4 py-3 font-black text-white uppercase shadow-[3px_3px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_var(--shadow-ink)] active:translate-y-0 active:shadow-[2px_2px_0px_0px_var(--shadow-ink)]"
+      className="border-ink bg-ink text-cream shadow-hard-sm hover:shadow-hard active:shadow-hard-sm inline-flex w-full items-center justify-center gap-2 rounded-xl border-[3px] px-4 py-3 font-mono text-sm font-bold uppercase transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
       aria-label={ariaLabel}
     >
       {status === 'copied' ? (

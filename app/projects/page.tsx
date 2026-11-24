@@ -1,55 +1,87 @@
 'use client'
 
-import { FolderOpen } from 'lucide-react'
+import { useMemo, useState } from 'react'
 import { projects } from '@/data/project'
-import { Project } from '@/types/project'
+import type { Project } from '@/types/project'
+import { sortProjects } from '@/lib/projects'
 import FloatingWindow from '../components/FloatingWindow'
-import { BlurFade } from '@/components/ui/blur-fade'
 import ProjectCard from '../components/ProjectCard'
-import { useState } from 'react'
+import { Reveal } from '../components/anim/Reveal'
+import { SectionHeader } from '../components/retro/SectionHeader'
+import { cn } from '@/lib/utils'
 
-const sortedProjects = [...projects].sort((a, b) => {
-  if (Number(b.featured) !== Number(a.featured))
-    return Number(b.featured) - Number(a.featured)
-  if (a.status === 'wip' && b.status === 'live') return -1
-  if (a.status === 'live' && b.status === 'wip') return 1
-  return b.year - a.year
-})
+const sortedProjects = sortProjects(projects)
+const filters = [
+  { key: 'all', label: 'all' },
+  { key: 'live', label: 'shipped' },
+  { key: 'wip', label: 'cooking' },
+] as const
+type Filter = (typeof filters)[number]['key']
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [filter, setFilter] = useState<Filter>('all')
+
+  const visible = useMemo(
+    () =>
+      filter === 'all'
+        ? sortedProjects
+        : sortedProjects.filter((p) => p.status === filter),
+    [filter],
+  )
 
   return (
-    <div className="font-inter mx-auto mt-8 w-full max-w-5xl pb-12 md:mt-12">
-      {/* Header */}
-      <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-        <div className="flex items-center gap-4">
-          <div className="rounded-2xl border-4 border-black bg-amber-300 p-3 shadow-[4px_4px_0px_0px_var(--shadow-ink)]">
-            <FolderOpen size={28} />
+    <div className="mx-auto w-full max-w-5xl pb-12">
+      <SectionHeader
+        as="h1"
+        index={`${sortedProjects.length}x`}
+        title="Projects"
+        subtitle="Everything I've built and shipped — plus what's still in the oven."
+        accent="bg-pink"
+        action={
+          <div
+            role="group"
+            aria-label="Filter projects"
+            className="border-ink bg-paper shadow-hard flex gap-1 rounded-xl border-[3px] p-1"
+          >
+            {filters.map((f) => (
+              <button
+                key={f.key}
+                type="button"
+                onClick={() => setFilter(f.key)}
+                aria-pressed={filter === f.key}
+                className={cn(
+                  'rounded-lg px-3 py-1.5 font-mono text-xs font-bold uppercase transition-all',
+                  filter === f.key
+                    ? 'bg-ink text-cream'
+                    : 'text-ink/60 hover:bg-sun hover:text-ink',
+                )}
+              >
+                {f.label}
+              </button>
+            ))}
           </div>
-          <div>
-            <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
-              Projects
-            </h1>
-            <p className="mt-1 text-base font-medium text-gray-600">
-              Things I&apos;ve built and shipped
-            </p>
-          </div>
-        </div>
-      </div>
+        }
+      />
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {sortedProjects.map((project: Project, index: number) => (
-          <BlurFade key={project.slug} inView delay={0.05 + index * 0.05}>
-            <ProjectCard
-              project={project}
-              index={index}
-              onClick={() => setSelectedProject(project)}
-            />
-          </BlurFade>
+      {/* key forces a fresh stagger-in whenever the filter changes */}
+      <Reveal
+        key={filter}
+        immediate
+        stagger={0.08}
+        y={50}
+        rotate={2}
+        className="grid grid-cols-1 gap-6 md:grid-cols-2"
+      >
+        {visible.map((project, index) => (
+          <ProjectCard
+            key={project.slug}
+            project={project}
+            index={index}
+            onClick={() => setSelectedProject(project)}
+          />
         ))}
-      </div>
+      </Reveal>
 
       <FloatingWindow
         selectedProject={selectedProject}

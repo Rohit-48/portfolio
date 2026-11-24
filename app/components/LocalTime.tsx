@@ -1,7 +1,7 @@
 'use client'
 
 import { useSyncExternalStore } from 'react'
-import { Clock } from 'lucide-react'
+import { RetroWindow } from './retro/RetroWindow'
 
 const subscribeToClock = (callback: () => void) => {
   const interval = setInterval(callback, 1000)
@@ -66,46 +66,42 @@ export default function LocalTime() {
       }
 
   return (
-    <div className="group flex h-full flex-col rounded-2xl border-4 border-black bg-amber-300 p-5 shadow-[5px_5px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_var(--shadow-ink)] md:p-6">
-      {/* Header */}
+    <RetroWindow
+      title="clock.app"
+      bar="bg-sun"
+      className="hover:shadow-hard-lg h-full transition-shadow duration-200"
+      bodyClassName="flex flex-col p-5 md:p-6"
+    >
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl border-4 border-black bg-white shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-transform duration-200 group-hover:-rotate-6">
-            <Clock className="h-5 w-5 text-black" />
-          </span>
-          <div>
-            <p className="text-sm font-black uppercase"> Local Time </p>
-            <p className="flex items-center gap-1.5 text-[10px] font-bold tracking-[0.15em] text-black/50 uppercase">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-700" />
-              Live
-            </p>
-          </div>
-        </div>
-        <span className="rounded-full border-2 border-black bg-white px-2.5 py-1 font-mono text-[11px] font-black">
+        <p className="flex items-center gap-2 font-mono text-xs font-bold tracking-[0.15em] uppercase">
+          <span className="bg-hotpink h-2 w-2 animate-pulse rounded-full" />
+          your local time
+        </p>
+        <span className="border-ink bg-lime font-pixel shadow-hard-sm rounded-full border-2 px-2.5 py-0.5 text-[11px]">
           {time.period}
         </span>
       </div>
 
-      {/* Clock display */}
-      <div className="mt-5 flex flex-1 items-center justify-center rounded-xl border-4 border-black bg-[#0f1108] px-4 py-5 shadow-[inset_0_0_0_4px_rgba(255,255,255,0.08)]">
-        <div className="flex items-baseline font-mono text-4xl font-black tracking-wider text-[#fcd34d] tabular-nums sm:text-5xl">
+      {/* LCD */}
+      <div className="border-ink bg-ink relative mt-5 flex flex-1 items-center justify-center overflow-hidden rounded-xl border-[3px] px-4 py-6">
+        <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0_2px,rgb(255_255_255/0.04)_2px_4px)]" />
+        <div className="font-pixel text-lime flex items-baseline text-5xl tabular-nums drop-shadow-[0_0_10px_rgb(196_242_90/0.55)] sm:text-6xl">
           <span>{time.hours}</span>
-          <span className="animate-pulse px-1">:</span>
+          <span className="animate-blink px-1">:</span>
           <span>{time.minutes}</span>
-          <span className="ml-2 text-lg text-[#fcd34d] sm:text-xl">
+          <span className="text-pink ml-2 text-xl sm:text-2xl">
             {time.seconds}
           </span>
         </div>
       </div>
 
-      {/* Timezone Footer */}
       <div className="mt-4 flex justify-center">
-        <span className="rounded-full border-2 border-black bg-paper px-3 py-1 text-[10px] font-black tracking-wide text-black uppercase">
+        <span className="border-ink bg-cream rounded-full border-2 px-3 py-1 font-mono text-[11px] font-bold uppercase">
           {timezoneInfo.name
             ? `${timezoneInfo.name} (${timezoneInfo.offset})`
             : 'Local'}
         </span>
       </div>
-    </div>
+    </RetroWindow>
   )
 }

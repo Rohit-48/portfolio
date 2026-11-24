@@ -1,8 +1,17 @@
 'use client'
 
 import Image from 'next/image'
-import { CheckCircle2, ExternalLink, Github, Hammer } from 'lucide-react'
+import type { KeyboardEvent } from 'react'
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  ExternalLink,
+  Github,
+  Hammer,
+} from 'lucide-react'
 import type { Project } from '@/types/project'
+import { Tilt } from './anim/Tilt'
+import { cn } from '@/lib/utils'
 
 interface ProjectCardProps {
   project: Project
@@ -11,75 +20,106 @@ interface ProjectCardProps {
   index?: number
 }
 
+const bars = [
+  'bg-pink',
+  'bg-lime',
+  'bg-cyan',
+  'bg-sun',
+  'bg-lilac',
+  'bg-orange',
+]
+
 export default function ProjectCard({
   project,
   onClick,
   isHero = false,
   index = 0,
 }: ProjectCardProps) {
-  const tilt = index % 2 === 0 ? 'sm:rotate-[0.5deg]' : 'sm:-rotate-[0.5deg]'
+  const bar = bars[index % bars.length]
+
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.target !== e.currentTarget) return
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      onClick()
+    }
+  }
 
   return (
-    <div
-      onClick={onClick}
-      className={`group relative flex h-full cursor-pointer flex-col rounded-2xl border-4 border-black bg-paper p-4 pt-6 shadow-[5px_5px_0px_0px_var(--shadow-ink)] transition-all duration-300 hover:z-20 hover:-translate-y-2 hover:rotate-0 hover:shadow-[9px_9px_0px_0px_var(--shadow-ink)] ${tilt}`}
-    >
-      {/* masking tape seal — photo slides out from under it */}
-      <div className="absolute -top-3 left-1/2 z-30 h-6 w-28 -translate-x-1/2 -rotate-2 border-y-2 border-black/20 bg-amber-300/80 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.15)]" />
-
-      {/* polaroid photo — tucked into the envelope, pops out on hover */}
+    <Tilt max={isHero ? 4 : 7}>
       <div
-        className={`relative z-10 mx-2 -mb-12 rounded-md border-4 border-black bg-white p-1.5 shadow-[4px_4px_0px_0px_var(--shadow-ink)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:z-40 group-hover:-translate-y-14 group-hover:-rotate-2 group-hover:scale-[1.04] group-hover:shadow-[10px_14px_0px_0px_rgba(15,17,8,0.3)] ${
-          isHero ? 'h-56 md:h-64' : 'h-44'
-        }`}
+        role="button"
+        tabIndex={0}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        aria-label={`Open details for ${project.title}`}
+        className="group border-ink bg-paper shadow-hard hover:shadow-hard-lg focus-visible:ring-hotpink flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border-[3px] transition-shadow duration-300 outline-none focus-visible:ring-4"
       >
-        <div className="relative h-full w-full overflow-hidden rounded-[4px] border-2 border-black/15 bg-gray-100">
+        {/* title bar */}
+        <div
+          className={cn(
+            'border-ink flex items-center justify-between gap-2 border-b-[3px] px-3 py-1.5',
+            bar,
+          )}
+        >
+          <span className="font-pixel truncate text-[11px] uppercase">
+            {project.slug}.exe
+          </span>
+          <span className="flex shrink-0 gap-1" aria-hidden="true">
+            <span className="border-ink bg-paper h-3 w-3 rounded-[3px] border-2" />
+            <span className="border-ink bg-paper h-3 w-3 rounded-[3px] border-2" />
+            <span className="border-ink bg-ink grid h-3 w-3 place-items-center rounded-[3px] border-2" />
+          </span>
+        </div>
+
+        {/* screenshot */}
+        <div
+          className={cn(
+            'border-ink bg-lilac relative overflow-hidden border-b-[3px]',
+            isHero ? 'h-56 md:h-72' : 'h-44',
+          )}
+        >
           <Image
             src={project.imageUrl.trim()}
             alt={project.title}
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
+            sizes={
+              isHero
+                ? '(max-width: 1024px) 100vw, 66vw'
+                : '(max-width: 768px) 100vw, 33vw'
+            }
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
           />
+          <div className="bg-halftone pointer-events-none absolute inset-0 opacity-0 mix-blend-multiply transition-opacity duration-300 group-hover:opacity-40" />
 
-          {/* status badge */}
-          <div className="absolute top-2 left-2">
-            <div
-              className={[
-                'inline-flex items-center gap-1.5 rounded-full border-2 border-black px-2.5 py-1',
-                'shadow-[2px_2px_0px_0px_var(--shadow-ink)]',
-                project.status === 'wip'
-                  ? 'bg-amber-300 text-black'
-                  : 'bg-emerald-200 text-black',
-              ].join(' ')}
-            >
-              {project.status === 'wip' ? (
-                <>
-                  <Hammer size={12} className="hammer-swing" />
-                  <span className="text-[10px] font-black tracking-wide uppercase">
-                    WIP
-                  </span>
-                </>
-              ) : (
-                <>
-                  <CheckCircle2 size={12} />
-                  <span className="text-[10px] font-black tracking-wide uppercase">
-                    Live
-                  </span>
-                </>
-              )}
-            </div>
-          </div>
+          {/* status sticker */}
+          <span
+            className={cn(
+              'border-ink shadow-hard-sm absolute top-3 left-3 inline-flex -rotate-3 items-center gap-1.5 rounded-full border-2 px-2.5 py-1 font-mono text-[10px] font-bold uppercase',
+              project.status === 'wip' ? 'bg-sun' : 'bg-lime',
+            )}
+          >
+            {project.status === 'wip' ? (
+              <>
+                <Hammer size={12} className="hammer-swing" /> wip
+              </>
+            ) : (
+              <>
+                <CheckCircle2 size={12} /> live
+              </>
+            )}
+          </span>
 
-          {/* action buttons */}
-          <div className="absolute top-2 right-2 flex gap-1.5">
+          {/* quick links */}
+          <div className="absolute top-3 right-3 flex gap-1.5">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="rounded-lg border-2 border-black bg-white p-1.5 shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[3px_3px_0px_0px_var(--shadow-ink)]"
+                aria-label={`${project.title} source on GitHub`}
+                className="border-ink bg-paper shadow-hard-sm hover:bg-sun rounded-lg border-2 p-1.5 transition-transform duration-200 hover:-translate-y-0.5 hover:rotate-6"
               >
                 <Github size={14} />
               </a>
@@ -90,94 +130,66 @@ export default function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="rounded-lg border-2 border-black bg-white p-1.5 shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[3px_3px_0px_0px_var(--shadow-ink)]"
+                aria-label={`${project.title} live site`}
+                className="border-ink bg-paper shadow-hard-sm hover:bg-lime rounded-lg border-2 p-1.5 transition-transform duration-200 hover:-translate-y-0.5 hover:-rotate-6"
               >
                 <ExternalLink size={14} />
               </a>
             )}
           </div>
-        </div>
-      </div>
 
-      {/* envelope pocket holding the content */}
-      <div className="relative z-20 flex-1 rounded-xl border-4 border-black bg-envelope">
-        {/* V fold lines of the envelope mouth */}
-        <svg
-          className="pointer-events-none absolute inset-x-0 top-0 h-7 w-full text-black"
-          viewBox="0 0 100 28"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M -1 -2 L 50 26 L 101 -2"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="4"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-
-        {/* revealed when the photo is pulled out */}
-        <span className="absolute top-3.5 right-3 text-[9px] font-black tracking-[0.2em] text-black/30 uppercase transition-opacity duration-300 group-hover:opacity-100">
-          pull me
-        </span>
-
-        {/* postage stamp */}
-        <div className="absolute -right-2 -bottom-3 z-30 grid h-10 w-9 rotate-6 place-items-center border-2 border-dashed border-black/60 bg-white text-black/60 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)]">
-          <span className="text-[10px] font-black">
-            &apos;{String(project.year).slice(2)}
+          {/* "open" pill slides up on hover */}
+          <span className="border-ink bg-ink text-cream absolute right-3 bottom-3 inline-flex translate-y-12 items-center gap-1 rounded-full border-2 px-3 py-1 font-mono text-[10px] font-bold uppercase transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-y-0 group-focus-visible:translate-y-0">
+            open <ArrowUpRight size={12} />
           </span>
         </div>
 
-        <div className="p-4 pt-9">
-          <div className="mb-2 flex items-center justify-between">
-            <div className="flex flex-wrap gap-1.5">
-              {project.stack.slice(0, 2).map((tech: string) => (
-                <span
-                  key={tech}
-                  className="rounded-full border-2 border-black bg-amber-200 px-2 py-0.5 text-[10px] font-bold text-black"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <span className="text-[11px] font-black text-black/40">
-              {project.year}
+        {/* body */}
+        <div className="flex flex-1 flex-col p-4">
+          <div className="flex items-start justify-between gap-3">
+            <h3
+              className={cn(
+                'font-display leading-none font-extrabold tracking-tight uppercase',
+                isHero ? 'text-3xl md:text-4xl' : 'text-2xl',
+              )}
+            >
+              {project.title}
+            </h3>
+            <span className="border-ink/50 font-pixel text-ink/60 shrink-0 rotate-3 rounded-md border-2 border-dashed px-1.5 py-0.5 text-[10px]">
+              &apos;{String(project.year).slice(2)}
             </span>
           </div>
-
-          <h3
-            className={`font-black tracking-tight text-black uppercase ${
-              isHero ? 'text-xl md:text-2xl' : 'text-lg'
-            }`}
-          >
-            {project.title}
-          </h3>
           <p
-            className={`mt-1.5 font-medium text-gray-600 ${
-              isHero ? 'line-clamp-3 text-sm' : 'line-clamp-2 text-xs'
-            }`}
+            className={cn(
+              'text-ink/70 mt-2',
+              isHero
+                ? 'line-clamp-3 text-sm md:text-base'
+                : 'line-clamp-2 text-sm',
+            )}
           >
             {project.description}
           </p>
 
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {project.tags.slice(0, 3).map((tag: string) => (
+          <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
+            {project.stack.slice(0, isHero ? 5 : 3).map((tech, i) => (
               <span
-                key={tag}
-                className="rounded-full border-2 border-black bg-white px-2 py-0.5 text-[10px] font-bold"
+                key={tech}
+                className={cn(
+                  'border-ink rounded-full border-2 px-2 py-0.5 font-mono text-[10px] font-bold',
+                  i === 0 ? bar : 'bg-paper',
+                )}
               >
-                {tag}
+                {tech}
               </span>
             ))}
-            {project.tags.length > 3 && (
-              <span className="rounded-full border-2 border-black bg-gray-200 px-2 py-0.5 text-[10px] font-bold">
-                +{project.tags.length - 3}
+            {project.stack.length > (isHero ? 5 : 3) && (
+              <span className="border-ink bg-ink text-cream rounded-full border-2 px-2 py-0.5 font-mono text-[10px] font-bold">
+                +{project.stack.length - (isHero ? 5 : 3)}
               </span>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </Tilt>
   )
 }

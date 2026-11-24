@@ -1,20 +1,40 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Electrolize } from 'next/font/google'
+import {
+  Bricolage_Grotesque,
+  Silkscreen,
+  Space_Grotesk,
+  Space_Mono,
+} from 'next/font/google'
 import './globals.css'
 import { Container } from './components/Container'
 import { Navbar } from './components/Navbar'
+import { Footer } from './components/Footer'
+import { ScrollProgress } from './components/anim/ScrollProgress'
+import { Cursor } from './components/anim/Cursor'
 import { Analytics } from '@vercel/analytics/next'
 
-const electrolize = Electrolize({
-  weight: '400',
-  variable: '--font-electrolize',
+const bricolage = Bricolage_Grotesque({
+  variable: '--font-bricolage',
   subsets: ['latin'],
+  weight: ['400', '600', '800'],
 })
 
-const inter = Inter({
-  variable: '--font-inter',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
   subsets: ['latin'],
+  weight: ['400', '500', '700'],
+})
+
+const spaceMono = Space_Mono({
+  variable: '--font-space-mono',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+})
+
+const silkscreen = Silkscreen({
+  variable: '--font-silkscreen',
+  subsets: ['latin'],
+  weight: '400',
 })
 
 export const metadata: Metadata = {
@@ -72,13 +92,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0f1108',
-}
-
-export const BackgroundPattern = () => {
-  return (
-    <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(var(--dot)_1px,transparent_1px)] bg-size-[16px_16px]"></div>
-  )
+  themeColor: '#fff4e0',
 }
 
 export default function RootLayout({
@@ -87,16 +101,27 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* flag JS early so [data-reveal] content can start hidden without a flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
       <body
-        className={`${inter.variable} ${electrolize.variable} antialiased`}
+        className={`${bricolage.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${silkscreen.variable} retro-grid min-h-screen overflow-x-hidden font-sans antialiased`}
         suppressHydrationWarning
       >
-        <BackgroundPattern />
+        <div className="grain" aria-hidden="true" />
+        <ScrollProgress />
+        <Cursor />
+        <Navbar />
         <Container>
-          <Navbar />
-          <div className="pt-20">{children}</div>
+          <main className="pt-24 sm:pt-28">{children}</main>
         </Container>
+        <Footer />
         <Analytics />
       </body>
     </html>

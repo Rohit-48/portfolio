@@ -1,6 +1,8 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { gsap, useGSAP, MOTION_OK } from '@/lib/gsap'
+import { RetroWindow } from './retro/RetroWindow'
 import Image from 'next/image'
 import { SiSpotify } from 'react-icons/si'
 import { ArrowUpRight } from 'lucide-react'
@@ -38,7 +40,7 @@ function SoundBars({ seed }: { seed: number }) {
       {heights.map((h, i) => (
         <span
           key={i}
-          className="animate-soundwave w-[3px] rounded-full bg-black/60"
+          className="animate-soundwave bg-ink w-[3px] rounded-full"
           style={{
             height: `${h}%`,
             animationDelay: `${i * 120}ms`,
@@ -54,18 +56,15 @@ export default function SpotifyNowPlaying() {
   const [hasFetched, setHasFetched] = useState(false)
   const [currentProgress, setCurrentProgress] = useState(0)
   const lastFetchTime = useRef<number>(0)
-  const animationRef = useRef<number | null>(null)
-  const rafTickRef = useRef<number>(0)
+  const discRef = useRef<HTMLDivElement>(null)
 
   const fetchNowPlaying = useCallback(async () => {
     try {
       const res = await fetch('/api/spotify')
-      const json = await res.json()
+      const json: SpotifyData = await res.json()
       setData(json)
       lastFetchTime.current = Date.now()
-      if (json.progress_ms) {
-        setCurrentProgress(json.progress_ms)
-      }
+      setCurrentProgress(json.progress_ms ?? 0)
     } catch (error) {
       console.error('Failed to fetch Spotify data:', error)
     } finally {
@@ -73,119 +72,143 @@ export default function SpotifyNowPlaying() {
     }
   }, [])
 
-  // Fetch data on mount and interval
+  // poll every 10s, but skip while the tab is hidden
   useEffect(() => {
     fetchNowPlaying()
-    const interval = setInterval(fetchNowPlaying, 10000)
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'visible') fetchNowPlaying()
+    }, 10000)
     return () => clearInterval(interval)
   }, [fetchNowPlaying])
 
-  // Smooth progress interpolation
+  // interpolate progress between polls (4 updates/sec is plenty for mm:ss)
   useEffect(() => {
-    if (!data?.isPlaying || !data.progress_ms || !data.duration_ms) {
+    if (!data?.isPlaying || data.progress_ms == null || !data.duration_ms)
       return
-    }
-
-    const updateProgress = () => {
+    const { progress_ms, duration_ms } = data
+    const id = setInterval(() => {
       const elapsed = Date.now() - lastFetchTime.current
-      const newProgress = Math.min(
-        (data.progress_ms || 0) + elapsed,
-        data.duration_ms || 0,
-      )
-      setCurrentProgress(newProgress)
-      rafTickRef.current += 1
-      animationRef.current = requestAnimationFrame(updateProgress)
-    }
-
-    animationRef.current = requestAnimationFrame(updateProgress)
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }
+      setCurrentProgress(Math.min(progress_ms + elapsed, duration_ms))
+    }, 250)
+    return () => clearInterval(id)
   }, [data])
 
-  const card = (
-    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border-4 border-black bg-paper p-5 shadow-[5px_5px_0px_0px_var(--shadow-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_var(--shadow-ink)] md:p-6">
-      {/* ── Header ── */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl border-4 border-black bg-[#1ED760] shadow-[2px_2px_0px_0px_var(--shadow-ink)] transition-transform duration-200 group-hover:-rotate-6">
-            <SiSpotify className="h-5 w-5 text-[#111]" />
-          </span>
-          <div>
-            <p className="text-sm font-black uppercase"> Spotify </p>
-            <p className="flex items-center gap-1.5 text-[10px] font-bold tracking-[0.15em] text-black/45 uppercase">
-              <span
-                className={`h-1.5 w-1.5 rounded-full ${data?.isPlaying ? 'bg-green-500' : 'bg-black/25'}`}
-              />
-              {data?.isPlaying ? 'Now Playing' : 'Last Played'}
-            </p>
+  // album art spins like a record while playing
+  const isPlaying = !!data?.isPlaying
+  useGSAP(
+    () => {
+      if (!isPlaying || !discRef.current) return
+      const mm = gsap.matchMedia()
+      mm.add(MOTION_OK, () => {
+        gsap.to(discRef.current, {
+          rotate: 360,
+          duration: 6,
+          ease: 'none',
+          repeat: -1,
+        })
+      })
+    },
+    { dependencies: [isPlaying, data?.albumImageUrl] },
+  )
+
+  if (!hasFetched) {
+    return (
+      <RetroWindow
+        title="now_playing.mp3"
+        bar="bg-mint"
+        className="h-full"
+        bodyClassName="p-5 md:p-6"
+      >
+        <div className="flex items-center gap-4">
+          <span className="border-ink bg-cream h-24 w-24 animate-pulse rounded-full border-[3px]" />
+          <div className="flex flex-1 flex-col gap-2">
+            <div className="bg-ink/10 h-4 w-32 animate-pulse rounded" />
+            <div className="bg-ink/5 h-3 w-24 animate-pulse rounded" />
           </div>
         </div>
+      </RetroWindow>
+    )
+  }
 
-        <div className="flex items-center gap-2">
-          {data?.isPlaying && (
+  const card = (
+    <RetroWindow
+      title="now_playing.mp3"
+      bar="bg-mint"
+      className="group hover:shadow-hard-lg h-full transition-shadow duration-200"
+      bodyClassName="flex flex-col p-5 md:p-6"
+      actions={
+        <span className="flex items-center gap-2">
+          {isPlaying && (
             <SoundBars
-              seed={(data.title?.length ?? 1) * 31 + (data.artist?.length ?? 1)}
+              seed={
+                (data?.title?.length ?? 1) * 31 + (data?.artist?.length ?? 1)
+              }
             />
           )}
-          <ArrowUpRight
-            size={16}
-            className="text-black/30 transition-all duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-black"
-          />
-        </div>
-      </div>
+          <SiSpotify className="h-4 w-4" />
+        </span>
+      }
+    >
+      <p className="flex items-center gap-2 font-mono text-xs font-bold tracking-[0.15em] uppercase">
+        <span
+          className={`h-2 w-2 rounded-full ${isPlaying ? 'animate-pulse bg-[#1ED760]' : 'bg-ink/30'}`}
+        />
+        {isPlaying ? 'now playing' : 'last played'}
+      </p>
 
-      {/* ── Song info ── */}
-      <div className="mt-5 flex flex-1 items-center gap-4">
-        {data?.albumImageUrl ? (
-          <div className="relative shrink-0">
-            <Image
-              src={data.albumImageUrl}
-              alt={data.album || 'Album'}
-              width={80}
-              height={80}
-              className="rounded-xl border-4 border-black bg-white shadow-[3px_3px_0px_0px_var(--shadow-ink)]"
-            />
-            {data?.isPlaying && (
-              <span className="absolute -right-2 -bottom-2 grid h-6 w-6 place-items-center rounded-full border-2 border-black bg-[#1ED760]">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-black" />
-              </span>
+      <div className="mt-5 flex flex-1 items-center gap-5">
+        {/* vinyl */}
+        <div className="relative h-24 w-24 shrink-0">
+          <div
+            ref={discRef}
+            className="border-ink bg-ink shadow-hard-sm relative h-full w-full overflow-hidden rounded-full border-[3px]"
+          >
+            {data?.albumImageUrl ? (
+              <Image
+                src={data.albumImageUrl}
+                alt={data.album || 'Album art'}
+                fill
+                sizes="96px"
+                className="object-cover"
+              />
+            ) : (
+              <div className="grid h-full w-full place-items-center bg-[repeating-radial-gradient(circle,#141414_0_2px,#2a2a2a_2px_4px)]">
+                <SiSpotify className="text-cream/40 h-7 w-7" />
+              </div>
             )}
           </div>
-        ) : (
-          <div className="grid h-[80px] w-[80px] place-items-center rounded-xl border-4 border-black bg-white shadow-[3px_3px_0px_0px_var(--shadow-ink)]">
-            <SiSpotify className="h-7 w-7 text-black/20" />
-          </div>
-        )}
+          {/* spindle hole */}
+          <span className="border-ink bg-cream absolute top-1/2 left-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px]" />
+        </div>
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-base leading-tight font-black uppercase">
-            {data?.title ?? 'Not Playing'}
+          <p className="font-display truncate text-xl leading-tight font-extrabold uppercase">
+            {data?.title ?? 'Nothing playing'}
           </p>
-          <p className="mt-1 truncate text-sm font-bold text-black/50">
+          <p className="text-ink/60 mt-1 truncate font-mono text-sm font-bold">
             {data?.artist ?? 'Spotify is offline'}
           </p>
           {data?.album && (
-            <p className="mt-1.5 truncate text-[10px] font-bold tracking-[0.15em] text-black/30 uppercase">
+            <p className="font-pixel text-ink/40 mt-1.5 truncate text-[10px] uppercase">
               {data.album}
             </p>
           )}
         </div>
+        <ArrowUpRight
+          size={20}
+          className="text-ink/30 group-hover:text-ink shrink-0 self-start transition-all duration-300 group-hover:rotate-45"
+        />
       </div>
 
-      {/* ── Progress bar ── */}
-      {data?.isPlaying && data.duration_ms ? (
-        <div className="mt-5 border-t-2 border-dashed border-black/15 pt-3">
-          <div className="mb-1.5 flex justify-between font-mono text-[10px] font-bold text-black/40">
+      {isPlaying && data?.duration_ms ? (
+        <div className="border-ink/20 mt-5 border-t-2 border-dashed pt-3">
+          <div className="font-pixel text-ink/50 mb-1.5 flex justify-between text-[10px]">
             <span>{formatTime(currentProgress)}</span>
             <span>{formatTime(data.duration_ms)}</span>
           </div>
-          <div className="relative h-3 overflow-hidden rounded-full border-2 border-black bg-white">
+          <div className="border-ink bg-cream relative h-3.5 overflow-hidden rounded-full border-2">
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-[#1ED760] transition-[width] duration-150"
+              className="absolute inset-y-0 left-0 bg-[repeating-linear-gradient(-45deg,#1ED760_0_6px,#7af0c4_6px_12px)] transition-[width] duration-300 ease-linear"
               style={{
                 width: `${Math.min((currentProgress / data.duration_ms) * 100, 100)}%`,
               }}
@@ -193,23 +216,8 @@ export default function SpotifyNowPlaying() {
           </div>
         </div>
       ) : null}
-    </div>
+    </RetroWindow>
   )
-
-  /* ── Loading skeleton ── */
-  if (!hasFetched) {
-    return (
-      <div className="flex h-full flex-col rounded-2xl border-4 border-black bg-paper p-5 shadow-[5px_5px_0px_0px_var(--shadow-ink)] md:p-6">
-        <div className="flex items-center gap-3">
-          <span className="h-10 w-10 animate-pulse rounded-xl border-4 border-black bg-white/50" />
-          <div className="flex flex-1 flex-col gap-2">
-            <div className="h-4 w-32 animate-pulse rounded bg-black/10" />
-            <div className="h-3 w-24 animate-pulse rounded bg-black/5" />
-          </div>
-        </div>
-      </div>
-    )
-  }
 
   if (data?.songUrl) {
     return (
